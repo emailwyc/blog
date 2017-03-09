@@ -1,0 +1,14 @@
+.db
+*.code
+Copy*
+*.swp
+*.swl
+*.swk
+*.swo
+*.scp
+*.swm
+*.swn
+ui/attachment/*
+app_why/cache/*.php
+app_why/logs/*.php
+app_why/storage/*
