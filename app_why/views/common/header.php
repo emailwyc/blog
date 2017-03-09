@@ -83,8 +83,6 @@ var _hmt = _hmt || [];
 				<ul class="mulitline">
 
 					
-					
-					
 				<li style="margin-top: 0px;">做了一些小调整，使之看起来更像博客。</li><li style="margin-top: 0px;">本站内容仅供学习和参阅，不做任何商业用途。</li><li style="margin-top: 0px;">内容如有侵犯，请立即联系管理员删除</li></ul>
 			</div>
 				<!--END 消息 -->

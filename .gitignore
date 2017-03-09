@@ -11,4 +11,3 @@ Copy*
 ui/attachment/*
 app_why/cache/*.php
 app_why/logs/*.php
-app_why/storage/*
