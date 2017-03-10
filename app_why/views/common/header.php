@@ -49,17 +49,6 @@
 	<script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script>
 <![endif]-->
 <script type="text/javascript" src="/ui/system/js/index.js"></script>
-<!-- 百度统计 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?136bd7aac0d158dec628add4b8dd4c3a";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!-- 百度统计 end-->
 
 
 	<link rel="stylesheet" href="/ui/system/css/swiper.css">
@@ -81,9 +70,10 @@ var _hmt = _hmt || [];
 			<div class="web-xiaoxi">
 				<i class="el-speaker"></i>
 				<ul class="mulitline">
-
-					
-				<li style="margin-top: 0px;">做了一些小调整，使之看起来更像博客。</li><li style="margin-top: 0px;">本站内容仅供学习和参阅，不做任何商业用途。</li><li style="margin-top: 0px;">内容如有侵犯，请立即联系管理员删除</li></ul>
+					<?php foreach($msgRoll as $val):?>
+					<li style="margin-top: 0px;"><?=$val['message'];?></li>
+					<?php endforeach;?>
+				</ul>
 			</div>
 				<!--END 消息 -->
 
@@ -101,21 +91,9 @@ var _hmt = _hmt || [];
 					<a href="javascript:;">分类<i class="el-chevron-down"></i></a>
 					<div class="drop-nav orange-text ">
 						<ul>
-							<li><a href="http://www.100txy.com/category/28.html">编程开发</a></li>
-
-							<li><a href="http://www.100txy.com/category/29.html">系统架构</a></li>
-
-							<li><a href="http://www.100txy.com/category/30.html">前端设计</a></li>
-
-							<li><a href="http://www.100txy.com/category/31.html">修炼之道</a></li>
-
-							<li><a href="http://www.100txy.com/category/32.html">程序人生</a></li>
-
-							<li><a href="http://www.100txy.com/category/35.html">千锤百炼</a></li>
-
-							<li><a href="http://www.100txy.com/category/33.html">黑客帝国</a></li>
-
-							<li><a href="http://www.100txy.com/category/34.html">搜索引擎</a></li>
+							<?php foreach($artClass as $val):?>
+							<li><a href="/article/getListByClass/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
+							<?php endforeach;?>
 						</ul>
 					</div>
 
@@ -158,21 +136,9 @@ var _hmt = _hmt || [];
 					<a href="javascrip:;">分类<i></i></a>
 
 					<ul class="mob-dropmenu">
-
-							<li><a href="http://www.100txy.com/category/28.html">编程开发</a></li>
-
-							<li><a href="http://www.100txy.com/category/29.html">系统架构</a></li>
-
-							<li><a href="http://www.100txy.com/category/30.html">前端设计</a></li>
-
-							<li><a href="http://www.100txy.com/category/31.html">修炼之道</a></li>
-
-							<li><a href="http://www.100txy.com/category/32.html">程序人生</a></li>
-
-							<li><a href="http://www.100txy.com/category/33.html">黑客帝国</a></li>
-
-							<li><a href="http://www.100txy.com/category/34.html">搜索引擎</a></li>
-
+							<?php foreach($artClass as $val):?>
+							<li><a href="/article/getListByClass/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
+							<?php endforeach;?>
 						</ul>
 
 					</li>
@@ -190,6 +156,5 @@ var _hmt = _hmt || [];
 				</ul>
 			</div>
 	</div>
-
 </header>
 <!--导航结束-->

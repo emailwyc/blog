@@ -1,4 +1,4 @@
-<?php $this->load->view('common/header');?>
+<?php $this->load->view('common/header',$this->_cdate);?>
 <!--主题框架开始-->
 <div class="container">
 	<!--左侧开始-->
@@ -347,7 +347,7 @@
 </script>
 
 <!--=========右侧开始==========-->
-<?php $this->load->view('common/right');?>
+<?php $this->load->view('common/right',$this->_cdate);?>
 <!--=========END右侧==========-->
 
 </div>
@@ -357,5 +357,5 @@
 
 
 <!---底部开始-->
-<?php $this->load->view('common/footer');?>
+<?php $this->load->view('common/footer',$this->_cdate);?>
 <!---底部结束-->

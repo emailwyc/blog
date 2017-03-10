@@ -71,19 +71,15 @@
 	<div class="data-count ">
 		<h4>数据统计</h4>
 		<ul>
+			<li> <span> <i class="el-picture"></i>图片数量：</span> <a title="共有 <?=$var['varRes']['photonum'];?> 张图片"><?=$var['varRes']['photonum'];?></a> 张</li>
+			<li><span><i class="el-headphones"></i>说说数量：</span><a title="共有 <?=$var['varRes']['saynum'];?> 条说说"><?=$var['varRes']['saynum'];?></a> 条</li>
+			<li><span><i class="el-pencil"></i>文章数量：</span><a title="共有 <?=$var['varRes']['artnum'];?> 篇文章"><?=$var['varRes']['artnum'];?></a> 篇</li>
+			<li><span><i class="el-comment"></i>留言数量：</span><a title="共有 <?=$var['varRes']['comnum'];?> 条留言"><?=$var['varRes']['comnum'];?></a> 条</li>
+			<li><span><i class="el-comment-alt"></i>评论数量：</span><a title="共有 <?=$var['varRes']['leavenum'];?> 条评论"><?=$var['varRes']['leavenum'];?></a> 条</li>
+			<li><span><i class="el-paper-clip"></i>资源个数：</span><a title="共有 <?=$var['varRes']['resnum'];?> 个"><?=$var['varRes']['resnum'];?></a> 个</li>
+			<li><span><i class="el-cog"></i>运行天数：</span><a title="雷小天博客 已正常运行 <?=$var['runing'];?> 天"><?=$var['runing'];?></a> 天</li>
 
-			<li><span><i class="el-picture"></i>图片数量：</span><a title="共有 10 张图片">10</a> 张</li>
-			<li><span><i class="el-headphones"></i>说说数量：</span><a title="共有 18 条说说">18</a> 条</li>
-			<li><span><i class="el-pencil"></i>文章数量：</span><a title="共有 34 篇文章">34</a> 篇</li>
-			<li><span><i class="el-comment"></i>留言数量：</span><a title="共有 28 条留言">28</a> 条</li>
-			<li><span><i class="el-comment-alt"></i>评论数量：</span><a title="共有 8 条评论">8</a> 条</li>
-			<li><span><i class="el-paper-clip"></i>素材个数：</span><a title="共有 6 个">6</a> 个</li>
-			<li><span><i class="el-cog"></i>运行天数：</span><a title="雷小天博客 已正常运行 442 天">442</a> 天</li>
-
-			<li><span><i class="el-adjust-alt"></i>访问统计：</span><a title="累计访问7326">7326</a> 次</li>
-
-			<!--<li><span><i class="el-arrow-up"></i>4天前 12:15</span><a title="晓晓 最后更新了文章" >更新了<b class="lable">文章</b></a></li>-->
-
+			<li><span><i class="el-adjust-alt"></i>访问统计：</span><a title="累计访问<?=$var['varRes']['visitnum'];?>"><?=$var['varRes']['visitnum'];?></a> 次</li>
 		</ul>
 	</div>
 
@@ -124,3 +120,14 @@ window.onload=function(){
 </div>
 <!---END 底部结束-->
 <ul id="supersized" class="quality" style="visibility: visible;"></ul></body></html>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?136bd7aac0d158dec628add4b8dd4c3a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- 百度统计 end-->
