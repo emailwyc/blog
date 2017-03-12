@@ -325,7 +325,6 @@
 	</div></section>
 	<!--左侧结束-->
 <script type="text/javascript">
-
 	$(function(){
 		var swiper = new Swiper('.swiper-container', {
 			nextButton: '.swiper-button-next',
@@ -341,21 +340,13 @@
 		});
 	//瀑布流
 		$('.su').jaliswall({ item: '.su-li' });
-
-
 	});
 </script>
-
 <!--=========右侧开始==========-->
 <?php $this->load->view('common/right',$this->_cdate);?>
 <!--=========END右侧==========-->
-
 </div>
 <!--主题框架结束-->
-
-
-
-
 <!---底部开始-->
 <?php $this->load->view('common/footer',$this->_cdate);?>
 <!---底部结束-->

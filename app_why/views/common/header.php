@@ -7,54 +7,28 @@
 <meta name="description" content="SooneBaby个人博客是php开发的个人网站，该博客涵盖PHP技术，前端，Linux系统，数据库，SEO优化等方面的知识.">
 <meta name="author" content="SooneBaby">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
-<!--CSS-->
-
-
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
 <link rel="shortcut icon" href="/ui/system/images/favicon.ico">
-
 <!--CSS-->
 <link rel="stylesheet" href="/ui/system/css/default.css">
 <link rel="stylesheet" href="/ui/system/css/public.css?v=1">
 <link rel="stylesheet" href="/ui/system/css/animation.css">
-
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_1.css" title="qingxin">
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_2.css?v=1" title="jianyue">
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_3.css" title="qingshuang">
 <link rel="stylesheet" href="/ui/system/css/font-icon.css">
 <link rel="stylesheet" href="/ui/system/css/face.css">
+<link rel="stylesheet" href="/ui/system/css/share_style1_32.css"></head>
+<link rel="stylesheet" href="/ui/system/css/layer.css" id="layui_layer_skinlayercss" style="">
+<!--CSS-->
 <!--JS-->
-<script src="/ui/system/js/hm.js"></script>
 <script type="text/javascript" src="/ui/system/js/jquery.js"></script>
-<script>
+<script type="text/javascript">
 	$("html").append("<div class='jiazai'><img src='/ui/system/images/loading3.gif'/><span>正在加载中请等待...</span></div>")
-
 </script>
-<script type="text/javascript" src="/ui/system/js/my.js"></script>
-<!-- <script type="text/javascript" src="/Template/xiao/Home/Public/js/scripts.js"></script> -->
-
-<script type="text/javascript" src="/ui/system/js/superbg.js"></script>
-<!-- <script type="text/javascript" src="/Template/xiao/Home/Public/js/supersized.3.2.7.min.js"></script> -->
-<script type="text/javascript" src="/ui/system/js/superbg-custom.js"></script>
-
-<script type="text/javascript" src="/ui/system/js/album.js"></script>
-<script type="text/javascript" src="/ui/system/js/tooltip.js"></script>
-<script type="text/javascript" src="/ui/system/js/face.js"></script>
-<script type="text/javascript" src="/ui/system/js/layer.js"></script><link rel="stylesheet" href="/ui/system/css/layer.css" id="layui_layer_skinlayercss" style="">
-<script type="text/javascript" src="/ui/system/js/checkform.js" charset="utf-8"></script>
-<script type="text/javascript" src="/ui/system/js/skin.js"></script>
-<!--[if lte IE 9]>
-	<script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script>
-<![endif]-->
-<script type="text/javascript" src="/ui/system/js/index.js"></script>
-
-
-	<link rel="stylesheet" href="/ui/system/css/swiper.css">
-	<script type="text/javascript" src="/ui/system/js/swiper.js"></script>
-<script src="/ui/system/js/share.js"></script><link rel="stylesheet" href="/ui/system/css/share_style1_32.css"></head>
-
+<!--JS-->
+<link rel="stylesheet" href="/ui/system/css/swiper.css">
 <body class="nobg" style="display: block;">
 <!--导航开始-->
 
@@ -63,9 +37,6 @@
 		<!--头像左边部分-->
 		<div class="top-left" style="animation: 1s ease 0s normal none 1 running fuzuo;">
 		  <div class="logo"><a href="/"><img src="/ui/system/images/logo3.gif"></a></div>
-
-
-
 				<!--滚动消息-->
 			<div class="web-xiaoxi">
 				<i class="el-speaker"></i>

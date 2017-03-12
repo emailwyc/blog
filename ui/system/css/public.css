@@ -335,7 +335,7 @@ background:rgba(255, 255, 255, 0.7);
 .side-link ul li a:hover{border-radius:0;-webkit-border-radius:0;box-shadow:3px 3px 5px #ccc;text-shadow:0 0px 3px #000;color:#fff;}
 .side-link h4 a{float:right;margin-right:10px;}
 /*�ײ�*/
-footer{width:100%;background:rgba(0,67,94,0.65);margin-top:35px;clear:both;clear:*;}
+footer{width:100%;background:rgba(0, 0, 1, 0.45);margin-top:35px;clear:both;clear:*;}
 .footer-area{width:100%;max-width:1200px;margin:auto;padding:25px 0;color:#fff;overflow:hidden;}
 .footer-area h4{color:#fff;font-weight:normal;background:none;text-indent:15px;padding:0;}
 /*����ͳ��*/

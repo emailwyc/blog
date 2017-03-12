@@ -7,13 +7,11 @@ $(document).ready(function(){
 	$("section").addClass("mysection")
 	//动画加载
 	$("body").show();
-	
 	$(".jiazai").remove();
 	$(".top-left").css({"animation":"fuzuo 1s","-webkit-animation":"fuzuo 1s"});
 	$(".swiper-container,.myaside ,.homeh4,.mysection").css({"-webkit-animation": "fuxiasuo 0.8s","animation": "fuxiasuo 0.8s"})
 	$(".myheader").css({"-webkit-animation":"fushang 0.5s","animation":"fushang 0.5s"})
 	//$(".skin-btn").css({"-webkit-animation": "zuo2 0.5s","-webkit-animation":"zuo2 0.5s"})
-	
 	var sidelen=$(".animation-div").length
 	var arclen=$(".arclist> ul>li").length
 	for(var s=0;s<=sidelen;s++){
@@ -56,31 +54,20 @@ $(document).ready(function(){
 		if($($(this))[0].href==String(window.location))
 			$(this).parent("li").addClass('nav-active');
 	});
-	
 	//菜单下拉
-
-		
 		$(".mob-drop").click(function(){
 			  $(".mob-dropmenu").slideToggle();
 
 		});
-		
 		//手机菜单下拉
-		
-			
 			var mb=$(".mobile-nav")
 			var mli=$(".mob-ulnav>li")
 			var mlen=mli.length;
 			var mindex=mli.index();
-			
-			
-			
-			
 			mb.find(".el-lines").click(function(){
 				$(this).hide();
 				$(this).next("i").show()
 				for (var m=0;m<=mlen;m++){
-				
 				mli.eq(m).css({
 					"-webkit-animation-name":"zuo",
 					"-webkit-animation-duration":m/10+0.5+"s",
@@ -261,8 +248,5 @@ $(".form-btn a").click(function(){
 			return false;
 		}
 	};	
-			
-		
 });//END Document ready
-		
 //JS区域

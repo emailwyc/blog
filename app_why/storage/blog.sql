@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : my
-Source Server Version : 50553
+Source Server Version : 50554
 Source Host           : localhost:3306
 Source Database       : blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50554
 File Encoding         : 65001
 
-Date: 2017-03-10 18:50:21
+Date: 2017-03-13 00:16:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -398,7 +398,7 @@ CREATE TABLE `system_base` (
 -- Records of system_base
 -- ----------------------------
 INSERT INTO `system_base` VALUES ('author', 'SooneBaby', '1');
-INSERT INTO `system_base` VALUES ('avatar', '/ui/system/image/soonebaby.jpg', '1');
+INSERT INTO `system_base` VALUES ('avatar', '/ui/system/images/soonebaby.jpg', '1');
 INSERT INTO `system_base` VALUES ('desc', '爱笑的女孩运气都不会太差！', '1');
 INSERT INTO `system_base` VALUES ('stime', '1485878400', '1');
 
@@ -423,7 +423,7 @@ INSERT INTO `system_variable` VALUES ('leavenum', '0', '1');
 INSERT INTO `system_variable` VALUES ('photonum', '0', '1');
 INSERT INTO `system_variable` VALUES ('resnum', '0', '1');
 INSERT INTO `system_variable` VALUES ('saynum', '0', '1');
-INSERT INTO `system_variable` VALUES ('visitnum', '0', '1');
+INSERT INTO `system_variable` VALUES ('visitnum', '108', '1');
 
 -- ----------------------------
 -- Table structure for `tags_cloud`
@@ -446,13 +446,18 @@ CREATE TABLE `tags_cloud` (
 DROP TABLE IF EXISTS `visit_logs`;
 CREATE TABLE `visit_logs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '访问id',
-  `ip` varchar(20) NOT NULL COMMENT 'ip',
-  `addr` varchar(50) NOT NULL COMMENT '地址',
-  `ct` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'ip',
+  `addr` varchar(50) NOT NULL DEFAULT '' COMMENT '地址',
+  `vnum` int(10) unsigned NOT NULL DEFAULT '0',
+  `ut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `ct` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `ct` (`ct`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `ip` (`ip`),
+  KEY `ct` (`ct`),
+  KEY `ut` (`ut`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of visit_logs
 -- ----------------------------
+INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '108', '2017-03-13 00:14:01', '2017-03-12 20:33:11');

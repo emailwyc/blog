@@ -1,46 +1,28 @@
 	<!--=========右侧开始==========-->
 <aside class="myaside" style="animation: 0.8s ease 0s normal none 1 running fuxiasuo;">
-
 <!--关注我-->
-
 <div class="focus-me bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1s;">
-
 	<h4 class="index-title"><i class="el-heart"></i>关注我<small>Focus Me</small></h4>
 		<div class="xiangguan">
-				<div><a class="benbo" href="http://weibo.com/100txy" target="_blank"><i class="el el-home"></i></a><span>新浪微博</span></div>
+				<div><a class="benbo" href="http://weibo.com/u/5107691374" target="_blank"><i class="el el-home"></i></a><span>新浪微博</span></div>
 				<!-- <div><a class="benbo" href="#" target="_blank"><span id="qq" style="padding-top:45px;">QQ空间</span></a><span>QQ空间</span></div> -->
-				<div><a class="taobao" href="http://user.qzone.qq.com/657106593/main" target="_blank"><i class="el el-star"></i></a><span>QQ空间</span></div>
+				<div><a class="taobao" href="http://user.qzone.qq.com/1285263707/main" target="_blank"><i class="el el-star"></i></a><span>QQ空间</span></div>
 				<div><a class="side-fx"><i class="el-share-alt"></i></a><span>分享本博</span></div>
 				<div><a class="mail-btn" href="javascript:;"><i class="el-envelope"></i></a><span>订阅我</span></div>
-
 		</div>
-
 		<div class="mail-dy">
-
 			<form action="http://list.qq.com/cgi-bin/qf_compose_send" method="post" target="_blank">
-
 				<input name="t" value="qf_booked_feedback" type="hidden">
-
 				<input name="id" value="b2b151b4bc010575c083e18e227ae907aac82bc47e84d3e0" type="hidden">
-
 				<span>订阅</span>
-
 				<input name="to" placeholder="输入邮箱点击订阅吧" onfocus="this.placeholder=''" onblur="this.placeholder='输入邮箱点击订阅吧'" type="text">
-
 				<i class="el-envelope"><input value=" " type="submit"></i>
-
 			</form>
-
 			<i class="el-remove fx-close"></i>
-
 		</div>
-
 		<div class="bd-fx side-bdfx ">
-
 			<i class="el-remove fx-close"></i>
-
 			<ul class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1488780406577">
-
 				<li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
 				<li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
 				<li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
@@ -53,16 +35,15 @@
 <div class="web-author bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.14286s;">
 		<div class="author-tx">
 			<a class="img-circle" href="http://www.100txy.com/Home/Index/about.html" title="点击查看详细信息">
-				<img class="img-circle" src="/ui/system/images/ava.jpg">
+				<img class="img-circle" src="<?=$var['baseRes']['avatar'];?>">
 			</a>
 		</div>
-		<div class="author-name"><span class="blue-text">雷小天</span><p>一位90后php技术开发站长</p></div>
+		<div class="author-name"><span class="blue-text"><?=$var['baseRes']['author'];?></span><p><?=$var['baseRes']['desc'];?></p></div>
 		<div class="data-info">
 			<ul>
-				<li><strong>442</strong><span>运行天数</span></li>
-				<li><strong>19</strong><span>今日访问ip</span></li>
-				<!-- <li><strong>34</strong><span>文章数量</span></li> -->
-				<li><strong>26</strong><span>今日访客</span></li>
+				<li><strong><?=$var['runing'];?></strong><span>运行天数</span></li>
+				<li><strong><?=$cvisit;?></strong><span>今日访问ip</span></li>
+				<li><strong><?=$var['varRes']['visitnum'];?></strong><span>总访问量</span></li>
 			</ul>
 		</div>
 </div>

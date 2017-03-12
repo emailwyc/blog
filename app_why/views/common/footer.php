@@ -92,7 +92,7 @@
 		</div>
 	</div>
 <div id="toTop">Back to Top</div>
-<script>
+<script type="text/javascript;">
 window.onload=function(){
 	$(".img_loading").removeClass("img_loading");
 	$(".silde-title").show();
@@ -110,7 +110,7 @@ window.onload=function(){
 		<a href="javascript:void(0);" class="skin-btn-open">换<br>肤</a>
 	</div>
 	<div class="skin-content">
-		<h1>选择风格<span class="skin-close">关闭</span></h1>
+		<h1>选择主题<span class="skin-close">关闭</span></h1>
 		<div class="skin-content-list">
 			<div class="skin-list"><a href="#" onclick="setActiveStyleSheet('qingxin'); return false;" class="btn1">清新</a></div>
 			<div class="skin-list"><a href="#" onclick="setActiveStyleSheet('jianyue'); return false;" class="btn2">简约</a></div>
@@ -121,13 +121,18 @@ window.onload=function(){
 <!---END 底部结束-->
 <ul id="supersized" class="quality" style="visibility: visible;"></ul></body></html>
 <!-- 百度统计 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?136bd7aac0d158dec628add4b8dd4c3a";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 <!-- 百度统计 end-->
+<script type="text/javascript" src="/ui/system/js/swiper.js"></script>
+<script type="text/javascript" src="/ui/system/js/common.js"></script>
+<script type="text/javascript" src="/ui/system/js/my.js"></script>
+<script type="text/javascript" src="/ui/system/js/superbg.js"></script>
+<script type="text/javascript" src="/ui/system/js/superbg-custom.js"></script>
+<script type="text/javascript" src="/ui/system/js/album.js"></script>
+<!--<script type="text/javascript" src="/ui/system/js/tooltip.js"></script>隔行换色-->
+<!--<script type="text/javascript" src="/ui/system/js/face.js"></script>评论表情-->
+<script type="text/javascript" src="/ui/system/js/layer.js"></script>
+<script type="text/javascript" src="/ui/system/js/checkform.js" charset="utf-8"></script>
+<script type="text/javascript" src="/ui/system/js/skin.js"></script>
+<!--[if lte IE 9]>
+	<script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script>
+<![endif]-->

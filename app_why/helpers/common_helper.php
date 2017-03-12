@@ -808,3 +808,51 @@ function timeChange12($time) {
 	$temp = date("a h:i",strtotime($time));
 	return str_replace("pm","下午",str_replace("am","上午",$temp));
 } 
+/**
+ * 取得客户端的ip 
+ * 
+ * @access public
+ * @return void
+ */
+function getClientIp()
+{
+	if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'])
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	else
+	{
+		if(isset($_SERVER['HTTP_CLIENT_IP']) && $_SERVER['HTTP_CLIENT_IP'])
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		else
+			$ip = $_SERVER['REMOTE_ADDR'];
+	}
+
+	return $ip;
+}
+
+//获取用户真实IP 
+function get_client_ip_true() { 
+    if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) 
+        $ip = getenv("HTTP_CLIENT_IP"); 
+    else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"),  
+"unknown")) 
+        $ip = getenv("HTTP_X_FORWARDED_FOR"); 
+    else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")) 
+        $ip = getenv("REMOTE_ADDR"); 
+    else if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR']  
+&& strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")) 
+        $ip = $_SERVER['REMOTE_ADDR']; 
+    else 
+        $ip = "unknown"; 
+    return ($ip); 
+} 
+
+//获取用户真实IP和对应为位置
+function get_client_addr() { 
+	$ip = get_client_ip_true();
+	$url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; 
+	$opts = stream_context_create(array('http'=>array('timeout'=>2))); 
+	$data = @json_decode(file_get_contents($url,false,$opts),true); //调用淘宝接口获取信息 
+	$addr = (isset($data['data']['region']) && isset($data['data']['country']))?$data['data']['country'].$data['data']['region']:"";
+	$res = array('ip'=>$ip,'addr'=>$addr);
+	return $res;
+} 
