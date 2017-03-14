@@ -22,7 +22,7 @@
 		</div>
 		<div class="bd-fx side-bdfx ">
 			<i class="el-remove fx-close"></i>
-			<ul class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1488780406577">
+			<ul class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1488780402523">
 				<li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
 				<li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
 				<li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>

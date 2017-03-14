@@ -46,9 +46,8 @@ function showFace(showid, target)
         {
                 var parentdiv = '<div id="append_parent"></div>';
                 var faceDivHtml = '<div id="' + showid + '_menu" class="facebox" style="position:absolute;"' + '><ul>';
-                for(i=1; i<31; i++) 
-                {
-                        faceDivHtml += '<li><img src="/images/face/'+i+'.gif" onclick="insertFace(\''+showid+'\','+i+', \''+ target +'\')" style="cursor:pointer; position:relative;" />    </li>';
+                for(i=1; i<31; i++) {
+                        faceDivHtml += '<li><img src="/ui/system/comment/images/face/'+i+'.gif" onclick="insertFace(\''+showid+'\','+i+', \''+ target +'\')" style="cursor:pointer; position:relative;" />    </li>';
                 }
                 faceDivHtml += '</ul></div>';
                 var facebg = '<div id="face_bg_' + showid + '" onclick="hideFace(\'' + showid + '\');" style="height: 1566px; display: none;" class="back_model"></div>';

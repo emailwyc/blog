@@ -39,9 +39,6 @@
 	 margin:0 auto;
 	 width:580px;
  }
- .say-backup-detail-other {/*回复列表*/
-         margin:20px 10px;
- }
  .say-backup-detail-other li {
          padding:7px 10px 15px 15px;
          border-bottom:1px dashed #ccc;
@@ -331,7 +328,7 @@ a:hover {
 }
 
 .all-comment{
-  margin-top:30px;
+  margin-top:10px;
   width:100%;
 }
 

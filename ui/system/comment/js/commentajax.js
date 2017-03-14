@@ -1,13 +1,6 @@
-function login_status(username,id,header){
-	jQuery("#snsinfo_username").val(username);
-	jQuery("#snsinfo_userid").val(id);
-	jQuery("#snsinfo_userpic").val(header);
-}
 $(document).ready(function() {
-        var ha = document.createElement('script'); ha.type = 'text/javascript'; ha.async = true;
-        ha.src = 'http://sns.hihoku.com/CheckloginStatusMessageJS.php';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ha, s);
     	bindLenVerify('comment_message', 'wrap_letter_leninfo_id');
+		//变量定义
     	var arcid = jQuery.trim(jQuery('#snsinfo_arcid').val());
 
 });
@@ -15,7 +8,7 @@ $(document).ready(function() {
 /*AJAX刷新评论*/ 
 function refreshComment(arcid, type, page)
 {
-        jQuery.getJSON('http://comment.hihoku.com/comment.php?ac=comment&do=getcomment&callback=?',{arcid:arcid,com_type:type,page:page, r:Math.random()},function(data){
+        jQuery.getJSON('/comment/getcomment?callback=?',{arcid:arcid,com_type:type,page:page, r:Math.random()},function(data){
 		if(data != "0")
 		{
 			var html='';
@@ -58,13 +51,12 @@ function refreshComment(arcid, type, page)
 /*得到评论总数*/
 function getCommentCount(arcid, type)
 {
-	jQuery.getJSON('http://comment.hihoku.com/comment.php?ac=comment&do=getcommentcount&callback=?',{arcid:arcid, com_type:type, r:Math.random()},function(data){
-		if(data != '0')
+	jQuery.getJSON('/comment/getcommentcount?callback=?',{arcid:arcid, com_type:type, r:Math.random()},function(data){
+		if(data != '1')
 		{
 			function pageselectCallback(page_index,jq){
 				refreshComment(arcid,type,page_index + 1);
 			}
-			jQuery('#replys').html('0');
 			jQuery('#replys').html(data);
 			jQuery('#paginate').html('');
 			jQuery('#paginate').pagination(data,{
@@ -73,7 +65,7 @@ function getCommentCount(arcid, type)
 				next_text: '下一页'
 			});
 		}else
-			jQuery('#comments').html("<h3 id='nowebfriendcomment'><center>暂无网友评论哦!</center></h3>");
+			jQuery('#comments').html('<div id="Comment" class="comment-area"> <h4 class="index-title"><i class="el-comment-alt"></i> 亲，沙发正空着，还不快来抢？ </h4> </div>');
 	});
 }
 
@@ -100,7 +92,7 @@ function delComment(commentid, checkid)
 
 //初始化评论
 $(document).ready(function(){
-    	var arcid = jQuery.trim(jQuery('#snsinfo_arcid').val());
-	var type = jQuery("#snsinfo_type").val();
+    	var arcid = jQuery.trim(jQuery('#snsinfo_aid').val());
+		var type = jQuery("#snsinfo_type").val();
         getCommentCount(arcid,type);
 });
