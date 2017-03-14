@@ -2,7 +2,7 @@
 <html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>SooneBaby博客-个人原创博客网站</title>
+<title><?=$_title?></title>
 <meta name="keywords" content="个人博客，个人博客模板，个人网站，模板分享，博客程序，网站模板,php个人博客,seo个人博客">
 <meta name="description" content="SooneBaby个人博客是php开发的个人网站，该博客涵盖PHP技术，前端，Linux系统，数据库，SEO优化等方面的知识.">
 <meta name="author" content="SooneBaby">
@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="/ui/system/images/favicon.ico">
 <!--CSS-->
 <link rel="stylesheet" href="/ui/system/css/default.css">
-<link rel="stylesheet" href="/ui/system/css/public.css?v=1">
+<link rel="stylesheet" href="/ui/system/css/public.css?v=2">
 <link rel="stylesheet" href="/ui/system/css/animation.css">
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_1.css" title="qingxin">
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_2.css?v=1" title="jianyue">
@@ -41,7 +41,7 @@
 			<div class="web-xiaoxi">
 				<i class="el-speaker"></i>
 				<ul class="mulitline">
-					<?php foreach($msgRoll as $val):?>
+					<?php foreach($_msgRoll as $val):?>
 					<li style="margin-top: 0px;"><?=$val['message'];?></li>
 					<?php endforeach;?>
 				</ul>
@@ -62,8 +62,8 @@
 					<a href="javascript:;">分类<i class="el-chevron-down"></i></a>
 					<div class="drop-nav orange-text ">
 						<ul>
-							<?php foreach($artClass as $val):?>
-							<li><a href="/article/getListByClass/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
+							<?php foreach($_artClass as $val):?>
+							<li><a href="/article/category/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
 							<?php endforeach;?>
 						</ul>
 					</div>
@@ -107,7 +107,7 @@
 					<a href="javascrip:;">分类<i></i></a>
 
 					<ul class="mob-dropmenu">
-							<?php foreach($artClass as $val):?>
+							<?php foreach($_artClass as $val):?>
 							<li><a href="/article/getListByClass/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
 							<?php endforeach;?>
 						</ul>

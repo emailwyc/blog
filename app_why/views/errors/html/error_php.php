@@ -1,33 +1,40 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
-
-<h4>A PHP Error was encountered</h4>
-
-<p>Severity: <?php echo $severity; ?></p>
-<p>Message:  <?php echo $message; ?></p>
-<p>Filename: <?php echo $filepath; ?></p>
-<p>Line Number: <?php echo $line; ?></p>
-
-<?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE === TRUE): ?>
-
-	<p>Backtrace:</p>
-	<?php foreach (debug_backtrace() as $error): ?>
-
-		<?php if (isset($error['file']) && strpos($error['file'], realpath(BASEPATH)) !== 0): ?>
-
-			<p style="margin-left:10px">
-			File: <?php echo $error['file'] ?><br />
-			Line: <?php echo $error['line'] ?><br />
-			Function: <?php echo $error['function'] ?>
-			</p>
-
-		<?php endif ?>
-
-	<?php endforeach ?>
-
-<?php endif ?>
-
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Error页面-个人原创博客</title>
+<style>
+    #box{
+        margin: 250px auto;
+        width: 540px;
+        height: 540px;
+    }
+    p{
+        margin-bottom: 60px;
+        width: 540px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+    }
+    #mes{
+        font-size: 30px;
+        color: red;
+    }
+    .hint{
+        color: #999;
+    }
+    a{
+        color: #259AEA;
+    }
+</style>
+<script>
+</script>
+</head>
+<body>
+<div id="box">
+    <img src="/ui/system/images/tishi.jpg" alt="">
+	<p class="hint"><?=$message?></p>
 </div>
+
+
+</body></html>

@@ -35,15 +35,15 @@
 <div class="web-author bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.14286s;">
 		<div class="author-tx">
 			<a class="img-circle" href="http://www.100txy.com/Home/Index/about.html" title="点击查看详细信息">
-				<img class="img-circle" src="<?=$var['baseRes']['avatar'];?>">
+				<img class="img-circle" src="<?=$_var['baseRes']['avatar'];?>">
 			</a>
 		</div>
-		<div class="author-name"><span class="blue-text"><?=$var['baseRes']['author'];?></span><p><?=$var['baseRes']['desc'];?></p></div>
+		<div class="author-name"><span class="blue-text"><?=$_var['baseRes']['author'];?></span><p><?=$_var['baseRes']['desc'];?></p></div>
 		<div class="data-info">
 			<ul>
-				<li><strong><?=$var['runing'];?></strong><span>运行天数</span></li>
-				<li><strong><?=$cvisit;?></strong><span>今日访问ip</span></li>
-				<li><strong><?=$var['varRes']['visitnum'];?></strong><span>总访问量</span></li>
+				<li><strong><?=$_var['runing'];?></strong><span>运行天数</span></li>
+				<li><strong><?=$_cvisit;?></strong><span>今日访问ip</span></li>
+				<li><strong><?=$_var['varRes']['visitnum'];?></strong><span>总访问量</span></li>
 			</ul>
 		</div>
 </div>

@@ -71,15 +71,15 @@
 	<div class="data-count ">
 		<h4>数据统计</h4>
 		<ul>
-			<li> <span> <i class="el-picture"></i>图片数量：</span> <a title="共有 <?=$var['varRes']['photonum'];?> 张图片"><?=$var['varRes']['photonum'];?></a> 张</li>
-			<li><span><i class="el-headphones"></i>说说数量：</span><a title="共有 <?=$var['varRes']['saynum'];?> 条说说"><?=$var['varRes']['saynum'];?></a> 条</li>
-			<li><span><i class="el-pencil"></i>文章数量：</span><a title="共有 <?=$var['varRes']['artnum'];?> 篇文章"><?=$var['varRes']['artnum'];?></a> 篇</li>
-			<li><span><i class="el-comment"></i>留言数量：</span><a title="共有 <?=$var['varRes']['comnum'];?> 条留言"><?=$var['varRes']['comnum'];?></a> 条</li>
-			<li><span><i class="el-comment-alt"></i>评论数量：</span><a title="共有 <?=$var['varRes']['leavenum'];?> 条评论"><?=$var['varRes']['leavenum'];?></a> 条</li>
-			<li><span><i class="el-paper-clip"></i>资源个数：</span><a title="共有 <?=$var['varRes']['resnum'];?> 个"><?=$var['varRes']['resnum'];?></a> 个</li>
-			<li><span><i class="el-cog"></i>运行天数：</span><a title="雷小天博客 已正常运行 <?=$var['runing'];?> 天"><?=$var['runing'];?></a> 天</li>
+			<li> <span> <i class="el-picture"></i>图片数量：</span> <a title="共有 <?=$_var['varRes']['photonum'];?> 张图片"><?=$_var['varRes']['photonum'];?></a> 张</li>
+			<li><span><i class="el-headphones"></i>说说数量：</span><a title="共有 <?=$_var['varRes']['saynum'];?> 条说说"><?=$_var['varRes']['saynum'];?></a> 条</li>
+			<li><span><i class="el-pencil"></i>文章数量：</span><a title="共有 <?=$_var['varRes']['artnum'];?> 篇文章"><?=$_var['varRes']['artnum'];?></a> 篇</li>
+			<li><span><i class="el-comment"></i>留言数量：</span><a title="共有 <?=$_var['varRes']['comnum'];?> 条留言"><?=$_var['varRes']['comnum'];?></a> 条</li>
+			<li><span><i class="el-comment-alt"></i>评论数量：</span><a title="共有 <?=$_var['varRes']['leavenum'];?> 条评论"><?=$_var['varRes']['leavenum'];?></a> 条</li>
+			<li><span><i class="el-paper-clip"></i>资源个数：</span><a title="共有 <?=$_var['varRes']['resnum'];?> 个"><?=$_var['varRes']['resnum'];?></a> 个</li>
+			<li><span><i class="el-cog"></i>运行天数：</span><a title="雷小天博客 已正常运行 <?=$_var['runing'];?> 天"><?=$_var['runing'];?></a> 天</li>
 
-			<li><span><i class="el-adjust-alt"></i>访问统计：</span><a title="累计访问<?=$var['varRes']['visitnum'];?>"><?=$var['varRes']['visitnum'];?></a> 次</li>
+			<li><span><i class="el-adjust-alt"></i>访问统计：</span><a title="累计访问<?=$_var['varRes']['visitnum'];?>"><?=$_var['varRes']['visitnum'];?></a> 次</li>
 		</ul>
 	</div>
 
@@ -128,7 +128,8 @@ window.onload=function(){
 <script type="text/javascript" src="/ui/system/js/superbg.js"></script>
 <script type="text/javascript" src="/ui/system/js/superbg-custom.js"></script>
 <script type="text/javascript" src="/ui/system/js/album.js"></script>
-<!--<script type="text/javascript" src="/ui/system/js/tooltip.js"></script>隔行换色-->
+<script type="text/javascript" src="/ui/system/js/tooltip.js"></script>
+<script type="text/javascript" src="/ui/system/js/share.js"></script>
 <!--<script type="text/javascript" src="/ui/system/js/face.js"></script>评论表情-->
 <script type="text/javascript" src="/ui/system/js/layer.js"></script>
 <script type="text/javascript" src="/ui/system/js/checkform.js" charset="utf-8"></script>

@@ -1,0 +1,106 @@
+function login_status(username,id,header){
+	jQuery("#snsinfo_username").val(username);
+	jQuery("#snsinfo_userid").val(id);
+	jQuery("#snsinfo_userpic").val(header);
+}
+$(document).ready(function() {
+        var ha = document.createElement('script'); ha.type = 'text/javascript'; ha.async = true;
+        ha.src = 'http://sns.hihoku.com/CheckloginStatusMessageJS.php';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ha, s);
+    	bindLenVerify('comment_message', 'wrap_letter_leninfo_id');
+    	var arcid = jQuery.trim(jQuery('#snsinfo_arcid').val());
+
+});
+
+/*AJAX刷新评论*/ 
+function refreshComment(arcid, type, page)
+{
+        jQuery.getJSON('http://comment.hihoku.com/comment.php?ac=comment&do=getcomment&callback=?',{arcid:arcid,com_type:type,page:page, r:Math.random()},function(data){
+		if(data != "0")
+		{
+			var html='';
+			if(data.clist != null || data.clist != "")
+			{
+				jQuery.each(data.clist, function(i, item) {
+					var cid = 'data.rcount.c'+item.id+'c';
+					if(item.avatar ==null || item.avatar==""){
+						item.avatar = "/images/comment_default.jpg";
+						item.username = "匿名";
+						item.userid = "javascript:void(0)"; 
+					}else item.userid = "http://sns.hihoku.com?"+item.userid;
+					html +='<li id="delcom'+item.id+'" onmouseover="jQuery(\'#reportshowli_'+item.id+'\').show();" onmouseout="jQuery(\'#reportshowli_'+item.id+'\').hide();">';
+					html +='<dl class="backup-list-two clearfix">';
+					html +='<dt>';
+					html +='<a href="'+item.userid+'"><img class="userhead" onerror="this.onerror=null;this.src=\'http://sns.hihoku.com/ucenter/images/noavatar_small.gif\'" title="' +item.username+ '" src="'+item.avatar+'" /></a>';
+					html +='</dt>';
+					html +='<dd>';
+					html +='<p class="backup-text"><a href="'+item.userid+'">' +item.username+ '：</a>' +item.message+ '</p>';
+					html +='<div class="time-and-app date"><span>';
+					if(data.delcheck == "1") html += '<a href="javascript:void(0);" onclick="delComment(\'' +item.id+ '\',0);">删除</a>';
+					html +='<a href="javascript:void(0);" onclick="replay(\'' +item.id+ '\',\'' +item.id+ '\');" class="pinglun">回复';
+					if(eval(cid) == null) html +='(<em id="repcomcount_'+item.id+'">0</em>)</a>';
+					else html +='(<em id ="repcomcount_'+item.id+'" style=color:blue>'+eval(cid)+'</em>)</a>';
+					html += '</span>'+item.sendtime+'</div><div id="div_comment_'+item.id+'" class="commentsList repclearfix" style="display:none" value="0"></div>';
+					html +='</dd>';
+					html +='</dl>';
+					html +='</li>';
+				});
+			}else
+			{
+				html = "<h3 id='nowebfriendcomment'><center>暂无网友评论哦!</center></h3>";
+			}
+			jQuery('#comments').html('');
+			jQuery('#comments').html(html);
+		}
+        });
+}
+
+/*得到评论总数*/
+function getCommentCount(arcid, type)
+{
+	jQuery.getJSON('http://comment.hihoku.com/comment.php?ac=comment&do=getcommentcount&callback=?',{arcid:arcid, com_type:type, r:Math.random()},function(data){
+		if(data != '0')
+		{
+			function pageselectCallback(page_index,jq){
+				refreshComment(arcid,type,page_index + 1);
+			}
+			jQuery('#replys').html('0');
+			jQuery('#replys').html(data);
+			jQuery('#paginate').html('');
+			jQuery('#paginate').pagination(data,{
+				callback:pageselectCallback,
+				prev_text: '上一页',
+				next_text: '下一页'
+			});
+		}else
+			jQuery('#comments').html("<h3 id='nowebfriendcomment'><center>暂无网友评论哦!</center></h3>");
+	});
+}
+
+/*删除评论*/
+function delComment(commentid, checkid)
+{
+	var type = jQuery("#snsinfo_type").val();
+        jQuery.getJSON('http://comment.hihoku.com/comment.php?ac=comment&do=delcomment&callback=?',{commentid:commentid,pid:checkid,com_type:type},function(data){
+                if(data != "0"){
+			var replycount;
+			if(checkid == 0 ){
+				replycount=jQuery('#replys').html() - 1;
+				jQuery('#replys').html(replycount);
+				jQuery("#delcom"+commentid).hide("slow");
+			}else{
+				replycount=jQuery('#repcomcount_'+checkid).html() -1;
+				jQuery("#repcomcount_"+checkid).html(replycount);
+				jQuery("#r_row_"+commentid).hide("slow");
+			}
+                }else alert("删除失败!");
+		
+        });
+}
+
+//初始化评论
+$(document).ready(function(){
+    	var arcid = jQuery.trim(jQuery('#snsinfo_arcid').val());
+	var type = jQuery("#snsinfo_type").val();
+        getCommentCount(arcid,type);
+});
