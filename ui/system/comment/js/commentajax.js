@@ -2,6 +2,8 @@ $(document).ready(function() {
     	bindLenVerify('comment_message', 'wrap_letter_leninfo_id');
 		//变量定义
     	var arcid = jQuery.trim(jQuery('#snsinfo_arcid').val());
+		//随机更新头像
+		reloadMyAvatar('comment_avatar',false);
 
 });
 

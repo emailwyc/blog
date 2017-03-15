@@ -75,3 +75,24 @@ function recordId(category,id){
     }
     return true;
 }
+
+
+function getRandom(min, max){
+	var r = Math.random() * (max - min);
+	var re = Math.round(r + min);
+	re = Math.max(Math.min(re, max), min)
+	return re;
+}
+
+function reloadMyAvatar(obj,auto){
+	//生成头像cookie
+	var avatarKey = "client_random_avatar";
+	var avaUrl = getCookie(avatarKey);
+	if(avaUrl==null || avaUrl=="" || auto){
+		var rand = getRandom(0,120);
+		avaUrl = "/ui/system/images/default_avatar/"+rand+".jpg";
+	}
+	setCookie(avatarKey,avaUrl,100);
+	$('#'+obj).attr('src',avaUrl);
+	return true;	
+}

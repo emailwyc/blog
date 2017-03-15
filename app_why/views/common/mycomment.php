@@ -13,8 +13,8 @@
 	<h3 class="form-btn blue-text"><a href="javascript:;"><i class="el-edit"></i>我要留言</a></h3>
 	<div class="pinglun_big_div">
 		<div class="authorc-tx">
-			<a class="img-circle" href="javascript:void(0);" title="我的头像" style="height: 60px;">
-			<img class="img-circle" src="<?=$_var['baseRes']['avatar'];?>">
+			<a class="img-circle" href="javascript:void(0);" title="我的头像,点击随机切换" style="height: 60px;">
+			<img class="img-circle" id="comment_avatar" onclick="reloadMyAvatar('comment_avatar',true)" src="<?=$_var['baseRes']['avatar'];?>">
 			</a>
 		</div>
 		<div class="album-final-pinglun">
