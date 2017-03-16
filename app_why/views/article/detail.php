@@ -88,6 +88,7 @@
 <!--随机推荐-->
 
 <!--评论-->
+<input type="hidden" id="snsinfo_get_offset" value="5">
 <input type="hidden" id="snsinfo_type" value="article">
 <input type="hidden" id="snsinfo_aid" value="<?=$article['id']?>">
 <?php $this->load->view('common/mycomment',$this->_cdata);?>

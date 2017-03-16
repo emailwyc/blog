@@ -34,7 +34,7 @@ class Comment extends TempBase{
 		if(empty($this->get['aid'])){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
 		if($this->ctype==1){
 			$where = array('aid'=>(int)$this->get['aid'],'type'=>1);
-			$list  = $this->CommentM->getList('article_comment',$where,10,$this->get['page'],"id desc"); $ids = ArrKeyAll($list,'id');
+			$list  = $this->CommentM->getList('article_comment',$where,5,$this->get['page'],"id desc"); $ids = ArrKeyAll($list,'id');
 			$replycount = $this->CommentM->getReplyCount('article_comment',array('type'=>2),"pid",array('pid'=>$ids));
 		}else{
 			echo $_REQUEST['callback']."(".json_encode($count).")";exit;

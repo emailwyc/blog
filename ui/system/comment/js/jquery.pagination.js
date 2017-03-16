@@ -14,8 +14,8 @@ jQuery.fn.pagination = function(maxentries, opts){
 		current_page:0,
 		num_edge_entries:0,
 		link_to:"javascript:void(0);",
-		prev_text:"Prev",
-		next_text:"Next",
+		prev_text:"上一页",
+		next_text:"下一页",
 		ellipse_text:"...",
 		prev_show_always:true,
 		next_show_always:true,
@@ -79,14 +79,14 @@ jQuery.fn.pagination = function(maxentries, opts){
 				if(page_id == current_page){
 					var pageConfirmText = appendopts.text;
 					if(appendopts.text=="上一页"){
-						var lnk = jQuery("<li id='page-ol-previous' class='current'><span>"+(appendopts.text)+"</span></li>");
+						var lnk = jQuery("<a class='prev not-allowed'>"+(appendopts.text)+"</a>");
 					}else if(appendopts.text=="下一页"){
-						var lnk = jQuery("<li id='page-ol-next' class='current'><span>"+(appendopts.text)+"</span></li>");
+						var lnk = jQuery("<a class='next not-allowed'>"+(appendopts.text)+"</a>");
 					}else{
-						var lnk = jQuery("<li class='current'><span>"+(appendopts.text)+"</span></li>");
+						var lnk = jQuery("<span class='current'>"+(appendopts.text)+"</span>");
 					}
 				}else{
-					var lnk = jQuery("<li><a href='javascript:;'>"+(appendopts.text)+"</a></li>")
+					var lnk = jQuery("<a>"+(appendopts.text)+"</a>")
 						.bind("click", getClickHandler(page_id))
 						.attr('href', opts.link_to.replace(/__id__/,page_id));		
 				}
@@ -95,40 +95,40 @@ jQuery.fn.pagination = function(maxentries, opts){
 			}
 			// 产生"Previous"-链接
 			if(opts.prev_text && (current_page > 0 || opts.prev_show_always)){
-				appendItem(current_page-1,{text:opts.prev_text, classes:"page-ol-previous"});
+				appendItem(current_page-1,{text:opts.prev_text, classes:"prev"});
 			}
 			// 产生起始点
 			if (interval[0] > 0 && opts.num_edge_entries > 0)
 			{
 				var end = Math.min(opts.num_edge_entries, interval[0]);
 				for(var i=0; i<end; i++) {
-					appendItem(i);
+					appendItem(i,{classes:"num"});
 				}
 				if(opts.num_edge_entries < interval[0] && opts.ellipse_text)
 				{
-					jQuery("<li><a href='javascript:;'>"+opts.ellipse_text+"</a><li>").appendTo(panel);
+					jQuery("<a class='num' href='javascript:void(0);'>"+opts.ellipse_text+"</a>").appendTo(panel);
 				}
 			}
 			// 产生内部的些链接
 			for(var i=interval[0]; i<interval[1]; i++) {
-				appendItem(i);
+				appendItem(i,{classes:"num"});
 			}
 			// 产生结束点
 			if (interval[1] < np && opts.num_edge_entries > 0)
 			{
 				if(np-opts.num_edge_entries > interval[1]&& opts.ellipse_text)
 				{
-					jQuery("<li><a>"+opts.ellipse_text+"</a></li>").appendTo(panel);
+					jQuery("<a class='num'>"+opts.ellipse_text+"</a>").appendTo(panel);
 				}
 				var begin = Math.max(np-opts.num_edge_entries, interval[1]);
 				for(var i=begin; i<np; i++) {
-					appendItem(i);
+					appendItem(i,{classes:"num"});
 				}
 				
 			}
 			// 产生 "Next"-链接
 			if(opts.next_text && (current_page < np-1 || opts.next_show_always)){
-				appendItem(current_page+1,{text:opts.next_text, classes:"page-ol-next"});
+				appendItem(current_page+1,{text:opts.next_text, classes:"next"});
 			}
 		}
 		

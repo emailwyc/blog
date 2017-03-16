@@ -159,6 +159,7 @@ function locatePoint(target){
  }
 //点击回复触发该函数
 function replay(tid){
+	alert(tid);
                 if (!tid)    
                         return;
 		var div_comment = jQuery("#div_comment_"+tid);

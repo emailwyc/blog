@@ -31,11 +31,11 @@
 		</div>
 		<div class="all-comment">
 			<h4 class="index-title"><i class="el el-comment-alt"></i> 当前共有<span id="replys" style="color:red">0</span> 条评论
-				<a href="#page-number-ol" style="float:right;margin-right:10px;"><i class="el el-th-list"></i>浏览所有评论</a>
+				<a href="#paginate" style="float:right;margin-right:10px;"><i class="el el-th-list"></i>浏览所有评论</a>
 			</h4>
 			<!--网友回复内容-->
 
-<div id="Comment" class="comment-area" data-garbage="true">
+<div id="Comment" class="comment-area" data-garbage="true" style="border:1px dashed #ccc;">
 	<ul id="comments" class="say-backup-detail-other">
 
 		<li class="bg-color">
@@ -44,7 +44,7 @@
 				<img class="img-circle" src="http://tva3.sinaimg.cn/crop.0.0.664.664.180/90aab708jw8f6x0ac046gj20ig0igta1.jpg" alt="王延崇"></a>
 			<!--<span><i class="el-user"></i>木杉</span>-->
 		</div>
-		<div class="comment-info" style="width:80%">
+		<div class="comment-info" style="width:90%">
 			<div class="comment-line">
 				<ul>
 					<li style="float:left;border-bottom:none;"><a><i class="el-user"></i>王延崇</a></li>
@@ -75,7 +75,7 @@
 	
 	
 	</ul>
-	<div class="page-number-ol"><ol class="paginate" id="paginate"></ol></div>
+	<div class="page" id="paginate"></div>
 </div>
 
 
