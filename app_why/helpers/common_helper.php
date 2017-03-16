@@ -661,6 +661,18 @@ if (! function_exists ( 'ArrKeyFromId' )) {
 		return $gzIds;
 	}
 }
+if (! function_exists ( 'ArrKeyAll' )) {
+	function ArrKeyAll($Info,$key='id',$type=0) {
+		$gzIds = array();
+		if(!empty($Info) && is_array($Info)){
+			foreach($Info as $k=>$v){
+				$gzIds[] = $v[$key];
+			}
+		}
+		if($type){ $gzIds = implode(',',$gzIds); }
+		return $gzIds;
+	}
+}   
 
 if (! function_exists ( 'mk_dir' )) {
 	function mk_dir($dir, $mode = 0777)
