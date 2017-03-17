@@ -78,5 +78,5 @@ $(document).ready(function(){
     	var arcid = jQuery.trim(jQuery('#snsinfo_aid').val());
     	var type = jQuery("#snsinfo_type").val();
     	var myOffset = jQuery("#snsinfo_get_offset").val();
-        getCommentCount(arcid,type,myOffset);
+        //getCommentCount(arcid,type,myOffset);
 });

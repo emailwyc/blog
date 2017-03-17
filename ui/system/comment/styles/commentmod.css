@@ -41,7 +41,7 @@
  }
  .say-backup-detail-other li {
          padding:7px 10px 15px 15px;
-         border-bottom:1px dashed #ccc;
+         /*border-bottom:1px dashed #ccc;*/
  }
  .backup-list-two {
  }
@@ -332,6 +332,37 @@ a:hover {
   width:100%;
   margin-bottom:40px;
 }
+/*回复soonebaby*/
+.album-final-pinglun-huifu {
+        padding:0px 0;
+        width:80%;
+}
+.album-final-pinglun-huifu div {
+        padding:1px 2px 2px;
+}
+.album-final-pinglun-huifu .review-text-leavings{
+        padding-bottom:5px;
+}
+.album-final-pinglun-huifu .review-text-leavings strong{
+        float:left;
+}
+.album-final-pinglun-huifu .review-text-leavings span{
+        font-size:12px;
+        white-space:nowrap;
+}
+.album-final-pinglun-huifu .review-text-leavings span em{
+        color:#f00;
+}
+.album-final-pinglun-huifu textarea {
+        width:100%;
+	resize:none;
+}
+.album-final-pinglun-huifu span {
+        float:right;
+        font-size:12px;
+}
+/*回复soonebaby*/
+
 
 
 
