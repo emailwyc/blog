@@ -14,38 +14,42 @@ function refreshComment(arcid, type, page)
 		if(data != "0")
 		{
 			var html='';
-			if(data.clist != null || data.clist != "")
-			{
+			if(data.clist != null || data.clist != ""){
+				var cct = data.rcount;
 				jQuery.each(data.clist, function(i, item) {
-					html +='<li class="bg-color" style="border-bottom:none;">';
-
-					html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-137" rel="nofollow" title="王延崇"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +item.nickname+ '" src="'+item.avatar+'" alt="' +item.nickname+ '"></a></div>';
-
+					if(item.nickname==""){
+						item.nickname = "匿名"+item.id;
+					}
+					html +='<li class="bg-color" style="border-bottom:none;" id="com_list_li_'+item.id+'">';
+					html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-'+item.id+'" rel="nofollow" title="' +item.nickname+ '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +item.nickname+ '" src="'+item.avatar+'" alt="' +item.nickname+ '"></a></div>';
+					//start comment
 					html +='<div class="comment-info" style="width:90%">';
 					html +='<div class="comment-line ">';
 					//start
-					html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +item.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +item.createtime+ '"><i class="el-time"></i>' +item.createtime+ '</a></li><li style="float:left;border-bottom:none;"><a title="'+item.nickname+' 位于："><i class="el-map-marker">'+item.address+'</i></a></li>';
+					html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +item.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +item.createtime+ '"><i class="el-time"></i>' +item.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+item.nickname+' 位于："><i class="el-map-marker">'+item.address+'</i></a></li>';
 					html+='<li style="float:right;border-bottom:none;">';
-					html+='<a href="javascript:void(0);" username="' +item.nickname+ '" onclick="replay(\''+item.id+'\')">回复';
-					html +='(<em id="repcomcount_'+item.id+'">0</em>)</a>';
+					html+='<a href="javascript:void(0);" aid="'+item.aid+'" pid="'+item.id+'" username="' +item.nickname+ '" onclick="replay(\''+item.id+'\')"><span id="repcomcountfont_'+item.id+'">回复</span>';
+					if(eval("cct['"+item.id+"']")==null || eval("cct['"+item.id+"']")=='undefine'){
+						html +='(<em id="repcomcount_'+item.id+'">0</em>)';
+					}else{
+						html +='(<em id ="repcomcount_'+item.id+'" style=color:red>'+eval("cct['"+item.id+"']")+'</em>)';
+					}
 					html+='</a>';
 					html+='</li></ul>';
 					//end
-						
 					html+='</div>';
 					html +='<div class="comment-content">' +item.content+ '</div>';
-					//html +='<a href="javascript:void(0);" onclick="replay(\'' +item.id+ '\',\'' +item.id+ '\');" class="pinglun">回复';
-					//if(eval(cid) == null) html +='(<em id="repcomcount_'+item.id+'">0</em>)</a>';
-					//else html +='(<em id ="repcomcount_'+item.id+'" style=color:blue>'+eval(cid)+'</em>)</a>';
+					html +='<div id="div_comment_'+item.id+'" class="commentsList repclearfix" style="display:none" value="0"></div>';
 					html +='</div>';
-					html +='</div><div id="div_comment_'+item.id+'" class="commentsList repclearfix" style="display:none" value="0"></div>';
+					//end comment
+
 
 					html +='</li>';
 
 				});
 
 			}else{
-				html = "<div id='Comment' class='comment-area'> <h4 class='index-title'><i class='el-comment-alt'></i> 亲，沙发正空着，还不快来抢？ </h4> </div>";
+				html = "<div id='nowebfriendcomment' class='comment-area'> <h4 class='index-title'><i class='el-comment-alt'></i> 亲，沙发正空着，还不快来抢？ </h4> </div>";
 			}
 			jQuery('#comments').html('');
 			jQuery('#comments').html(html);
@@ -69,7 +73,7 @@ function getCommentCount(arcid, type,myOffset)
 				items_per_page:myOffset
 			});
 		}else
-			jQuery('#comments').html('<div id="Comment" class="comment-area"> <h4 class="index-title"><i class="el-comment-alt"></i> 亲，沙发正空着，还不快来抢？ </h4> </div>');
+			jQuery('#comments').html('<div id="nowebfriendcomment" class="comment-area"> <h4 class="index-title"><i class="el-comment-alt"></i> 亲，沙发正空着，还不快来抢？ </h4> </div>');
 	});
 }
 
@@ -78,5 +82,5 @@ $(document).ready(function(){
     	var arcid = jQuery.trim(jQuery('#snsinfo_aid').val());
     	var type = jQuery("#snsinfo_type").val();
     	var myOffset = jQuery("#snsinfo_get_offset").val();
-        //getCommentCount(arcid,type,myOffset);
+        getCommentCount(arcid,type,myOffset);
 });

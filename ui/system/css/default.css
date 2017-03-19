@@ -38,12 +38,12 @@ article  h3{text-align:center;font-size:20px!important;font-weight:bold!importan
 .comment-content{padding:10px 0;font-size:14px;width:100%;color:#333;word-break:break-all;overflow-wrap: break-word;width: 93%;}
 .comment-content img{max-width:60px;vertical-align: middle;}
 /*回复样式*/
-.re-comment{border-top:1px solid #ddd;width:100%;overflow:hidden;margin-top:10px;}
-.re-comment-huifu{border-top:1px solid #ddd;width:80%;overflow:hidden;margin-top:10px;}
+.re-comment{border-top:1px solid #ddd;width:93%;overflow:hidden;margin-top:10px;word-break:break-all;overflow-wrap: break-word;}
+.re-comment-huifu{width:80%;overflow:hidden;margin-top:10px;}
 .admin-ava{float:left;max-width:50px;max-height:50px;font-size:12px;text-align:center;padding-top:10px;}
 .admin-ava img{width:100%;}
-.re-info{float:left;position:relative;margin-left:15px;padding:10px 0px;border-radius:5px;-webkit-border-radius:5px;}
-.re-info span{font-size:12px;float:left;width:100%;display:inline-block;margin:5px 0;color:#777;white-space:nowrap;overflow:hidden;text-overflow: ellipsis}
+.re-info{float:left;position:relative;margin-left:15px;padding:10px 0px;border-radius:5px;-webkit-border-radius:5px;width:84%;}
+.re-info span {font-size:12px;float:left;width:100%;display:inline-block;margin:5px 0;color:#777;white-space:nowrap;overflow:hidden;text-overflow: ellipsis}
 .re-info span a{color:#0181da;margin:0 5px;}
 .re-info span img{vertical-align: middle;position:relative;top:-3px;}
 .re-content{padding:10px 0;font-size:12px;width:100%;color:#333;}
@@ -66,54 +66,25 @@ article  h3{text-align:center;font-size:20px!important;font-weight:bold!importan
 .pagination-centered {text-align: center;}
 .pagination-right {text-align: right;}
 /*分页2*/
-.page {
-  width: 100%;
-  margin: 20px 0;
-	font-size:12px;
-  /*background: rgba(255, 255, 255, 0.5);
-  text-align: center;*/
-  overflow: hidden;
-}
+.page {width: 100%;margin: 20px 0;font-size:12px;overflow: hidden;}
 .page .first,
 .page .prev,
 .page .current,
 .page .num,
 .page .current,
 .page .next,
-.page .end {
-  padding: 8px 16px;
-  margin: 0px 2px;
-  display: inline-block;
-  color: #008CBA;
-  /*border: 1px solid #F2F2F2;*/
-  border-radius: 5px;
-}
-.page span{
-	color: #008CBA;
-}
+.page .end {padding: 8px 16px;margin: 0px 2px;display: inline-block;color: #008CBA;border-radius: 5px;}
+.page span{color: #008CBA;}
 .page .first:hover,
 .page .prev:hover,
 .page .current:hover,
 .page .num:hover,
 .page .current:hover,
 .page .next:hover,
-.page .end:hover {
-  text-decoration: none;
-  background: #F8F5F5;
-}
-.page .current {
-  background-color: #008CBA;
-  color: #FFF;
-  border-radius: 5px;
-  border: 1px solid #008CBA;
-}
-.page .current:hover {
-  text-decoration: none;
-  background: #008CBA;
-}
-.page .not-allowed {
-  cursor: not-allowed;
-}
+.page .end:hover {text-decoration: none;background: #F8F5F5;}
+.page .current {background-color: #008CBA;color: #FFF;border-radius: 5px;border: 1px solid #008CBA;}
+.page .current:hover {text-decoration: none;background: #008CBA;}
+.page .not-allowed { cursor: not-allowed;}
 /*评论*/
 .form-in{margin-bottom:80px;}
 .form-btn{font-size:18px;font-weight:normal;padding:15px 0!important;margin-top:30px;}

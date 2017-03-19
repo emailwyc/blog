@@ -26,10 +26,21 @@ class CommentM extends CI_Model {
 	//reply count
 	public function getReplyCount($table,$where,$group,$wherein)
 	{
-		$query= $this->db->select("$group,count(id) as count")->where($where)->where_in($wherein)->group_by($group)->get($table);
+		$query= $this->db->select("$group,count(id) as count")->where($where)->where_in($group,$wherein)->group_by($group)->get($table);
 		$result = $query->result_array();
 		$list = ArrKeyFromId($result,$group,'count');
 		return $list;
+	}
+
+	//insert
+	public function insert($table,$data)
+	{
+		$check = $this->db->insert($table,$data);
+		if($check){
+			return $this->db->insert_id();
+		}else{
+			return false;
+		}
 	}
 
 

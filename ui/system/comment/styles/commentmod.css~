@@ -39,12 +39,9 @@
 	 margin:0 auto;
 	 width:580px;
  }
- .say-backup-detail-other {/*回复列表*/
-         margin:20px 10px;
- }
  .say-backup-detail-other li {
          padding:7px 10px 15px 15px;
-         border-bottom:1px dashed #ccc;
+         /*border-bottom:1px dashed #ccc;*/
  }
  .backup-list-two {
  }
@@ -329,6 +326,65 @@ a:hover {
   height:30px;
   width:60px;
 }
+
+.all-comment{
+  margin-top:10px;
+  width:100%;
+  margin-bottom:40px;
+}
+/*回复soonebaby*/
+.album-final-pinglun-huifu {
+        padding:0px 0;
+        width:80%;
+}
+.album-final-pinglun-huifu div {
+        padding:1px 2px 2px;
+}
+.album-final-pinglun-huifu .review-text-leavings{
+        padding-bottom:5px;
+}
+.album-final-pinglun-huifu .review-text-leavings strong{
+        float:left;
+}
+.album-final-pinglun-huifu .review-text-leavings span{
+        font-size:12px;
+        white-space:nowrap;
+}
+.album-final-pinglun-huifu .review-text-leavings span em{
+        color:#f00;
+}
+.album-final-pinglun-huifu textarea {
+        width:100%;
+	resize:none;
+}
+.album-final-pinglun-huifu span {
+        float:right;
+        font-size:12px;
+}
+/*回复soonebaby*/
+/*分页2*/
+.page-min {width: 100%;margin: 20px 0;font-size:12px;overflow: hidden;}
+.page-min .first,
+.page-min .prev,
+.page-min .current,
+.page-min .num,
+.page-min .current,
+.page-min .next,
+.page-min .end {padding: 3px 10px;margin: 0px 2px;display: inline-block;color: #008CBA;border-radius: 5px;}
+.page-min span{color: #008CBA;}
+.page-min .first:hover,
+.page-min .prev:hover,
+.page-min .current:hover,
+.page-min .num:hover,
+.page-min .current:hover,
+.page-min .next:hover,
+.page-min .end:hover {text-decoration: none;background: #F8F5F5;}
+.page-min .current {background-color: #008CBA;color: #FFF;border-radius: 5px;border: 1px solid #008CBA;}
+.page-min .current:hover {text-decoration: none;background: #008CBA;}
+.page-min .not-allowed { cursor: not-allowed;}
+/*分页*/
+.rep-com-row { border-top: 1px dashed #ccc;clear: both;width:100%;}
+
 
 
 

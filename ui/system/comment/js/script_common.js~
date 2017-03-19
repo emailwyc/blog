@@ -237,7 +237,6 @@ function getcomrepinfo(tid,page){
 }
 
 function sendcom(comid){
-	//发送等待提示，昵称保存，php关键字过滤和校验
 	var message;
 	var pid;
 	var nickname,email;
