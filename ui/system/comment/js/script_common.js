@@ -178,7 +178,7 @@ function replay(tid){
                 html += '<div class="clearfix snsinfo_fabiao">';
 
                 html += '<i class="el el-reddit" id="comment_face_rep_'+tid+'" onclick="showFace(this.id, \'comment_message_rep_'+tid+'\');return false;"></i>';
-                html += '<input style="height:30px;width:30%;font-size:12px;margin-top:1px;" class="form-control b-email" name="nickname_rep_'+tid+'" id="com_nickname_rep_'+tid+'" placeholder="昵称(必填)" type="text">';
+                html += '<input style="height:30px;width:30%;font-size:12px;margin-top:1px;" class="form-control b-email com-nickname-all" name="nickname_rep_'+tid+'" id="com_nickname_rep_'+tid+'" placeholder="昵称(必填)" type="text">';
                 html += '<span> <input class="repcom-btn-sure" type="button" value="回复" id="com_repsub'+tid+'" onclick="sendcom('+tid+')"/> </span>';
 
                 html += '</div>';
@@ -202,13 +202,13 @@ function replay(tid){
 			next_text: '>>',
 			
 		},1);
+		setNicknameByCookie('get',false);
 
 }
 
 function getcomrepinfo(tid,page){
 	var com_type = jQuery("#snsinfo_type").val();
        jQuery.getJSON('/comment/getRepCom?callback=?', {tid: tid, com_type:com_type, page:page, r: Math.random()}, function(data) {
-		console.log(data);
 		if (data != 0) {
 			var html='';
 			jQuery.each(data.replist, function(i, item) {
@@ -235,9 +235,21 @@ function getcomrepinfo(tid,page){
 		jQuery('#comment_message_rep_' + tid).focus();
 	});
 }
+function setNicknameByCookie(value,nickname){
+	if(value=='set'){
+		setCookie('com-nickname',nickname,false);
+	}
+	if(value=='get'){
+		var nickn = getCookie('com-nickname');
+		if(nickn!=null && nickn!=""){
+			jQuery('.com-nickname-all').val(nickn);
+		}
+	}
+	
+}
 
 function sendcom(comid){
-	//发送等待提示，昵称保存，php关键字过滤和校验
+	//发送等待提示(完成)，昵称保存(完成)，php关键字过滤和校验(完成)
 	var message;
 	var pid;
 	var nickname,email;
@@ -256,12 +268,14 @@ function sendcom(comid){
 	if(nickname==""){ layer.alert("官人，昵称不可为空!");return ;}
 	if(nicknameLeng>18){ layer.alert("官人，昵称太长!");return ;}
 	if(emailLeng>50){ layer.alert("官人，email太长啦!");return ;}
+	var sloading = layer.load(2, { shade: [0.6,'#ccc'] });
 	message = jQuery.trim(message);
 	var photourl = jQuery("#comment_avatar").attr('src');
 	var type = jQuery("#snsinfo_type").val();
 	var arcid = jQuery.trim(jQuery('#snsinfo_aid').val());
 	message     = XTools.verifyStringLen(message);
 	if(message === false){
+		layer.close(sloading);
 	    layer.alert('评论' + XTools.error);
 	    if(comid === 0) jQuery('#comment_message').focus();
 	    else jQuery("#comment_message_rep_"+comid).focus();
@@ -271,6 +285,7 @@ function sendcom(comid){
 		if(data == "0") layer.alert("评论失败,请联系管理员!");
 		else if(data == "3") layer.alert("评论字数有误,请修正!");
 		else{
+			setNicknameByCookie('set',nickname);
 			var html = '';
 			var climit = parseInt(jQuery("#snsinfo_get_offset").val());
 			if(comid === 0){
@@ -350,7 +365,9 @@ function sendcom(comid){
 				
 			}
 		}
-	});
+		layer.close(sloading);
+	}
+	);
 }
 
 //获取指定名称的cookie的值

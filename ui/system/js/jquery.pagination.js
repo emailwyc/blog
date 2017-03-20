@@ -179,7 +179,7 @@ jQuery.fn.pagination = function(maxentries, opts){
 			}
 		}
 		// 所有初始化完成，绘制链接
-		if(maxentries > 0) drawLinks();
+		if(maxentries > 1) drawLinks();
         // 回调函数
 	opts.callback(current_page, this);
 	});

@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : my
-Source Server Version : 50554
-Source Host           : localhost:3306
+Source Server Version : 50553
+Source Host           : 127.0.0.1:3306
 Source Database       : blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50554
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-03-19 23:55:23
+Date: 2017-03-20 19:59:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -135,7 +135,7 @@ INSERT INTO `article` VALUES ('11', '4', 'PHP开发环境：如何启用MySQL功
 INSERT INTO `article` VALUES ('12', '1', 'HTTP协议中POST与GET 本质区别详解', '/ui/system/images/585956addc8e4.jpg', '一般在浏览器中输入网址访问资源都是通过GET方式；在FORM提交中，可以通过Method指定提交方式为GET或者POST，默认为GET提交 Http定义了与服务器交互的不同方法，最基本的方', '<ul class=\"infos list-paddingleft-2\" style=\"\"><p style=\"margin-top: 0px; padding: 0px;\"><span style=\"margin: 0px; padding: 0px; line-height: 1.5;\"><strong style=\"margin: 0px; padding: 0px;\">一 原理区别 &nbsp;</strong>&nbsp;&nbsp; &nbsp;</span></p><p style=\"\">&nbsp;一般在浏览器中输入网址访问资源都是通过GET方式；在FORM提交中，可以通过Method指定提交方式为GET或者POST，默认为GET提交 &nbsp; &nbsp; &nbsp;Http定义了与服务器交互的不同方法，最基本的方法有4种，分别是GET，POST，PUT，DELETE &nbsp; &nbsp; URL全称是资源描述符，我们可以这样认为：一个URL地址，它用于描述一个网络上的资源，而HTTP中的GET，POST，PUT，DELETE就对应着对这个资源的查 ，改 ，增 ，删 4个操作。到这里，大家应该有个大概的了解了，GET一般用于获取/查询 资源信息，而POST一般用于更新 资源信息(个人认为这是GET和POST的本质区别，也是协议设计者的本意，其它区别都是具体表现形式的差异 )。 &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;根据HTTP规范，GET用于信息获取，而且应该是安全的和幂等的 。 &nbsp; &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">1.所谓安全的意味着该操作用于获取信息而非修改信息。换句话说，GET请求一般不应产生副作用。就是说，它仅仅是获取资源信息，就像数据库查询一样，不会修改，增加数据，不会影响资源的状态。 &nbsp; &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">* 注意：这里安全的含义仅仅是指是非修改信息。 &nbsp; &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\"><span style=\"margin: 0px; padding: 0px; line-height: 1.5;\">&nbsp;</span><span style=\"margin: 0px; padding: 0px; line-height: 1.5;\">根据HTTP规范，POST表示可能修改变服务器上的资源的请求 。继续引用上面的例子：还是新闻以网站为例，读者对新闻发表自己的评论应该通过POST实现，因为在评论提交后站点的资源已经不同了，或者说资源被修改了。 &nbsp; &nbsp;</span></p><p style=\"margin-top: 0px; padding: 0px;\">上面大概说了一下HTTP规范中，GET和POST的一些原理性的问题。但在实际的做的时候，很多人却没有按照HTTP规范去做，导致这个问题的原因有很多，比如说： &nbsp; &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">1.很多人贪方便，更新资源时用了GET，因为用POST必须要到FORM（表单），这样会麻烦一点。 &nbsp; &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">2.对资源的增，删，改，查操作，其实都可以通过GET/POST完成，不需要用到PUT和DELETE。 &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;3.另外一个是，早期的但是Web MVC框架设计者们并没有有意识地将URL当作抽象的资源来看待和设计 。还有一个较为严重的问题是传统的Web MVC框架基本上都只支持GET和POST两种HTTP方法，而不支持PUT和DELETE方法。 &nbsp; &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">* 简单解释一下MVC：MVC本来是存在于Desktop程序中的，M是指数据模型，V是指用户界面，C则是控制器。使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表现形式。 &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;以上3点典型地描述了老一套的风格（没有严格遵守HTTP规范），随着架构的发展，现在出现REST(Representational State Transfer)，一套支持HTTP规范的新风格，这里不多说了，可以参考《RESTful Web Services》。 &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\"><strong style=\"margin: 0px; padding: 0px;\">&nbsp; 二 表现形式区别 &nbsp; &nbsp; &nbsp;&nbsp;</strong></p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;搞清了两者的原理区别，我们再来看一下他们实际应用中的区别： &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;为了理解两者在传输过程中的不同，我们先看一下HTTP协议的格式： &nbsp; &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">HTTP请求： &nbsp; &nbsp; &lt;request line&gt; &nbsp; &nbsp; &lt;headers&gt; &nbsp; &nbsp; &lt;blank line&gt; &nbsp; &nbsp; &lt;request-body&gt;] &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;在HTTP请求中，第一行必须是一个请求行（request line），用来说明请求类型、要访问的资源以及使用的HTTP版本。紧接着是一个首部（header）小节，用来说明服务器要使用的附加信息。在首部之后是一个空行，再此之后可以添加任意的其他数据[称之为主体（body）]。 &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;GET与POST方法实例： &nbsp; &nbsp;GET /books/?sex=man&amp;name=Professional HTTP/1.1 &nbsp; Host: www.wrox.com &nbsp; &nbsp;User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6) &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\"><span style=\"margin: 0px; padding: 0px; line-height: 1.5;\">有了以上对HTTP请求的了解和示例，我们再来看两种提交方式的区别： &nbsp; &nbsp; &nbsp; &nbsp;</span></p><p style=\"margin-top: 0px; padding: 0px;\">（1）GET提交，请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，多个参数用&amp;连接；例如：login.action?name=hyddd&amp;password=idontknow&amp;verify=%E4%BD%A0 %E5%A5%BD。如果数据是英文字母/数字，原样发送，如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密，得出如： %E4%BD%A0%E5%A5%BD，其中％XX中的XX为该符号以16进制表示的ASCII。 &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;POST提交：把提交的数据放置在是HTTP包的包体中。上文示例中红色字体标明的就是实际的传输数据 &nbsp; &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;因此，GET提交的数据会在地址栏中显示出来，而POST提交，地址栏不会改变 &nbsp; &nbsp; &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">(2)传输数据的大小：首先声明：HTTP协议没有对传输的数据大小进行限制，HTTP协议规范也没有对URL长度进行限制。 &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">而在实际开发中存在的限制主要有： &nbsp; &nbsp;&nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;GET:特定浏览器和服务器对URL长度有限制，例如IE对URL长度的限制是2083字节(2K+35)。对于其他浏览器，如Netscape、FireFox等，理论上没有长度限制，其限制取决于操作系统的支持。 &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;因此对于GET提交时，传输数据就会受到URL长度的限制。 &nbsp; &nbsp;</p><p style=\"margin-top: 0px; padding: 0px;\">&nbsp;POST:由于不是通过URL传值，理论上数据不受限。但实际各个WEB服务器会规定对post提交数据大小进行限制，Apache、IIS6都有各自的配置。&nbsp;</p></ul>', 'SooneBaby', '/about', '1', '0', '0', '1', '0', '2017-03-13 19:25:32');
 INSERT INTO `article` VALUES ('13', '7', 'JavaScript入门篇挑战编程', '/ui/system/images/585951277c225.png', '为了学好php，小编也是在不断的提高自己，在学习JavaScript过程中碰到这样一个题目，为实现以下功能填补相应的代码，现在分享给大家', '<ul class=\"infos list-paddingleft-2\" style=\"list-style-type: none;\"><p style=\"margin-top: 0px; padding: 0px;\">为了学好php，小编也是在不断的提高自己，在学习JavaScript过程中碰到这样一个题目，为实现以下功能填补相应的代码，现在分享给大家。</p><p style=\"margin-top: 0px; padding: 0px;\">题目如下：请编写\"改变颜色\"、\"改变宽高\"、\"隐藏内容\"、\"显示内容\"、\"取消设置\"的函数，点击相应按钮执行相应操作，点击\"取消设置\"按钮后，提示是否取消设置，如是执行操作，否则不做操作。</p><p style=\"margin-top: 0px; padding: 0px;\">一、定义\"改变颜色\"的函数<br style=\"margin: 0px; padding: 0px;\">提示:<br style=\"margin: 0px; padding: 0px;\">obj.style.color<br style=\"margin: 0px; padding: 0px;\">obj.style.backgroundColor&nbsp;<br style=\"margin: 0px; padding: 0px;\">二、定义\"改变宽高\"的函数<br style=\"margin: 0px; padding: 0px;\">提示:<br style=\"margin: 0px; padding: 0px;\">obj.style.width<br style=\"margin: 0px; padding: 0px;\">obj.style.height&nbsp;<br style=\"margin: 0px; padding: 0px;\">三、定义\"隐藏内容\"的函数<br style=\"margin: 0px; padding: 0px;\">提示:<br style=\"margin: 0px; padding: 0px;\">obj.style.display=\"none\";<br style=\"margin: 0px; padding: 0px;\">四、定义\"显示内容\"的函数<br style=\"margin: 0px; padding: 0px;\">提示:<br style=\"margin: 0px; padding: 0px;\">obj.style.display=\"block\";<br style=\"margin: 0px; padding: 0px;\">五、定义\"取消设置\"的函数<br style=\"margin: 0px; padding: 0px;\">使用confirm()确定框，来确认是否取消设置。<br style=\"margin: 0px; padding: 0px;\">如是将以上所有的设置恢复原始值,否则不做操作。<br style=\"margin: 0px; padding: 0px;\">六、当点击相应按钮，执行相应操作，为按钮添加相应事件</p><p style=\"margin-top: 0px; padding: 0px;\">集体代码如下，其中红色为填补答案</p></ul>', 'SooneBaby', '/about', '1', '0', '0', '1', '0', '2017-03-13 19:25:32');
 INSERT INTO `article` VALUES ('14', '4', 'php常用表单验证类', '/ui/system/images/5859516f09c8f.jpg', 'php常用表单验证你了解多少？', '<pre style=\"box-sizing: border-box; overflow: auto; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px; padding: 5px; margin-top: 0px; margin-bottom: 10px; line-height: 15.6px; color: rgb(51, 51, 51); word-break: break-all; word-wrap: break-word; border-width: 1px; border-style: solid none; border-color: rgb(170, 204, 153); border-image: initial; border-radius: 4px; white-space: pre-wrap; text-align: justify;\">php常用表单验证你了解多少？&nbsp;\r\n\r\n	&lt;?php&nbsp;\r\n\r\n	/**&nbsp;\r\n\r\n	*&nbsp;页面作用：常用表单验证类&nbsp;\r\n	*/&nbsp;\r\n\r\n	class&nbsp;class_post&nbsp;{&nbsp;\r\n	\r\n	//验证是否为指定长度的字母/数字组合&nbsp;\r\n	function&nbsp;fun_text1($num1,$num2,$str)&nbsp;\r\n	{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\"/^[a-zA-Z0-9]{\".$num1.\",\".$num2.\"}$/\",$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;&nbsp;\r\n\r\n	//验证是否为指定长度数字&nbsp;\r\n	function&nbsp;fun_text2($num1,$num2,$str)&nbsp;\r\n	{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\"/^[0-9]{\".$num1.\",\".$num2.\"}$/i\",$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	//验证是否为指定长度汉字&nbsp;\r\n	function&nbsp;fun_font($num1,$num2,$str)&nbsp;\r\n	{&nbsp;\r\n\r\n	//&nbsp;preg_match(\"/^[\\xa0-\\xff]{1,4}$/\",&nbsp;$string);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\"/^([\\x81-\\xfe][\\x40-\\xfe]){\".$num1.\",\".$num2.\"}$/\",$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	//验证身份证号码&nbsp;\r\n	function&nbsp;fun_status($str)&nbsp;\r\n	{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\'/(^([\\d]{15}|[\\d]{18}|[\\d]{17}x)$)/\',$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	//验证邮件地址&nbsp;\r\n	function&nbsp;fun_email($str){&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\'/^[_\\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\\.)+[a-z]{2,4}$/\',$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;&nbsp;\r\n\r\n	//验证电话号码&nbsp;\r\n	function&nbsp;fun_phone($str)&nbsp;\r\n	{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\"/^((\\(\\d{3}\\))|(\\d{3}\\-))?(\\(0\\d{2,3}\\)|0\\d{2,3}-)?[1-9]\\d{6,7}$/\",$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	//验证邮编&nbsp;\r\n\r\n	function&nbsp;fun_zip($str)&nbsp;\r\n	{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\"/^[1-9]\\d{5}$/\",$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	//验证url地址&nbsp;\r\n\r\n	function&nbsp;fun_url($str)&nbsp;\r\n	{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;return&nbsp;(preg_match(\"/^http:\\/\\/[A-Za-z0-9]+\\.[A-Za-z0-9]+[\\/=\\?%\\-&amp;_~`@[\\]\\\':+!]*([^&lt;&gt;\\\"\\\"])*$/\",$str))?true:false;&nbsp;\r\n\r\n	}&nbsp;&nbsp;\r\n\r\n	//&nbsp;数据入库&nbsp;转义&nbsp;特殊字符&nbsp;传入值可为字符串&nbsp;或&nbsp;一维数组&nbsp;&nbsp;\r\n\r\n	function&nbsp;data_join(&amp;$data)&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;if(get_magic_quotes_gpc()&nbsp;==&nbsp;false)&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(is_array($data)){&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($data&nbsp;as&nbsp;$k&nbsp;=&gt;&nbsp;$v){&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k]&nbsp;=&nbsp;addslashes($v);&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;}else&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;addslashes($data);&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;}&nbsp;\r\n	&nbsp;&nbsp;&nbsp;Return&nbsp;$data;&nbsp;\r\n\r\n	}&nbsp;&nbsp;\r\n\r\n	//&nbsp;数据出库&nbsp;还原&nbsp;特殊字符&nbsp;传入值可为字符串&nbsp;或&nbsp;一/二维数组&nbsp;\r\n\r\n	function&nbsp;data_revert(&amp;$data)&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;if&nbsp;(is_array($data))&nbsp;\r\n	&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($data&nbsp;as&nbsp;$k1&nbsp;=&gt;&nbsp;$v1)&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(is_array($v1))&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($v1&nbsp;as&nbsp;$k2&nbsp;=&gt;&nbsp;$v2)&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1][$k2]&nbsp;=&nbsp;stripslashes($v2);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1]&nbsp;=&nbsp;stripslashes($v1);&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n	&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n	&nbsp;&nbsp;&nbsp;}else&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;stripslashes($data);&nbsp;\r\n	&nbsp;&nbsp;&nbsp;}&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;Return&nbsp;$data;&nbsp;\r\n\r\n	}&nbsp;&nbsp;\r\n	//&nbsp;数据显示&nbsp;还原&nbsp;数据格式&nbsp;主要用于内容输出&nbsp;传入值可为字符串&nbsp;或&nbsp;一/二维数组&nbsp;\r\n\r\n	//&nbsp;执行此方法前应先data_revert()，表单内容无须此还原&nbsp;\r\n	function&nbsp;data_show(&amp;$data)&nbsp;\r\n	{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;if&nbsp;(is_array($data))&nbsp;\r\n	&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($data&nbsp;as&nbsp;$k1&nbsp;=&gt;&nbsp;$v1)&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(is_array($v1))&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($v1&nbsp;as&nbsp;$k2&nbsp;=&gt;&nbsp;$v2)&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1][$k2]=nl2br(htmlspecialchars($data[$k1][$k2]));&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1][$k2]=str_replace(\"&nbsp;\",\"&nbsp;\",$data[$k1][$k2]);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1][$k2]=str_replace(\"\\n\",\"&lt;br&gt;\\n\",$data[$k1][$k2]);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1]=nl2br(htmlspecialchars($data[$k1]));&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1]=str_replace(\"&nbsp;\",\"&nbsp;\",$data[$k1]);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data[$k1]=str_replace(\"\\n\",\"&lt;br&gt;\\n\",$data[$k1]);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;}else&nbsp;{&nbsp;\r\n	&nbsp;&nbsp;&nbsp;$data=nl2br(htmlspecialchars($data));&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;$data=str_replace(\"&nbsp;\",\"&nbsp;\",$data);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;$data=str_replace(\"\\n\",\"&lt;br&gt;\\n\",$data);&nbsp;\r\n\r\n	&nbsp;&nbsp;&nbsp;}&nbsp;\r\n	&nbsp;&nbsp;&nbsp;return&nbsp;$data;&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	}&nbsp;\r\n\r\n	?&gt;</pre>', 'SooneBaby', '/about', '1', '0', '0', '1', '0', '2017-03-13 19:25:33');
-INSERT INTO `article` VALUES ('15', '7', '什么是Web编程，搞懂这几点你就入门了', '/ui/system/images/585d3a4678a8e.JPG', '有些事你从来没有接触过，你就感觉困难、自己干不来，那么你永远不知道那里面是怎么回事。有些事你去认真对待，当你回过头来发现自己已经入门了', '<p>有些事你从来没有接触过，你就感觉困难、自己干不来，那么你永远不知道那里面是怎么回事。有些事你去认真对待，当你回过头来发现自己已经入门了。编程其实没有想象中的那么困难，其实你只是缺少一颗好奇坚持的心。Web编程，仔细想想， 其实本质上就那点事儿， 你抓住了几个重点问题， 学起来一点都不难。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>1、理解浏览器/服务器结构 (B/S)</strong></span></p><p>B/S 是从 90年代的客户端/服务器端发展而来， 共同点都是由一个（或一组）服务器来服务多个客户端。 差别在于：首先，C/S结构的客户端可能是由不同语言编写的，例如VB,Delphi, PowerBuilder等， B/S结构中浏览器成为了一个通用的客户端， 程序以Web的方式呈现，不需要安装，服务器端的升级就意味着所有客户端的升级，这和C/S相比是个翻天覆地的变化。其次B/S的访问协议也标准化为HTTP(s) &nbsp;，而不是原来各种各样的私有协议。最后B/S结构中的服务器面向全球用户访问，而不像C/S那样仅仅是局域网， 所以压力更大， 挑战更大。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>2、Web页面是怎么组成的？</strong></span><br></p><p>简单来说就是HTML + CSS + Javascript , &nbsp;我们看到的Web界面就是由这三者组成。HTML负责结构， CSS负责展现， 而Javascript负责行为。我们说的前端开发也主要是做这一块， 对于前端工程师，需要能理解DOM 模型，以及如何通过javascript(例如JQuery等框架)来操作DOM模型。&nbsp;</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>3、浏览器和服务器是怎么打交道的？</strong></span><br></p><p>当然是HTTP ! &nbsp;HTTP说穿了就是浏览器和服务器聊天是的一种约定， 这个约定确保双方互相理解。完整的HTTP是非常复杂的，《HTTP权威指南》一书厚达700多页。</p><p>其实我们最常用， 也是最重要的也就那么几点：<br></p><p>(1) GET 和 POST 。 GET从服务器端获取数据， &nbsp;POST 向服务器端发送数据(由此引出图片上传问题)</p><p>(2) HTTP是个没有状态的协议，需要通过额外的机制来维持状态（例如登录状态）， 常用的方法就是cookie。</p><p>(3) 理解HTTP 状态码</p><p>(4) 理解 同步 vs 异步(由此引出AJAX，以及JQuery等框架)</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>4、URL 和 代码的映射</strong></span></p><p>理解url 和 代码之间的关联， 例如 www.xxx.com?action=login &nbsp;这样的url 是怎么和后端的业务代码关联起来的？ 这样的规则是在哪里定义的？ 用代码、注解还是配置文件？后端的业务代码该如何组织？ 相信现在不会有人把业务逻辑都写到Servlet当中了， &nbsp;所以需要很多MVC 框架像Struts , SpringMVC 来组织代码，让系统清晰易懂。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>5、数据的验证、转换和绑定</strong></span><br></p><p>如何保证浏览器发过来的数据是符合要求的？ 例如不能为空、不超过8个字符、两个密码必须相等.... &nbsp;， 出错了得给出错误提示。浏览器发过来的数据都是形如username=liuxin&amp;password=123456这样简单的文本， 但是后台程序却有着丰富的数据类型，什么String, Date ,Integer等等。 所以需要把文本变成指定语言的类型。类型转换以后， 后端的业务代码怎么才能有效的使用呢？最简单的就是弄一个key : value 这个样的Map 出来， 业务代码直接用map.get(key) 即可。高级一点的可以把页面发来的数据直接绑定到对象的属性上， 并且支持数组，嵌套等复杂的结构。例如user.name=liuxin&amp;user.password=123456 &nbsp;可以绑定到一个叫User的对象， 其中有两个属性userName和password。&nbsp;</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>6、Web安全</strong></span></p><p>如何防止黑客利用SQL 注入，跨站脚本攻击， 跨站请求伪造等手段来攻击系统？</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>7、数据库访问</strong></span><br></p><p>这一块是比较麻烦的， 毕竟面向对象(OO)世界和关系(Relational)数据库之间存在着天然的鸿沟。 对于简单的应用， 直接写点JDBC就够用了，只需要掌握Connection, Statement , Resultset这三个基础。 复杂点的需要用O/R Mapping 框架来搞定，例如 Hibernate, MyBatis &nbsp;，还有RoR的ActiveRecord。这其中比较棘手的就是表之间的关联， 就是所谓的一对多， 一对一， 多对多这样的关系， 如何在面向对象的世界里描述。扩展开去，还需要处理连接池， 事务，锁 等各种烦人问题。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>8、用什么技术来生成Web页面？</strong></span></p><p>这里说的Web页面就是第2点中的页面，包括HTML, CSS, Javascript。 能不能直接用Servlet的PrintWriter 直接输出HTML ? 当然可以，只是以后就没有人看懂了。现在用来创建Web页面的技术多如牛毛：例如 JSP, Velocity, Freemaker, Groovy 等等， 他们都有一个共同点： 模板技术。说白了就是有一个HTML的模板， 里边可以嵌入代码， 这个模板在运行时（例如在Tomcat当中）就可以根据输入的不同而生成不同内容的Web界面了。 无论哪种模板，都需要面对一个重要问题：如何展示从业务逻辑层发送来的数据？ &nbsp;这一步骤其实和第5步中的数据绑定有密切关系。因为这一步需要确定诸如user.name &nbsp;, user.password这样的字段名称。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>9、如何把对象变成XML或者JSON字符串？</strong></span></p><p>由于AJAX以及手机端的存在，对于一个URL的请求， 他们要求的返回值通常不是HTML页面， 而是XML或者JSON数据， 此时需要有框架把对象转化成相应的字符串。 搞定了Web这些基础的东西，在公司里做一个Web程序员应该不在话下了， 接下来需要学习的就是像高并发，缓存，搜索，分布式等高级的内容了。</p><p><br></p>', 'SooneBaby', '/about', '1', '0', '377', '1', '0', '2017-03-13 19:25:33');
+INSERT INTO `article` VALUES ('15', '7', '什么是Web编程，搞懂这几点你就入门了', '/ui/system/images/585d3a4678a8e.JPG', '有些事你从来没有接触过，你就感觉困难、自己干不来，那么你永远不知道那里面是怎么回事。有些事你去认真对待，当你回过头来发现自己已经入门了', '<p>有些事你从来没有接触过，你就感觉困难、自己干不来，那么你永远不知道那里面是怎么回事。有些事你去认真对待，当你回过头来发现自己已经入门了。编程其实没有想象中的那么困难，其实你只是缺少一颗好奇坚持的心。Web编程，仔细想想， 其实本质上就那点事儿， 你抓住了几个重点问题， 学起来一点都不难。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>1、理解浏览器/服务器结构 (B/S)</strong></span></p><p>B/S 是从 90年代的客户端/服务器端发展而来， 共同点都是由一个（或一组）服务器来服务多个客户端。 差别在于：首先，C/S结构的客户端可能是由不同语言编写的，例如VB,Delphi, PowerBuilder等， B/S结构中浏览器成为了一个通用的客户端， 程序以Web的方式呈现，不需要安装，服务器端的升级就意味着所有客户端的升级，这和C/S相比是个翻天覆地的变化。其次B/S的访问协议也标准化为HTTP(s) &nbsp;，而不是原来各种各样的私有协议。最后B/S结构中的服务器面向全球用户访问，而不像C/S那样仅仅是局域网， 所以压力更大， 挑战更大。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>2、Web页面是怎么组成的？</strong></span><br></p><p>简单来说就是HTML + CSS + Javascript , &nbsp;我们看到的Web界面就是由这三者组成。HTML负责结构， CSS负责展现， 而Javascript负责行为。我们说的前端开发也主要是做这一块， 对于前端工程师，需要能理解DOM 模型，以及如何通过javascript(例如JQuery等框架)来操作DOM模型。&nbsp;</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>3、浏览器和服务器是怎么打交道的？</strong></span><br></p><p>当然是HTTP ! &nbsp;HTTP说穿了就是浏览器和服务器聊天是的一种约定， 这个约定确保双方互相理解。完整的HTTP是非常复杂的，《HTTP权威指南》一书厚达700多页。</p><p>其实我们最常用， 也是最重要的也就那么几点：<br></p><p>(1) GET 和 POST 。 GET从服务器端获取数据， &nbsp;POST 向服务器端发送数据(由此引出图片上传问题)</p><p>(2) HTTP是个没有状态的协议，需要通过额外的机制来维持状态（例如登录状态）， 常用的方法就是cookie。</p><p>(3) 理解HTTP 状态码</p><p>(4) 理解 同步 vs 异步(由此引出AJAX，以及JQuery等框架)</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>4、URL 和 代码的映射</strong></span></p><p>理解url 和 代码之间的关联， 例如 www.xxx.com?action=login &nbsp;这样的url 是怎么和后端的业务代码关联起来的？ 这样的规则是在哪里定义的？ 用代码、注解还是配置文件？后端的业务代码该如何组织？ 相信现在不会有人把业务逻辑都写到Servlet当中了， &nbsp;所以需要很多MVC 框架像Struts , SpringMVC 来组织代码，让系统清晰易懂。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>5、数据的验证、转换和绑定</strong></span><br></p><p>如何保证浏览器发过来的数据是符合要求的？ 例如不能为空、不超过8个字符、两个密码必须相等.... &nbsp;， 出错了得给出错误提示。浏览器发过来的数据都是形如username=liuxin&amp;password=123456这样简单的文本， 但是后台程序却有着丰富的数据类型，什么String, Date ,Integer等等。 所以需要把文本变成指定语言的类型。类型转换以后， 后端的业务代码怎么才能有效的使用呢？最简单的就是弄一个key : value 这个样的Map 出来， 业务代码直接用map.get(key) 即可。高级一点的可以把页面发来的数据直接绑定到对象的属性上， 并且支持数组，嵌套等复杂的结构。例如user.name=liuxin&amp;user.password=123456 &nbsp;可以绑定到一个叫User的对象， 其中有两个属性userName和password。&nbsp;</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>6、Web安全</strong></span></p><p>如何防止黑客利用SQL 注入，跨站脚本攻击， 跨站请求伪造等手段来攻击系统？</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>7、数据库访问</strong></span><br></p><p>这一块是比较麻烦的， 毕竟面向对象(OO)世界和关系(Relational)数据库之间存在着天然的鸿沟。 对于简单的应用， 直接写点JDBC就够用了，只需要掌握Connection, Statement , Resultset这三个基础。 复杂点的需要用O/R Mapping 框架来搞定，例如 Hibernate, MyBatis &nbsp;，还有RoR的ActiveRecord。这其中比较棘手的就是表之间的关联， 就是所谓的一对多， 一对一， 多对多这样的关系， 如何在面向对象的世界里描述。扩展开去，还需要处理连接池， 事务，锁 等各种烦人问题。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>8、用什么技术来生成Web页面？</strong></span></p><p>这里说的Web页面就是第2点中的页面，包括HTML, CSS, Javascript。 能不能直接用Servlet的PrintWriter 直接输出HTML ? 当然可以，只是以后就没有人看懂了。现在用来创建Web页面的技术多如牛毛：例如 JSP, Velocity, Freemaker, Groovy 等等， 他们都有一个共同点： 模板技术。说白了就是有一个HTML的模板， 里边可以嵌入代码， 这个模板在运行时（例如在Tomcat当中）就可以根据输入的不同而生成不同内容的Web界面了。 无论哪种模板，都需要面对一个重要问题：如何展示从业务逻辑层发送来的数据？ &nbsp;这一步骤其实和第5步中的数据绑定有密切关系。因为这一步需要确定诸如user.name &nbsp;, user.password这样的字段名称。</p><p><span style=\"color: rgb(255, 0, 0);\"><strong>9、如何把对象变成XML或者JSON字符串？</strong></span></p><p>由于AJAX以及手机端的存在，对于一个URL的请求， 他们要求的返回值通常不是HTML页面， 而是XML或者JSON数据， 此时需要有框架把对象转化成相应的字符串。 搞定了Web这些基础的东西，在公司里做一个Web程序员应该不在话下了， 接下来需要学习的就是像高并发，缓存，搜索，分布式等高级的内容了。</p><p><br></p>', 'SooneBaby', '/about', '1', '0', '424', '1', '2', '2017-03-13 19:25:33');
 
 -- ----------------------------
 -- Table structure for `article_class`
@@ -171,7 +171,7 @@ CREATE TABLE `article_comment` (
   `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父id',
   `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '昵称',
   `avatar` varchar(50) NOT NULL DEFAULT '' COMMENT '头像',
-  `content` varchar(255) NOT NULL DEFAULT '' COMMENT '内容',
+  `content` varchar(1000) NOT NULL DEFAULT '' COMMENT '内容',
   `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'ip地址',
@@ -179,70 +179,15 @@ CREATE TABLE `article_comment` (
   `ext` varchar(255) NOT NULL DEFAULT '' COMMENT '扩展字段',
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
-  KEY `pid` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+  KEY `pid` (`pid`),
+  KEY `aid` (`aid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of article_comment
 -- ----------------------------
 INSERT INTO `article_comment` VALUES ('1', '15', '1', '0', '1', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京23', '');
-INSERT INTO `article_comment` VALUES ('2', '15', '1', '0', '23', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('3', '15', '1', '0', '', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('4', '15', '1', '0', '4', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('5', '15', '1', '0', '5', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('6', '15', '1', '0', '', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('7', '15', '1', '0', '', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('8', '15', '1', '0', '6', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('9', '15', '1', '0', '霜', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('10', '15', '1', '0', '', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('11', '15', '1', '0', '', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京', '');
-INSERT INTO `article_comment` VALUES ('12', '15', '1', '0', '', '/ui/system/images/soonebaby.jpg', '阿斯顿发生地方', 'emailwyc@163.com', '2017-03-14 22:59:13', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('13', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('14', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('15', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('16', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('17', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('18', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('19', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生23', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('20', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('21', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('22', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('23', '15', '2', '12', 'wang', '/ui/system/images/soonebaby.jpg', '生23', 'emailwyc@163.com', '2017-03-18 18:11:01', '12.12.12.21', '北京12', '');
-INSERT INTO `article_comment` VALUES ('24', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 22:10:26', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('25', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 22:16:13', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('26', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 22:22:37', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('27', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '你好', '', '2017-03-19 22:53:30', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('28', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '你好', '', '2017-03-19 22:53:33', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('29', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '你好', '', '2017-03-19 22:53:41', '127.0.0.1', '', '');
-INSERT INTO `article_comment` VALUES ('30', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '你好', '', '2017-03-19 22:54:35', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('31', '15', '1', '0', '昵称', '/ui/system/images/default_avatar/74.jpg', '你好', '', '2017-03-19 22:55:03', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('32', '15', '1', '0', '昵称1', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 22:58:31', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('33', '15', '1', '0', '昵称1', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 22:59:01', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('34', '15', '1', '0', '昵称1', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 22:59:06', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('35', '15', '1', '0', '昵称1', '/ui/system/images/default_avatar/74.jpg', '撒地方', '', '2017-03-19 22:59:27', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('36', '15', '1', '0', '昵称1', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 23:00:50', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('37', '15', '1', '0', '爱上地方', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 23:01:58', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('38', '15', '1', '0', '爱上地方', '/ui/system/images/default_avatar/74.jpg', '爱上地方', '', '2017-03-19 23:02:02', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('39', '15', '1', '0', 'soon', '/ui/system/images/default_avatar/74.jpg', 'sdfassdfaaadfasdfasfawasdfasdfasasdfxcvzcvzxcvzcxvzcvzcvzxcvzxcvafasdfasdzx sdfasdfasd', '', '2017-03-19 23:05:34', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('40', '15', '1', '39', '1', '/ui/system/images/default_avatar/74.jpg', 'asdf', '', '2017-03-19 23:27:45', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('41', '15', '1', '40', '22', '/ui/system/images/default_avatar/74.jpg', 'asdf', '', '2017-03-19 23:28:18', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('42', '15', '2', '41', '123', '/ui/system/images/default_avatar/74.jpg', 'asdf', '', '2017-03-19 23:37:15', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('43', '15', '2', '41', 'S', '/ui/system/images/default_avatar/74.jpg', 'ASD', '', '2017-03-19 23:37:56', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('44', '15', '2', '41', 'EEE', '/ui/system/images/default_avatar/74.jpg', 'ASDF', '', '2017-03-19 23:39:02', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('45', '15', '2', '41', '55', '/ui/system/images/default_avatar/74.jpg', 'ASDF', '', '2017-03-19 23:43:08', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('46', '15', '2', '41', '55', '/ui/system/images/default_avatar/74.jpg', '111', '', '2017-03-19 23:43:27', '127.0.0.1', '', '');
-INSERT INTO `article_comment` VALUES ('47', '15', '2', '41', '55', '/ui/system/images/default_avatar/74.jpg', '111', '', '2017-03-19 23:43:32', '127.0.0.1', '', '');
-INSERT INTO `article_comment` VALUES ('48', '15', '2', '41', '55', '/ui/system/images/default_avatar/74.jpg', '2222', '', '2017-03-19 23:43:38', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('49', '15', '2', '41', '55', '/ui/system/images/default_avatar/74.jpg', '333', '', '2017-03-19 23:43:45', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('50', '15', '2', '41', '55', '/ui/system/images/default_avatar/74.jpg', '444', '', '2017-03-19 23:43:50', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('51', '15', '2', '40', '22', '/ui/system/images/default_avatar/74.jpg', '111', '', '2017-03-19 23:44:04', '127.0.0.1', '', '');
-INSERT INTO `article_comment` VALUES ('52', '15', '2', '41', '22', '/ui/system/images/default_avatar/74.jpg', '11', '', '2017-03-19 23:49:45', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('53', '15', '2', '41', '22', '/ui/system/images/default_avatar/74.jpg', '55', '', '2017-03-19 23:49:54', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('54', '15', '2', '40', '22', '/ui/system/images/default_avatar/74.jpg', '11', '', '2017-03-19 23:50:16', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('55', '15', '2', '40', '22', '/ui/system/images/default_avatar/74.jpg', '33', '', '2017-03-19 23:50:24', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('56', '15', '2', '40', '22', '/ui/system/images/default_avatar/74.jpg', '44', '', '2017-03-19 23:50:33', '127.0.0.1', '', '');
-INSERT INTO `article_comment` VALUES ('57', '15', '2', '40', '22', '/ui/system/images/default_avatar/74.jpg', '55', '', '2017-03-19 23:50:39', '127.0.0.1', '未分配或者内网IP', '');
-INSERT INTO `article_comment` VALUES ('58', '15', '2', '40', '22', '/ui/system/images/default_avatar/74.jpg', '66', '', '2017-03-19 23:50:44', '127.0.0.1', '未分配或者内网IP', '');
+INSERT INTO `article_comment` VALUES ('2', '15', '1', '0', 'SooneBaby', '/ui/system/images/default_avatar/118.jpg', '功能做的不错啊<img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\">', '', '2017-03-20 13:30:13', '127.0.0.1', '未分配或者内网IP', '');
 
 -- ----------------------------
 -- Table structure for `article_tags`
@@ -413,6 +358,7 @@ CREATE TABLE `saying` (
   `comnum` int(11) NOT NULL DEFAULT '0' COMMENT '评论数量',
   `ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'ip地址',
   `pv` int(11) NOT NULL DEFAULT '0' COMMENT '浏览量',
+  `addr` varchar(50) NOT NULL DEFAULT '' COMMENT '发表地点',
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
@@ -421,28 +367,36 @@ CREATE TABLE `saying` (
 -- ----------------------------
 -- Records of saying
 -- ----------------------------
+INSERT INTO `saying` VALUES ('1', 'hello word!', '我的第一个程序！', '1', '127.0.0.1', '13', '北京市', '2017-03-20 13:36:30');
 
 -- ----------------------------
 -- Table structure for `saying_comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `saying_comment`;
 CREATE TABLE `saying_comment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL DEFAULT '' COMMENT '用户昵称',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `aid` int(11) NOT NULL COMMENT '文章id',
+  `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1:评论2回复',
+  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父id',
+  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '昵称',
   `avatar` varchar(50) NOT NULL DEFAULT '' COMMENT '头像',
-  `emai` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
-  `website` varchar(50) NOT NULL DEFAULT '' COMMENT '网站',
-  `content` varchar(255) NOT NULL DEFAULT '' COMMENT '内容',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态',
-  `address` varchar(50) NOT NULL COMMENT '发表地',
-  `ip` varchar(30) NOT NULL DEFAULT '' COMMENT 'ip地址',
+  `content` varchar(1000) NOT NULL DEFAULT '' COMMENT '内容',
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'ip地址',
+  `address` varchar(50) NOT NULL DEFAULT '' COMMENT '地址',
+  `ext` varchar(255) NOT NULL DEFAULT '' COMMENT '扩展字段',
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`),
+  KEY `pid` (`pid`),
+  KEY `aid` (`aid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of saying_comment
 -- ----------------------------
+INSERT INTO `saying_comment` VALUES ('3', '1', '1', '0', 'SooneBaby', '/ui/system/images/default_avatar/118.jpg', '<img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/3.gif\" class=\"face\">', '', '2017-03-20 16:08:13', '127.0.0.1', '未分配或者内网IP', '');
+INSERT INTO `saying_comment` VALUES ('4', '1', '2', '3', 'SooneBaby', '/ui/system/images/default_avatar/118.jpg', '<img src=\"/ui/system/comment/images/face/15.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/15.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/15.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/15.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/15.gif\" class=\"face\"><img src=\"/ui/system/comment/images/face/15.gif\" class=\"face\">', '', '2017-03-20 16:08:42', '127.0.0.1', '未分配或者内网IP', '');
 
 -- ----------------------------
 -- Table structure for `subscribe`
@@ -518,12 +472,12 @@ CREATE TABLE `system_variable` (
 -- Records of system_variable
 -- ----------------------------
 INSERT INTO `system_variable` VALUES ('artnum', '14', '1');
-INSERT INTO `system_variable` VALUES ('comnum', '0', '1');
+INSERT INTO `system_variable` VALUES ('comnum', '4', '1');
 INSERT INTO `system_variable` VALUES ('leavenum', '0', '1');
 INSERT INTO `system_variable` VALUES ('photonum', '0', '1');
 INSERT INTO `system_variable` VALUES ('resnum', '0', '1');
 INSERT INTO `system_variable` VALUES ('saynum', '0', '1');
-INSERT INTO `system_variable` VALUES ('visitnum', '959', '1');
+INSERT INTO `system_variable` VALUES ('visitnum', '1130', '1');
 
 -- ----------------------------
 -- Table structure for `tags_cloud`
@@ -583,4 +537,4 @@ CREATE TABLE `visit_logs` (
 -- ----------------------------
 -- Records of visit_logs
 -- ----------------------------
-INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '959', '2017-03-19 23:49:33', '2017-03-12 20:33:11');
+INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '1130', '2017-03-20 19:57:26', '2017-03-12 20:33:11');

@@ -83,4 +83,5 @@ $(document).ready(function(){
     	var type = jQuery("#snsinfo_type").val();
     	var myOffset = jQuery("#snsinfo_get_offset").val();
         getCommentCount(arcid,type,myOffset);
+		setNicknameByCookie('get',false);
 });

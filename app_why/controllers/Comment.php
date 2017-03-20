@@ -8,7 +8,10 @@ class Comment extends TempBase{
 		parent::__construct();
 		$this->get = $this->input->get();
 		$this->load->model('CommentM');
-		$typeAll = array('article'=>1,'saying'=>2);
+		$typeAll = array(
+			'article'=>array('tb'=>'article_comment','offset'=>5,'tbs'=>'article','tbsu'=>true),
+			'saying'=>array('tb'=>'saying_comment','offset'=>8,'tbs'=>'saying','tbsu'=>true)
+		);
 		if(!$this->input->is_ajax_request()){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
 		if(!isset($this->get['com_type']) || empty($typeAll[$this->get['com_type']])){
 			echo $_REQUEST['callback']."(".json_encode(0).")";exit;	
@@ -19,25 +22,16 @@ class Comment extends TempBase{
 	public function getcommentcount()
 	{
 		$post = $this->input->get();
-		if(empty($post['arcid'])){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
-		if($this->ctype==1){
-			$where = array('aid'=>(int)$post['arcid'],'type'=>1);
-			$count = $this->CommentM->getCount('article_comment',$where);
-		}else{
-			$count = 0;	
-		}
+		if(!isset($post['arcid'])){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
+		$where = array('aid'=>(int)$post['arcid'],'type'=>1);
+		$count = $this->CommentM->getCount($this->ctype['tb'],$where);
 		echo $_REQUEST['callback']."(".json_encode($count).")";exit;
 	}
 	public function getcomment() {
 		$this->emptyCheck($this->get,array('aid','page'));	
-		if(empty($this->get['aid'])){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
-		if($this->ctype==1){
-			$where = array('aid'=>(int)$this->get['aid'],'type'=>1);
-			$list  = $this->CommentM->getList('article_comment',$where,5,$this->get['page'],"id desc"); $ids = ArrKeyAll($list,'id');
-			$replycount = $this->CommentM->getReplyCount('article_comment',array('type'=>2),"pid",$ids);
-		}else{
-			echo $_REQUEST['callback']."(".json_encode($count).")";exit;
-		}
+		$where = array('aid'=>(int)$this->get['aid'],'type'=>1);
+		$list  = $this->CommentM->getList($this->ctype['tb'],$where,$this->ctype['offset'],$this->get['page'],"id desc"); $ids = ArrKeyAll($list,'id');
+		$replycount = $this->CommentM->getReplyCount($this->ctype['tb'],array('type'=>2),"pid",$ids);
 		$res = array('clist'=>$list,'rcount'=>$replycount);
 		echo $_REQUEST['callback']."(".json_encode($res).")";exit;
 	}
@@ -45,12 +39,8 @@ class Comment extends TempBase{
 	public function getRepCom() {
 		$this->emptyCheck($this->get,array('tid','page'));	
 		if(empty($this->get['tid'])){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
-		if($this->ctype==1){
-			$where = array('pid'=>(int)$this->get['tid'],'type'=>2);
-			$list  = $this->CommentM->getList('article_comment',$where,5,$this->get['page'],"id desc");
-		}else{
-			echo $_REQUEST['callback']."(".json_encode(0).")";exit;
-		}
+		$where = array('pid'=>(int)$this->get['tid'],'type'=>2);
+		$list  = $this->CommentM->getList($this->ctype['tb'],$where,$this->ctype['offset'],$this->get['page'],"id desc");
 		$res = array('replist'=>$list);
 		echo $_REQUEST['callback']."(".json_encode($res).")";exit;
 	}
@@ -61,10 +51,23 @@ class Comment extends TempBase{
 		$ipInfo = get_client_addr();
 		$inArr = array('nickname'=>$params['nickname'],'content'=>$params['content'],'avatar'=>$params['avatar'],'aid'=>$params['aid'],'pid'=>$params['pid'],'email'=>$params['email'],'ip'=>$ipInfo['ip'],'address'=>$ipInfo['addr']);
 		$inArr['type'] = empty($params['pid'])?1:2;
-		if($this->ctype==1){
-			$check = $this->CommentM->insert('article_comment',$inArr);
-		}else{
-			echo $_REQUEST['callback']."(".json_encode(0).")";exit;
+		$this->config->load('contentkeyword',TRUE);
+		$this->load->library('KeyWord',array('keyWord'=>$this->config->item('keyWord','contentkeyword')),'keyword');
+		if($rMessage = $this->keyword->replace($inArr['content'])){ $inArr['content']=$rMessage;}
+		//长度判断
+		$msgLen = get_msg_len($inArr['content']);
+		if($msgLen <= 0 || $msgLen > 500){
+			echo $_REQUEST['callback']."(3)";exit;
+		}
+		$inArr['content'] = bbCode(getStr($inArr['content'],0,1,1));
+
+		$check = $this->CommentM->insert($this->ctype['tb'],$inArr);
+		if($check && $inArr['type'] ==1){
+			//评论数＋１，总评论数加＋１
+			if($this->ctype['tbsu']){
+				$this->CommentM->updateaddone($this->ctype['tbs'],'comnum',array('id'=>$inArr['aid']));
+			}
+			$this->CommentM->updateaddone('system_variable','value',array('mark'=>'comnum'));
 		}
 		if(!$check){echo $_REQUEST['callback']."(".json_encode(0).")";exit;}
 		$inArr['createtime'] = date('Y-m-d H:i:s',time()); $inArr['id'] = $check;

@@ -17,14 +17,17 @@ class Common extends TempBase{
 		}
 	}
 	//访问统计
-	public function visits()
-	{
+	public function visits() {
 		if(!$this->input->is_ajax_request()){ echo 0;}
 		$post = $this->input->post();
 		if(empty($post['type']) || empty($post['aid'])){ echo 0;}
 		if($post['type']=="article"){
 			$this->load->model('ArticleM');
 			$this->ArticleM->visitHandle((int)$post['aid']);
+			echo 1;exit;
+		}elseif($post['type']=="saying"){
+			$this->load->model('ComModel');
+			$this->ComModel->updateaddone('saying','pv',array('id'=>(int)$post['aid']));
 			echo 1;exit;
 		}
 	}

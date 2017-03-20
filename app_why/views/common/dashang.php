@@ -2,7 +2,7 @@
     <div class="hide_box"></div>
     <div class="shang_box">
     	<a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="/ui/system/images/close.jpg" alt="取消"></a>
-        <img class="shang_logo" src="/ui/system/images/logo3.gif" alt="雷小天">
+        <img class="shang_logo" src="/ui/system/images/logo3.gif" alt="SoonBaby">
     	<div class="shang_tit">
     		<p>感谢您的支持，我会继续努力的!</p>
     	</div>

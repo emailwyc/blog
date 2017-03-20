@@ -60,6 +60,12 @@ class ComModel extends CI_Model {
 		$this->db->set('value','value+1',false)->where('mark','visitnum')->update('system_variable');
 		//更新总访问量
 	}
+	//updateaddone
+	public function updateaddone($table,$field,$where) {
+		//获取ip地址
+		$check = $this->db->set($field,"$field+1",false)->where($where)->update($table);
+		return $check;
+	}
 
 
 }

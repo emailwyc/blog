@@ -2,8 +2,8 @@
 <!--主题框架开始-->
 <div class="container">
 	<!--左侧开始-->
-	<section class="mysection" style="animation: 0.8s ease 0s normal none 1 running fuxiasuo;">
-		<div class="swiper-container swiper-container-horizontal swiper-container-autoheight" style="animation: 0.8s ease 0s normal none 1 running fuxiasuo;">
+	<section class="mysection">
+		<div class="swiper-container swiper-container-horizontal swiper-container-autoheight">
 			<ul class="slides swiper-wrapper">
 				<?php foreach($swiper as $key=>$val):?>
 				<li class="swiper-slide <?php if($key==0){ ?>swiper-slide-active<?php }?>" style="width: 650px;">

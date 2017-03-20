@@ -22,7 +22,7 @@
 			<textarea id="comment_message" name="message" rows="4" ></textarea>
 			<div class="clearfix snsinfo_fabiao">
 					<i class="el el-reddit" id="comment_face" onclick="showFace(this.id, 'comment_message');return false;"></i>
-					<input style="height:30px;width:20%;font-size:12px;margin-top:1px;" class="form-control b-email" id="com_nickname" name="nickname" placeholder="昵称(必填)" type="text">
+					<input style="height:30px;width:20%;font-size:12px;margin-top:1px;" class="form-control b-email com-nickname-all" id="com_nickname" name="nickname" placeholder="昵称(必填)" type="text">
 					<input style="height:30px;width:20%;font-size:12px;margin-top:1px;" class="form-control b-email" id="com_email" name="email" placeholder="接收回复的email地址" type="text">
 					<span> <input class="repcom-btn-sure" type="button" value="评论" id="com_sub_btn" onclick="sendcom(0)"/> </span>
 			</div>

@@ -67,11 +67,6 @@ function httpGet($url) {
 	return $res;
 }
 
-function alert($error){
-	echo $error;
-	exit;
-}
-
 if (! function_exists ( 'createFolder' )) {
 	/**
 	 * 创建文件夹
@@ -195,21 +190,6 @@ if (! function_exists ( 'toStriForHtmlSpeChar' )) {
 	function toStriForHtmlSpeChar($var){
 		$str=toHtmlSpecialChars(toStripslashes($var));
 		return $str;
-	}
-}
-
-
-if (! function_exists ( 'showErrorMsg' )) {
-	/**
-	 * 打印错误信息页面
-	 * @param string $msg 错误提示信息
-	 */
-	function showErrorMsg($msg=''){
-		if(isNullOrEmpty($msg)){$msg='Error';}
-		$module='Error';
-		$action='error';
-		$url= $module.'/'.$action.'?msg='.$msg;
-		redirect ( $url );
 	}
 }
 
@@ -358,38 +338,6 @@ if (! function_exists ( 'isPost' )) {
 	}
 }
 
-if (! function_exists ( 'isAppToken' )) {
-	/**
-	 * 查看token是否一样，如果不同直接返回token错误
-	 * @param string $path
-	 */
-	function isAppToken($PostToken){
-		$token = 'klicaetbSOQiS164';
-		if($PostToken != $token){
-            $redirect = 'app_login/noErrMsge/1';
-			redirect ( $redirect );
-		}else{
-			return true;
-		}
-	}
-}
-if (! function_exists ( 'isAppPost' )) {
-	/**
-	 * 判断是否为post 提交
-	 * 如果不是直接返回
-	 * @return boolean
-	 * //crgken 2015-5 10-10:23
-	 */
-	function isAppPost() {
-		$server = $_SERVER;
-		$method = $server ['REQUEST_METHOD'];
-		if (strtoupper ( $method ) === 'POST') {
-			return ;
-		} else {
-			return false;
-		}
-	}
-}
 if (! function_exists ( 'generate' )) {
 	/**
 	 * 获取$length长度的随机字符串
@@ -401,18 +349,6 @@ if (! function_exists ( 'generate' )) {
 			$password .= $chars[ mt_rand(0, strlen($chars) - 1) ];  
 		}  
 		return $password;  
-	}
-}
-
-if (! function_exists ( 'getMdbId' )) {
-	//getMdbId
-	function getMdbId($str){
-		try {
-			$something = new MongoId($str);
-		} catch (MongoException $ex) {
-			$something = new MongoId();
-		}
-		return $something;  
 	}
 }
 
@@ -486,68 +422,6 @@ if (! function_exists ( 'unescape' )) {
 					$ret .= $str[$i];
 		}
 		return $ret; 
-	}
-}
-//检测用户时候注册
-if (! function_exists ( 'checkAuth' )) {
-	function checkAuth()
-	{
-		if(isset($_SESSION['aid']) && $_SESSION['aid'] && isset($_SESSION['st']) && $_SESSION['st']) {
-			return $_SESSION['aid'];
-		} else redirect('/register/index');
-	}
-}
-//检测用户时候注册
-function checkAuth1() {
-	if(isset($_SESSION['pid']) && $_SESSION['pid']) {
-		return $_SESSION['pid'];
-	} else return false;
-}
-function getPatientOpenid() {
-	if(isset($_SESSION['aid']) && $_SESSION['aid']) {
-		return $_SESSION['aid'];
-	} else return false;
-}
-
-function checkisScan($scen_id="") {
-	if(isset($_SESSION['aid']) && $_SESSION['aid']) {
-		return $_SESSION['aid'];
-	} else{
-		 redirect('/share/subscribe/'.$scen_id);exit;
-	};
-}
-function checkAuth2() {
-		if(!empty($_SESSION['aid']) && !empty($_SESSION['st'])  && !empty($_SESSION['pid'])) {
-			return array("aid"=>$_SESSION['aid'],"pid"=>$_SESSION['pid']);
-		}else return false;
-}
-function checkAuth3()
-{
-	if(empty($_SESSION['aid'])){
-		redirect('/share/subscribe');exit;
-	}
-	if(isset($_SESSION['pid']) && $_SESSION['pid'] && isset($_SESSION['st']) && $_SESSION['st']) {
-		return $_SESSION['pid'];
-	} else{
-		$selfUrl = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		redirect('/register/index?redirect='.urlencode($selfUrl));
-	}
-}
-if (! function_exists ( 'checkPatientAuth' )) {
-	function checkPatientAuth()
-	{
-		if(!empty($_SESSION['aid']) && !empty($_SESSION['st'])  && !empty($_SESSION['pid'])) {
-			return array("aid"=>$_SESSION['aid'],"pid"=>$_SESSION['pid']);
-		} else redirect('/register/index');
-	}
-}
-//检查该用户是否是本人
-if (! function_exists ( 'checkPatIsSelf' )) {
-	function checkPatIsSelf($pid="")
-	{
-		if(!empty($_SESSION['pid']) && $_SESSION['pid']==$pid) {
-			return true;
-		} else return false;
 	}
 }
 //跳转
@@ -764,35 +638,6 @@ function authcode($string, $operation = 'DECODE', $key = 'e9qec4676703da00d0f651
     }
 }
 
-if (! function_exists ( 'getSelParams' )) {
-	function getSelParams() {
-		$dep = isset($_GET['dep']) ? saddslashes(trim($_REQUEST['dep'])):"";
-		$hos = isset($_GET['hos']) ? saddslashes(trim($_REQUEST['hos'])):"";
-		$kw= isset($_GET['kw']) ? unescape(saddslashes(trim($_REQUEST['kw']))):"";
-		$sort = isset($_GET['sort']) ? saddslashes(trim($_REQUEST['sort'])):"mul_num";
-		$find = array();
-		if(!empty($dep)){
-			$tem = @explode("_",$dep);
-			if(isset($tem[1]) && $tem[1]=="1"){
-				$find['depk'] = "department_id"; $find['depv'] = getMdbId($tem[0]);
-			}elseif(isset($tem[1]) && $tem[1]=="2"){
-				$find['depk'] = "department_child_id"; $find['depv'] = getMdbId($tem[0]);
-			}
-		}
-		if(!empty($hos)){
-			$tem = @explode("_",$hos);
-			if(isset($tem[1]) && $tem[1]=="1"){
-				$find['host'] = "region"; $find['hosk'] = "region_id"; $find['hosv'] = getMdbId($tem[0]);
-			}elseif(isset($tem[1]) && $tem[1]=="2"){
-				$find['host'] = "hospital"; $find['hosk'] = "hospital_id"; $find['hosv'] = getMdbId($tem[0]);
-			}
-		}
-		$find['sort'] = $sort; $find['kw']  = $kw;
-		$result = array( 'view'=>array('dep'=>$dep,'hos'=>$hos,'sort'=>$sort,'kw'=>$kw), 'find'=>$find);
-		return $result;
-	} 
-}
-
 if (! function_exists ( 'http_get_data' )) {
 	function http_get_data($url) {  
 		$ch = curl_init ();  
@@ -807,14 +652,6 @@ if (! function_exists ( 'http_get_data' )) {
 		return $return_content;  
 	}
 }
-
-function checkIsWxBrowser() {
-	if(strpos($_SERVER['HTTP_USER_AGENT'],"MicroMessenger")){
-	    return true;
-	}else{
-		return false;
-	}
-} 
 
 function timeChange12($time) {
 	$temp = date("a h:i",strtotime($time));
@@ -868,3 +705,89 @@ function get_client_addr() {
 	$res = array('ip'=>$ip,'addr'=>$addr);
 	return $res;
 } 
+function get_msg_len($msg)
+{
+	$msg = preg_replace("/<a.*?.*?>(.*?)<\/a>/i", "\$1", $msg);
+	$msg = preg_replace("/<img.*?>/i", "", $msg);
+	$msg    = str_replace("\\", "", $msg);
+	return mb_strlen($msg, 'UTF-8');
+}
+/**
+ * 过滤字符串 
+ */
+function getStr($string, $length, $inSlashes = 0, $outSlashes = 0, $html = 0, $isDiff = 0) {
+        $string = trim($string);
+        if($inSlashes)
+                $string = sstripslashes($string);
+
+        if($html < 0) {
+                //去掉html标签
+                $string = preg_replace("/(\<[^\<]*\>|\r|\n|\s|\[.+?\])/is", ' ', $string);
+                $string = shtmlspecialchars($string);
+        } elseif($html == 0)
+                //转换html标签
+                $string = shtmlspecialchars($string);
+
+        if($length) {
+                $string = $isDiff ? mb_substr($string, 0, $length, 'UTF-8') : leftLen($string, $length);
+        }
+
+        if($outSlashes)
+                $string = saddslashes($string);
+
+        return trim($string);
+}
+function sstripslashes($string)
+{
+        if(is_array($string))
+        {
+                foreach($string as $key => $val)
+                {
+                        $string[$key] = sstripslashes($val);
+                }
+        }
+        else
+                $string = stripslashes($string);
+
+        return $string;
+}
+function shtmlspecialchars($string)
+{
+	if(is_array($string)) {
+		foreach($string as $key => $val) {
+				$string[$key] = shtmlspecialchars($val);
+		}
+	} else {
+		$string = preg_replace('/&amp;((#(\d{3,5}|x[a-fA-F0-9]{4})|[a-zA-Z][a-z0-9]{2,5});)/', '&\\1',
+		str_replace(array('&', '"', '<', '>'), array('&amp;', '&quot;', '&lt;', '&gt;'), $string));
+	}
+	return $string;
+}
+/**
+ * 表情
+ */
+function bbCode($message)
+{
+        global $_SGLOBAL;
+
+        if(empty($_SGLOBAL['search_exp'])) {
+                $_SGLOBAL['search_exp'] = array(
+                        "/\s*\[quote\][\n\r]*(.+?)[\n\r]*\[\/quote\]\s*/is",
+                        "/\[url\]\s*(https?:\/\/|ftp:\/\/|gopher:\/\/|news:\/\/|telnet:\/\/|rtsp:\/\/|mms:\/\/|callto:\/\/|ed2k:\/\/){1}([^\[\"']+?)\s*\[\/url\]/i",
+                        "/\[em:(.+?):\]/i",
+                        "/\[url\s*(https?:\/\/|ftp:\/\/|gopher:\/\/|news:\/\/|telnet:\/\/|rtsp:\/\/|mms:\/\/|callto:\/\/|ed2k:\/\/){1}([^\[\]\"']+?)\]([^\s]+)\[\/url\]/i",
+                        "/\[url[\s\<a]+href=\"([^\"]+)\"[^\]]+\]([^\s]+)\[\/url\]/i",
+                );
+                $_SGLOBAL['replace_exp'] = array(
+                        "<div class=\"quote\"><span class=\"q\">\\1</span></div>",
+                        "<a href=\"\\1\\2\" target=\"_blank\">\\1\\2</a>",
+                        "<img src=\"/ui/system/comment/images/face/\\1.gif\" class=\"face\">",
+                        "<a href=\"\\1\\2\" target=\"_blank\">\\3</a>",
+                        "<a href=\"\\1\" target=\"_blank\">\\2</a>",
+                );
+                $_SGLOBAL['search_str'] = array('[b]', '[/b]','[i]', '[/i]', '[u]', '[/u]');
+                $_SGLOBAL['replace_str'] = array('<b>', '</b>', '<i>','</i>', '<u>', '</u>');
+        }
+        @$message = str_replace($_SGLOBAL['search_str'], $_SGLOBAL['replace_str'],preg_replace($_SGLOBAL['search_exp'], $_SGLOBAL['replace_exp'], $message));
+        return nl2br(str_replace(array("\t", '   ', '  ','/\s+/'), array('&nbsp; &nbsp; &nbsp; &nbsp; ', '&nbsp; &nbsp;', '&nbsp;&nbsp;', '&nbsp;'), $message));
+}

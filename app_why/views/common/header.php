@@ -54,11 +54,11 @@
 	<!--电脑导航开始-->
 		<nav class="mynav">
 			<ul class="orange-text">
-				<li class="nav-active" style="width: 85.7143px; animation-name: fushang; animation-duration: 0.5s;"><a href="/" title="">首页</a></li>
+				<li><a href="/" title="">首页</a></li>
 
-				<li style="width: 85.7143px; animation-name: fushang; animation-duration: 0.666667s;"><a href="http://www.100txy.com/Home/Index/chat.html">说说</a></li>
+				<li><a href="/saying">说说</a></li>
 
-				<li class="drop" style="width: 85.7143px; animation-name: fushang; animation-duration: 0.833333s;">
+				<li class="drop">
 					<a href="javascript:;">分类<i class="el-chevron-down"></i></a>
 					<div class="drop-nav orange-text ">
 						<ul>
@@ -67,18 +67,11 @@
 							<?php endforeach;?>
 						</ul>
 					</div>
-
 				</li>
-
-				<!-- <li  ><a href="/Links/" >链接</a></li> -->
-
-				<li style="width: 85.7143px; animation-name: fushang; animation-duration: 1s;"><a href="http://www.100txy.com/Home/Index/album.html">相册</a></li>
-
-				<li style="width: 85.7143px; animation-name: fushang; animation-duration: 1.16667s;"><a href="http://www.100txy.com/Home/Index/downlist.html">素材</a></li>
-
-				<li style="width: 85.7143px; animation-name: fushang; animation-duration: 1.33333s;"><a href="http://www.100txy.com/Home/Index/feedback.html">留言</a>	</li>
-
-				<li style="width: 85.7143px; animation-name: fushang; animation-duration: 1.5s;"><a href="http://www.100txy.com/Home/Index/about.html" title="">关于</a></li>
+				<li><a href="/album">相册</a></li>
+				<li><a href="/download">素材</a></li>
+				<li><a href="/leaving">留言</a>	</li>
+				<li><a href="/about" title="">关于</a></li>
 
 			</ul>
 			 <!--移动的滑动-->
@@ -99,30 +92,20 @@
 			</div>
 			<!--手机下拉菜单-->
 			<ul class="mob-ulnav">
-				<li><a href="http://www.100txy.com/">首页</a></li>
-
-				<li><a href="http://www.100txy.com/Home/Index/chat.html">说说</a></li>
-
+				<li><a href="/">首页</a></li>
+				<li><a href="/saying">说说</a></li>
 				<li class="mob-drop">
 					<a href="javascrip:;">分类<i></i></a>
-
 					<ul class="mob-dropmenu">
 							<?php foreach($_artClass as $val):?>
 							<li><a href="/article/getListByClass/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
 							<?php endforeach;?>
 						</ul>
-
 					</li>
-
-					<!-- <li  ><a href="/Links/" >链接</a></li> -->
-
-					<li><a href="http://www.100txy.com/Home/Index/album.html">相册</a></li>
-
-					<li><a href="http://www.100txy.com/Home/Index/downlist.html">素材</a></li>
-
-					<li><a href="http://www.100txy.com/Home/Index/feedback.html">留言</a>	</li>
-
-					<li><a href="http://www.100txy.com/Home/Index/about.html">关于</a></li>
+					<li><a href="/album">相册</a></li>
+					<li><a href="/download">素材</a></li>
+					<li><a href="/leaving">留言</a>	</li>
+					<li><a href="/about" title="">关于</a></li>
 
 				</ul>
 			</div>

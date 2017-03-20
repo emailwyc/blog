@@ -33,14 +33,19 @@ class CommentM extends CI_Model {
 	}
 
 	//insert
-	public function insert($table,$data)
-	{
+	public function insert($table,$data) {
 		$check = $this->db->insert($table,$data);
 		if($check){
 			return $this->db->insert_id();
 		}else{
 			return false;
 		}
+	}
+	//updateaddone
+	public function updateaddone($table,$field,$where) {
+		//获取ip地址
+		$check = $this->db->set($field,"$field+1",false)->where($where)->update($table);
+		return $check;
 	}
 
 

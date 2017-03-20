@@ -7,8 +7,7 @@ class Article extends HomeBase{
 		$this->load->model('ArticleM');
 	}   
 
-	public function detail($id=0)
-	{
+	public function detail($id=0) {
 		if(empty($id)){ show_error("未找到该文章!");}
 		//得到文章详情
 		$this->_cdata['article'] = $this->ArticleM->getDetailById($id);
@@ -21,5 +20,16 @@ class Article extends HomeBase{
 		//得到文章可能喜欢
 		$this->_cdata['likes'] = $this->ArticleM->getLikes($this->_cdata['article']['cid'],$id);
 		$this->load->view('article/detail',$this->_cdata);
+	}
+
+	//根据分类找到文章
+	public function category($class,$page=1) {
+		if(empty($class)){ show_error("未找到该文章!");}
+		$this->_cdata['cate'] =  $this->ArticleM->getClassById($class);
+		if(empty($this->_cdata['cate'])){ show_error("未找到该分类!");}
+		$where = array('article.status'=>1,'article.cid'=>$class);
+		$this->_cdata['artList'] = $this->ArticleM->getArtList((int)$page,$where,10);
+		$this->_cdata['category'] = $class;
+		$this->load->view('article/category',$this->_cdata);
 	}
 }

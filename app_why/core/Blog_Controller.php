@@ -25,6 +25,7 @@ class HomeBase extends Blog_Controller {
 		$this->_cdata['_var']  = $this->ComModel->getVariable();
 		$this->_cdata['_cvisit']  = $this->ComModel->getVisitNum();
 		$this->_cdata['_title']  = $this->_cdata['_var']['baseRes']['author']."博客-个人原创博客网站";
+		$this->_cdata['_titleb']  = $this->_cdata['_var']['baseRes']['author'];
 		$this->author = $this->_cdata['_var']['baseRes']['author'];
 		$this->author_link = $this->_cdata['_var']['baseRes']['avatar'];
 		/*后期加缓存*/
