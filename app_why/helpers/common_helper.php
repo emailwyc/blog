@@ -702,6 +702,7 @@ function get_client_addr() {
 	$opts = stream_context_create(array('http'=>array('timeout'=>2))); 
 	$data = @json_decode(file_get_contents($url,false,$opts),true); //调用淘宝接口获取信息 
 	$addr = (isset($data['data']['region']) && isset($data['data']['country']))?$data['data']['country'].$data['data']['region']:"";
+	$addr = empty($addr)?"获取失败":$addr;
 	$res = array('ip'=>$ip,'addr'=>$addr);
 	return $res;
 } 

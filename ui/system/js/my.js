@@ -49,10 +49,14 @@ $(document).ready(function(){
 	}
 	
 	//当前连接高亮
-	
+	var curUrl = String(window.location);	
 	$('nav li a').each(function(){
-		if($($(this))[0].href==String(window.location))
+		if(curUrl.indexOf($($(this))[0].href)!=-1){
 			$(this).parent("li").addClass('nav-active');
+			if($(this).attr("date-light")=="true"){
+				$(".nav-light-1").addClass('nav-active');
+			}
+		}
 	});
 	//菜单下拉
 		$(".mob-drop").click(function(){

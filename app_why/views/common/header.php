@@ -54,22 +54,22 @@
 	<!--电脑导航开始-->
 		<nav class="mynav">
 			<ul class="orange-text">
-				<li><a href="/" title="">首页</a></li>
+				<li><a href="/index" title="">首页</a></li>
 
 				<li><a href="/saying">说说</a></li>
 
-				<li class="drop">
-					<a href="javascript:;">分类<i class="el-chevron-down"></i></a>
+				<li class="drop nav-light-1">
+					<a href="javascript:void(0);">分类<i class="el-chevron-down"></i></a>
 					<div class="drop-nav orange-text ">
 						<ul>
 							<?php foreach($_artClass as $val):?>
-							<li><a href="/article/category/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
+							<li><a href="/article/category/<?=$val['id'];?>" date-light="true" ><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
 							<?php endforeach;?>
 						</ul>
 					</div>
 				</li>
 				<li><a href="/album">相册</a></li>
-				<li><a href="/download">素材</a></li>
+				<li><a href="/download">下载</a></li>
 				<li><a href="/leaving">留言</a>	</li>
 				<li><a href="/about" title="">关于</a></li>
 
@@ -92,18 +92,18 @@
 			</div>
 			<!--手机下拉菜单-->
 			<ul class="mob-ulnav">
-				<li><a href="/">首页</a></li>
+				<li><a href="/index">首页</a></li>
 				<li><a href="/saying">说说</a></li>
 				<li class="mob-drop">
-					<a href="javascrip:;">分类<i></i></a>
-					<ul class="mob-dropmenu">
+					<a href="javascrip:void(0);">分类<i></i></a>
+					<ul class="mob-dropmenu nav-light-1">
 							<?php foreach($_artClass as $val):?>
 							<li><a href="/article/getListByClass/<?=$val['id'];?>"><?=$val['name'];?>(<?=$val['number'];?>)</a></li>
 							<?php endforeach;?>
 						</ul>
 					</li>
 					<li><a href="/album">相册</a></li>
-					<li><a href="/download">素材</a></li>
+					<li><a href="/download">下载</a></li>
 					<li><a href="/leaving">留言</a>	</li>
 					<li><a href="/about" title="">关于</a></li>
 

@@ -293,6 +293,7 @@ function sendcom(comid){
 					data.nickname = "匿名"+data.id;
 				}
 				html +='<li class="bg-color" style="display:none;border-bottom:none;" id="com_list_li_'+data.id+'">';
+				html +='<span class="louceng">(我)</span>';
 				html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-'+data.id+'" rel="nofollow" title="' +data.nickname+ '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +data.nickname+ '" src="'+data.avatar+'" alt="' +data.nickname+ '"></a></div>';
 				//start comment
 				html +='<div class="comment-info" style="width:90%">';

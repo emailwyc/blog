@@ -8,19 +8,29 @@ $(document).ready(function() {
 });
 
 /*AJAX刷新评论*/ 
-function refreshComment(arcid, type, page)
+function refreshComment(arcid, type, page, countall)
 {
         jQuery.getJSON('/comment/getcomment?callback=?',{aid:arcid,com_type:type,page:page, r:Math.random()},function(data){
 		if(data != "0")
 		{
 			var html='';
+			var louceng = jQuery("#snsinfo_get_louceng").val();
+			var louceng_offset = jQuery("#snsinfo_get_offset").val();
+			var louceng_start = 0;
+			if(louceng=="true"){
+				louceng_start = (Math.ceil(countall/louceng_offset)-page)*louceng_offset+(countall%louceng_offset);
+			}
 			if(data.clist != null || data.clist != ""){
 				var cct = data.rcount;
 				jQuery.each(data.clist, function(i, item) {
 					if(item.nickname==""){
 						item.nickname = "匿名"+item.id;
 					}
-					html +='<li class="bg-color" style="border-bottom:none;" id="com_list_li_'+item.id+'">';
+					html +='<li class="bg-color" style="border-bottom:none;" id="com_list_li_'+item.id+'">'
+					if(louceng=="true"){
+						html +='<span class="louceng">'+louceng_start+'楼</span>';
+						louceng_start-=1;
+					}
 					html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-'+item.id+'" rel="nofollow" title="' +item.nickname+ '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +item.nickname+ '" src="'+item.avatar+'" alt="' +item.nickname+ '"></a></div>';
 					//start comment
 					html +='<div class="comment-info" style="width:90%">';
@@ -44,6 +54,7 @@ function refreshComment(arcid, type, page)
 					//end comment
 
 
+
 					html +='</li>';
 
 				});
@@ -64,7 +75,7 @@ function getCommentCount(arcid, type,myOffset)
 		if(data != '0')
 		{
 			function pageselectCallback(page_index,jq){
-				refreshComment(arcid,type,page_index + 1);
+				refreshComment(arcid,type,page_index + 1,data);
 			}
 			jQuery('#replys').html(data);
 			jQuery('#paginate').html('');
