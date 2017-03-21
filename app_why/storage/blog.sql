@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : my
-Source Server Version : 50553
-Source Host           : 127.0.0.1:3306
+Source Server Version : 50554
+Source Host           : localhost:3306
 Source Database       : blog
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50554
 File Encoding         : 65001
 
-Date: 2017-03-21 18:44:28
+Date: 2017-03-21 23:42:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,7 +51,7 @@ CREATE TABLE `album` (
 -- ----------------------------
 -- Records of album
 -- ----------------------------
-INSERT INTO `album` VALUES ('1', '1', '/ui/system/images/soonebaby10.jpg', '/ui/system/images/soonebaby12.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
+INSERT INTO `album` VALUES ('1', '1', '/ui/system/images/soonebaby10.jpg', '/ui/system/images/soonebaby10.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
 INSERT INTO `album` VALUES ('2', '1', '/ui/system/images/soonebaby11.jpg', '/ui/system/images/soonebaby11.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
 INSERT INTO `album` VALUES ('3', '1', '/ui/system/images/soonebaby12.jpg', '/ui/system/images/soonebaby12.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
 INSERT INTO `album` VALUES ('4', '2', '/ui/system/images/soonebaby13.jpg', '/ui/system/images/soonebaby13.jpg', '大自然的美', '2017-03-21 12:06:32');
@@ -252,16 +252,24 @@ CREATE TABLE `download` (
   `content` text NOT NULL COMMENT '内容',
   `icon` varchar(100) NOT NULL DEFAULT '' COMMENT 'icon',
   `dnum` int(11) NOT NULL DEFAULT '0' COMMENT '下载次数',
-  `durl` varchar(100) NOT NULL COMMENT '下载url',
+  `durl` varchar(255) NOT NULL COMMENT '下载url',
+  `lurl` varchar(255) NOT NULL DEFAULT '' COMMENT '连接地址',
   `pv` int(11) NOT NULL DEFAULT '0' COMMENT '浏览量',
+  `is_hot` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否热门',
   `uptime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of download
 -- ----------------------------
+INSERT INTO `download` VALUES ('1', '随手拍的美照', '美照', '1', '/ui/system/images/soonebaby12.jpg', '0', '/ui/system/images/soonebaby12.jpg', '', '0', '0', '2017-03-21 21:48:21', '2017-03-21 21:46:44');
+INSERT INTO `download` VALUES ('2', '随手拍的美照', '美照', '1', '/ui/system/images/soonebaby12.jpg', '0', '/ui/system/images/soonebaby12.jpg', '', '0', '1', '2017-03-21 23:35:51', '2017-03-21 21:46:44');
+INSERT INTO `download` VALUES ('4', '随手拍的美照', '美照', '1', '/ui/system/images/soonebaby12.jpg', '0', '/ui/system/images/soonebaby12.jpg', '', '0', '0', '2017-03-21 21:48:21', '2017-03-21 21:46:44');
+INSERT INTO `download` VALUES ('5', '随手拍的美照', '美照', '1', '/ui/system/images/soonebaby12.jpg', '0', '/ui/system/images/soonebaby12.jpg', '', '0', '0', '2017-03-21 21:48:21', '2017-03-21 21:46:44');
+INSERT INTO `download` VALUES ('6', '随手拍的美照', '美照', '1', '/ui/system/images/soonebaby12.jpg', '0', '/ui/system/images/soonebaby12.jpg', '', '0', '0', '2017-03-21 21:48:21', '2017-03-21 21:46:44');
+INSERT INTO `download` VALUES ('7', '随手拍的美照', '美照', '1', '/ui/system/images/soonebaby12.jpg', '0', '/ui/system/images/soonebaby12.jpg', '', '0', '0', '2017-03-21 21:48:21', '2017-03-21 21:46:44');
 
 -- ----------------------------
 -- Table structure for `download_msg`
@@ -536,7 +544,7 @@ INSERT INTO `system_variable` VALUES ('leavenum', '0', '1');
 INSERT INTO `system_variable` VALUES ('photonum', '0', '1');
 INSERT INTO `system_variable` VALUES ('resnum', '0', '1');
 INSERT INTO `system_variable` VALUES ('saynum', '0', '1');
-INSERT INTO `system_variable` VALUES ('visitnum', '1313', '1');
+INSERT INTO `system_variable` VALUES ('visitnum', '1354', '1');
 
 -- ----------------------------
 -- Table structure for `tags_cloud`
@@ -596,4 +604,4 @@ CREATE TABLE `visit_logs` (
 -- ----------------------------
 -- Records of visit_logs
 -- ----------------------------
-INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '1313', '2017-03-21 18:38:45', '2017-03-12 20:33:11');
+INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '1354', '2017-03-21 23:41:21', '2017-03-12 20:33:11');

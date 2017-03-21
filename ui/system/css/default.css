@@ -295,6 +295,7 @@ background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255
 .sucailist .su-li#New,.sucailist .su-li#arc-tj,.sucailist .su-li#Hotbg{background-position:100% 0;}
 .sucailist .su-li{margin-bottom:25px;text-align:center;border:1px solid #ddd;padding:15px 0;box-sizing:border-box;overflow:hidden;position:relative;background:rgba(255,255,255,0.5);transition:0.2s;}
 .sucailist .su-li:hover{border-color:#ff4200;box-shadow:0 0 10px #555;}
+.sucailist .Hot{background:rgba(255,255,255,0.5) url(/ui/system/images/icon/hot.gif)no-repeat 98% 8px;}
 .sucailist>ul>.wall-column{width:31.3%;margin:auto;margin:0 1%;float:left;padding:0;}
 .sucailist>ul>.wall-column .sucaiimg{width:100%;overflow:hidden;}
 .sucailist>ul>.wall-column  .sucaiimg img{width:85%;transition: all 0.5s;-webkit-transition: all 0.5s;}
