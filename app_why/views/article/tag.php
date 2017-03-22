@@ -1,14 +1,18 @@
-<?php $this->_cdata['_title']=$this->_cdata['_titleb']."文章分类列表";?>
+<?php $this->_cdata['_title']=$this->_cdata['_titleb'].$this->_cdata['tag']['name']."标签列表";?>
 <?php $this->load->view('common/header',$this->_cdata);?>
 <!--主题框架开始-->
 <div class="container">
 	<!--左侧开始-->
 	<section class="mysection">
 			<h4 class="index-title">
-				<a href="javascript:void(0)"><i class="el-th-list"></i>列表  &nbsp;&nbsp;&gt; &nbsp;&nbsp;</a>
-				<span class="orange-text"><?=$cate['name'];?></span>
+				<a href="javascript:void(0)"><i class="el-search-alt"></i>您查询的标签： </a>
+				<span class="orange-text"><?=$tag['name'];?></span>
 				<span style="float:right;margin-right:10px;">共有文章:<font class="orange-text"> <?=$artList['page']['count']?> </font>篇</span>
 			</h4>
+
+
+
+
 			<!--列表开始-->
 			<div class='arclist'>
 				<ul>
@@ -38,7 +42,7 @@
 		jQuery('#paginate').pagination(<?=$artList['page']['count']?>,{
 				current_page:<?=$artList['page']['curpage']?>,
 				items_per_page:<?=$artList['page']['per']?>,
-				link_to:"/article/category/<?=$category;?>/__id__"
+				link_to:"/article/category/<?=$tag['id'];?>/__id__"
 			});
 		</script>
 

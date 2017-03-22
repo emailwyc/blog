@@ -32,4 +32,13 @@ class Article extends HomeBase{
 		$this->_cdata['category'] = $class;
 		$this->load->view('article/category',$this->_cdata);
 	}
+	//根据标签查找文章
+	public function tag($tag,$page=1) {
+		if(empty($tag)){ show_error("参数有误!");}
+		$this->_cdata['tag'] =  $this->ArticleM->getTagById($tag);
+		if(empty($this->_cdata['tag'])){ show_error("未找到该标签!");}
+		$this->_cdata['artList'] = $this->ArticleM->getArtListByTag((int)$page,(int)$tag,15);
+
+		$this->load->view('article/tag',$this->_cdata);
+	}
 }

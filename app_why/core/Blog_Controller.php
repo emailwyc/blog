@@ -37,6 +37,7 @@ class HomeBase extends Blog_Controller {
 		//文章排行
 		$this->_cdata['_arttop']  = $this->ComModel->getArtTop();
 		//标签云
+		$this->_cdata['_tags']  = $this->ComModel->getTags();
 		//友情链接
 		//相册
 		//留言频道

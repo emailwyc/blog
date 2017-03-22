@@ -143,6 +143,12 @@ class ComModel extends CI_Model {
 		$result = $query->result_array();
 		return $result;
 	}
+	//得到标签
+	public function getTags() {
+		$query = $this->db->select("id,name,number")->from('tags_cloud')->order_by("order asc")->limit(30,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
 
 
 }

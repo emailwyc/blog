@@ -68,5 +68,28 @@ class ArticleM extends CI_Model {
 		//更新总访问量
 	}
 
+	//得到文章标签
+	public function getTagById($id)
+	{
+		$query = $this->db->select("*")->where(array('id'=>$id))->from("tags_cloud")->limit(1,0)->get();
+		$result = $query->row_array();
+		return $result;
+	}
+
+	//得到标签文章列表
+	public function getArtListByTag($page,$tagid,$offset=15) {
+		$page = $page<=0?1:$page;
+		$start = ($page-1)*$offset;
+		$field = "article.id,article.title,article.short,article.author,article.author_link,article.is_hot,article.pv,article.comnum,article.img,article.createtime,article.cid,article_class.name,article_tags.tid";
+		$where = array('article_tags.tid'=>$tagid);
+		$query = $this->db->select($field)->where($where)->order_by('article.id desc')->from($this->table)->join('article_tags','article.id=article_tags.aid','left')->join('article_class', "article.cid=article_class.id",'left')->group_by("article_tags.aid")->limit($offset,$start)->get();
+		$result = $query->result_array();
+		$where1 = array('tid'=>$tagid);
+		$count  = $this->db->where($where)->group_by("aid")->count_all_results('article_tags');
+		$allpage = ceil($count/$offset);
+		$res = array("page"=>array('per'=>$offset,'curpage'=>$page,'count'=>$count),'data'=>$result);
+		return $res;
+	}
+
 
 }
