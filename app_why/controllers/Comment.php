@@ -12,7 +12,8 @@ class Comment extends TempBase{
 			'article'=>array('tb'=>'article_comment','offset'=>5,'tbs'=>'article','tbsu'=>true),
 			'saying'=>array('tb'=>'saying_comment','offset'=>8,'tbs'=>'saying','tbsu'=>true),
 			'album'=>array('tb'=>'album_comment','offset'=>8,'tbs'=>'album','tbsu'=>false),
-			'leaving'=>array('tb'=>'leaving_comment','offset'=>12,'tbs'=>'leaving','tbsu'=>false)
+			'leaving'=>array('tb'=>'leaving_comment','offset'=>12,'tbs'=>'leaving','tbsu'=>false),
+			'download'=>array('tb'=>'download_comment','offset'=>5,'tbs'=>'download','tbsu'=>false)
 		);
 		if(!$this->input->is_ajax_request()){ echo $_REQUEST['callback']."(".json_encode(0).")";exit; }
 		if(!isset($this->get['com_type']) || empty($typeAll[$this->get['com_type']])){
@@ -49,9 +50,12 @@ class Comment extends TempBase{
 	//content,nickname,avatar,aid,pid,com_type,email
 	public function send() {
 		$params = $this->get;
-		$this->emptyCheck($params,array('content','nickname','avatar','aid','pid','email'));	
-		$ipInfo = @get_client_addr();
-		$inArr = array('nickname'=>$params['nickname'],'content'=>$params['content'],'avatar'=>$params['avatar'],'aid'=>$params['aid'],'pid'=>$params['pid'],'email'=>$params['email'],'ip'=>$ipInfo['ip'],'address'=>$ipInfo['addr']);
+		$this->emptyCheck($params,array('content','nickname','avatar','aid','pid','email'));
+		$ip = getClientIp();
+		$ipSearch = $this->CommentM->getDetailById('visit_logs',array('ip'=>$ip));
+		if($ipSearch){ $ipaddr = $ipSearch['addr']; }else{ $ipaddr = get_addr_by_ip($ip);}
+
+		$inArr = array('nickname'=>$params['nickname'],'content'=>$params['content'],'avatar'=>$params['avatar'],'aid'=>$params['aid'],'pid'=>$params['pid'],'email'=>$params['email'],'ip'=>$ip,'address'=>$ipaddr);
 		$inArr['type'] = empty($params['pid'])?1:2;
 		$this->config->load('contentkeyword',TRUE);
 		$this->load->library('KeyWord',array('keyWord'=>$this->config->item('keyWord','contentkeyword')),'keyword');

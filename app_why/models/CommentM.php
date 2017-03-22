@@ -48,6 +48,13 @@ class CommentM extends CI_Model {
 		return $check;
 	}
 
+	//得到详情
+	public function getDetailById($table,$where) {
+		$query = $this->db->select("*")->where($where)->from($table)->limit(1,0)->get();
+		$result = $query->row_array();
+		return $result;
+	}
+
 
 
 

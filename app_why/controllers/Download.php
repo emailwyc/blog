@@ -24,4 +24,19 @@ class Download extends HomeBase{
 		$this->load->view('download/detail',$this->_cdata);
 	}
 
+	//详情
+	public function dw($cid){
+		$dw = $this->DownloadM->getDetailById('download',(int)$cid);
+		if(empty($dw)){ show_error("官人,未找到该素材!");}
+		//更新下载次数
+		$this->DownloadM->updateaddone('download','dnum',array('id'=>(int)$cid));
+		$this->load->helper('download');
+		if(!empty($dw['lurl'])){
+			Header("Location: ".$dw['lurl']);exit;
+		}
+		if(!empty($dw['durl'])){
+			force_download($dw['durl'], NULL);exit;
+		}
+	}
+
 }

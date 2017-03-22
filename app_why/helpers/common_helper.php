@@ -697,7 +697,7 @@ function get_client_ip_true() {
 
 //获取用户真实IP和对应为位置
 function get_client_addr() { 
-	$ip = get_client_ip_true();
+	$ip =getClientIp();
 	$url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; 
 	$opts = stream_context_create(array('http'=>array('timeout'=>2))); 
 	$data = @json_decode(file_get_contents($url,false,$opts),true); //调用淘宝接口获取信息 
@@ -706,6 +706,22 @@ function get_client_addr() {
 	$res = array('ip'=>$ip,'addr'=>$addr);
 	return $res;
 } 
+
+//获取用户真实IP和对应为位置
+function get_addr_by_ip($ip) { 
+	if($ip){
+		$url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; 
+		$opts = stream_context_create(array('http'=>array('timeout'=>2))); 
+		$data = @json_decode(file_get_contents($url,false,$opts),true); //调用淘宝接口获取信息 
+		$addr = (isset($data['data']['region']) && isset($data['data']['country']))?$data['data']['country'].$data['data']['region']:"";
+		$addr = empty($addr)?"获取失败":$addr;
+		$res = array('ip'=>$ip,'addr'=>$addr);
+	}else{
+		$res = array('ip'=>$ip,'addr'=>"获取失败");
+	}
+	return $res;
+} 
+
 function get_msg_len($msg)
 {
 	$msg = preg_replace("/<a.*?.*?>(.*?)<\/a>/i", "\$1", $msg);
@@ -792,3 +808,22 @@ function bbCode($message)
         @$message = str_replace($_SGLOBAL['search_str'], $_SGLOBAL['replace_str'],preg_replace($_SGLOBAL['search_exp'], $_SGLOBAL['replace_exp'], $message));
         return nl2br(str_replace(array("\t", '   ', '  ','/\s+/'), array('&nbsp; &nbsp; &nbsp; &nbsp; ', '&nbsp; &nbsp;', '&nbsp;&nbsp;', '&nbsp;'), $message));
 }
+
+function format_date($time){
+    $t=time()-$time;
+    $f=array(
+        '31536000'=>'年',
+        '2592000'=>'个月',
+        '604800'=>'星期',
+        '86400'=>'天',
+        '3600'=>'小时',
+        '60'=>'分钟',
+        '1'=>'秒'
+    );
+    foreach ($f as $k=>$v)    {
+        if (0 !=$c=floor($t/(int)$k)) {
+            return $c.$v.'前';
+        }
+    }
+}
+

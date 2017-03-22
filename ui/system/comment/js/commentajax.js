@@ -36,7 +36,7 @@ function refreshComment(arcid, type, page, countall)
 					html +='<div class="comment-info" style="width:90%">';
 					html +='<div class="comment-line ">';
 					//start
-					html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +item.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +item.createtime+ '"><i class="el-time"></i>' +item.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+item.nickname+' 位于："><i class="el-map-marker">'+item.address+'</i></a></li>';
+					html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +item.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +item.createtime+ '"><i class="el-time"></i>' +item.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+item.nickname+' 位于："><i class="el-map-marker"></i>'+item.address+'</a></li>';
 					html+='<li style="float:right;border-bottom:none;">';
 					html+='<a href="javascript:void(0);" aid="'+item.aid+'" pid="'+item.id+'" username="' +item.nickname+ '" onclick="replay(\''+item.id+'\')"><span id="repcomcountfont_'+item.id+'">回复</span>';
 					if(eval("cct['"+item.id+"']")==null || eval("cct['"+item.id+"']")=='undefine'){

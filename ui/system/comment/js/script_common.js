@@ -346,22 +346,22 @@ function sendcom(comid){
 
 				newli.prepend(html);
 				var oneid = document.getElementById('reply_list_'+comid).childNodes.item(0).id;
+				jQuery("#"+oneid+"").slideDown();
 				jQuery("#comment_message_rep_"+comid).val("");
 				if(replycount > climit){
 					 jQuery("#reply_list_"+comid+" li:eq("+climit+")").slideUp();
+					//分页
+					function reppageselectCallback1(page_index,jq){
+						getcomrepinfo(comid,page_index + 1);
+					}
+					jQuery('#reply_paginate_' + comid).pagination(replycount,{
+						callback:reppageselectCallback1,
+						items_per_page:climit,
+						prev_text: '<<',
+						next_text: '>>',
+			
+					},1);
 				}	
-				jQuery("#"+oneid+"").slideDown();
-				//分页
-				function reppageselectCallback1(page_index,jq){
-					getcomrepinfo(comid,page_index + 1);
-				}
-				jQuery('#reply_paginate_' + comid).pagination(replycount,{
-					callback:reppageselectCallback1,
-					items_per_page:climit,
-					prev_text: '<<',
-					next_text: '>>',
-		
-				},1);
 
 				
 			}

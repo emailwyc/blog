@@ -103,7 +103,7 @@ $autoload['helper'] = array('common_helper');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = array('soonebaby');
 
 /*
 | -------------------------------------------------------------------

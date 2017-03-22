@@ -29,6 +29,10 @@ class Common extends TempBase{
 			$this->load->model('ComModel');
 			$this->ComModel->updateaddone('saying','pv',array('id'=>(int)$post['aid']));
 			echo 1;exit;
+		}elseif($post['type']=="download"){
+			$this->load->model('ComModel');
+			$this->ComModel->updateaddone('download','pv',array('id'=>(int)$post['aid']));
+			echo 1;exit;
 		}
 	}
 }

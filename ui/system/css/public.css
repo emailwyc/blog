@@ -68,6 +68,11 @@ div#tooltip p:after{
 .index-title{font-size:14px;color:#0181da;font-weight:normal;}
 .index-title small{color:#bcbcbc;margin-left:5px;font-size:12px;}
 .lable{display:inline-block;background:#ff4200;padding:0px 5px;color:#fff;border-radius:5px;-webkit-border-radius:5px;font-weight:normal;margin-left:5px;}
+.lable1{display:inline-block;background:#ff4200;padding:0px 5px;color:#fff;border-radius:5px;-webkit-border-radius:5px;font-weight:normal;margin-left:5px;}
+.lable2{display:inline-block;background:#fe4365 ;padding:0px 5px;color:#fff;border-radius:5px;-webkit-border-radius:5px;font-weight:normal;margin-left:5px;}
+.lable3{display:inline-block;background:#20a8fe;padding:0px 5px;color:#fff;border-radius:5px;-webkit-border-radius:5px;font-weight:normal;margin-left:5px;}
+.lable4{display:inline-block;background:#3fb8af;padding:0px 5px;color:#fff;border-radius:5px;-webkit-border-radius:5px;font-weight:normal;margin-left:5px;}
+.lable5{display:inline-block;background:#edc951;padding:0px 5px;color:#fff;border-radius:5px;-webkit-border-radius:5px;font-weight:normal;margin-left:5px;}
 .img-circle{border-radius:100px;-webkit-border-radius:100px;-moz-border-radius:100px;}
 #tuijian{background:rgba(255,255,255,0.5) url(/ui/system/images/tj2.gif)no-repeat 98% 8px;}
 #Hot{background:rgba(255,255,255,0.5) url(/ui/system/images/icon/hot.gif)no-repeat 98% 8px;}
@@ -272,7 +277,7 @@ display:inline-block;text-align:center;line-height:45px;font-size:14px;margin-to
 .shuo-side span:after{content:'';width:96px;height:96px;border:1px solid #ccc;display:block;border-radius:200px;-webkit-border-radius:200px;left:-6px;top:-6px;position:absolute;}
 .shuo-side span strong{display:block;position:relative;}
 .shuo-side div{height:100%;line-height:40px;float:left;width:70%;margin-left:-5px;transition:all 0.5s;-webkit-transition:all 0.5s;}
-.shuo-side div a{font-size:12px;color:#555;float:left;text-indent:1.5em;    white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 100%;}
+.shuo-side div a{font-size:12px;color:#555;float:left;text-indent:1.5em;    white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 93%;}
 .shuo-side div b{font-weight:normal;font-size:12px;color:#999;    position: absolute; right: 5px;}
 .shuo-side ul li:hover div{transform:translateX(15px);transition:all 0.5s;-webkit-transform:translateX(15px);-webkit-transition:all 0.5s;}
 .shuo-side ul li:nth-of-type(1){border-color:#0183ce}

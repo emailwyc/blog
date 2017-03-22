@@ -24,6 +24,24 @@ class HomeBase extends Blog_Controller {
 		$this->_cdata['_artClass'] = $this->ComModel->getArtClass();
 		$this->_cdata['_var']  = $this->ComModel->getVariable();
 		$this->_cdata['_cvisit']  = $this->ComModel->getVisitNum();
+		//最新更新
+		$this->_cdata['_publog']  = $this->ComModel->getPublishLog();
+		//获取历史上的今天
+		$this->_cdata['_historyToday']  = $this->ComModel->getHistoryToday($this->curtime);
+		//说说3条
+		$this->_cdata['_saying']  = $this->ComModel->getSaying();
+		//热门文章
+		$this->_cdata['_arthot']  = $this->ComModel->getArtHot();
+		//文章评论
+		$this->_cdata['_artcomment']  = $this->ComModel->getArtComment();
+		//文章排行
+		$this->_cdata['_arttop']  = $this->ComModel->getArtTop();
+		//标签云
+		//友情链接
+		//相册
+		//留言频道
+		//素材排行
+
 		$this->_cdata['_title']  = $this->_cdata['_var']['baseRes']['author']."博客-个人原创博客网站";
 		$this->_cdata['_titleb']  = $this->_cdata['_var']['baseRes']['author'];
 		$this->author = $this->_cdata['_var']['baseRes']['author'];

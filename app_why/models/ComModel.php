@@ -47,14 +47,14 @@ class ComModel extends CI_Model {
 	}
 
 	//访客访问处理方法（ip存储等）
-	public function visitHandle()
-	{
+	public function visitHandle() {
 		//获取ip地址
-		$ipInfo = get_client_addr();
-		$query = $this->db->where(array('ip'=>$ipInfo['ip']))->count_all_results('visit_logs');
+		$ip = getClientIp();
+		$query = $this->db->where(array('ip'=>$ip))->count_all_results('visit_logs');
 		if($query){
-			$this->db->set('vnum','vnum+1',false)->where(array('ip'=>$ipInfo['ip']))->update('visit_logs');
+			$this->db->set('vnum','vnum+1',false)->where(array('ip'=>$ip))->update('visit_logs');
 		}else{
+			$ipInfo = get_addr_by_ip($ip);
 			$this->db->insert('visit_logs',array('ip'=>$ipInfo['ip'],'addr'=>$ipInfo['addr'],'vnum'=>1,'ct'=>date('Y-m-d H:i:s',$this->curtime)));
 		}
 		$this->db->set('value','value+1',false)->where('mark','visitnum')->update('system_variable');
@@ -65,6 +65,83 @@ class ComModel extends CI_Model {
 		//获取ip地址
 		$check = $this->db->set($field,"$field+1",false)->where($where)->update($table);
 		return $check;
+	}
+
+	//得到最新更新
+	public function getPublishLog() {
+		$query = $this->db->select("*")->from('publish_logs')->order_by('id desc')->limit(1,0)->get();
+		$result = $query->row_array();
+		if($result){
+			$result['class_name'] = @$this->config->item("_publishType")[$result['class']];
+			$result['class'] = 'lable'.$result['class'];
+			$result['strdate'] = format_date(strtotime($result['createtime']));
+		}
+		return $result;
+	}
+
+	//得到最新更新
+	public function historyToday() {
+		for($j=1;$j<=12;$j++){
+			for($i=1;$i<=31;$i++){
+				$query = $this->db->select("*")->where(array('month'=>$j,'day'=>$i))->from('history_today')->limit(1,0)->get();
+				$result = $query->row_array();
+				if(empty($result)){
+					echo "$j-$i<br>";
+				}
+				/*
+				$result = file_get_contents("http://api.jisuapi.com/todayhistory/query?appkey=e23aff748e0b1286&month=$j&day=$i");
+				$w=@(array)json_decode($result,true);
+				if(!empty($w['result'])&&$w['status']==0){
+					foreach($w['result'] as $v){
+						$this->db->insert('history_today',array('year'=>$v['year'],'month'=>$j,'day'=>$i,'title'=>$v['title']));
+					}
+				}
+				 */
+					
+			}
+		}
+		echo 'ok';
+		exit;
+	}
+	//得到历史今天
+	public function getHistoryToday($time) {
+		$month = date('m',$time);
+		$day= (int)date('d',$time);
+		$query = $this->db->select("*")->where(array('month'=>$month,'day'=>$day))->from('history_today')->limit(6,0)->get();
+		$result = $query->result_array();
+		if($result){
+			$rand = array_rand($result);
+			return $result[$rand];
+		}else{
+			return array();	
+		}
+	}
+
+	//得到说说
+	public function getSaying() {
+		$query = $this->db->select("*")->from('saying')->order_by("id desc")->limit(3,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+	//得到热门文章
+	public function getArtHot() {
+		$query = $this->db->select("id,title,img,createtime,pv,short")->from('article')->order_by("is_hot desc,id desc")->limit(3,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+
+	//得到文章评论
+	public function getArtComment() {
+		$query = $this->db->select("id,aid,nickname,avatar,content,createtime")->where(array('type'=>1))->from('article_comment')->order_by("id desc")->limit(5,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+
+	//得到热门文章
+	public function getArtTop() {
+		$query = $this->db->select("id,title,pv")->from('article')->order_by("pv desc")->limit(5,0)->get();
+		$result = $query->result_array();
+		return $result;
 	}
 
 

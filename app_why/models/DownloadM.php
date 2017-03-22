@@ -44,4 +44,9 @@ class DownloadM extends CI_Model {
 		$result = $query->result_array();
 		return $result;
 	}
+	public function updateaddone($table,$field,$where) {
+		//获取ip地址
+		$check = $this->db->set($field,"$field+1",false)->where($where)->update($table);
+		return $check;
+	}
 }
