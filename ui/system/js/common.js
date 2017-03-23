@@ -78,20 +78,17 @@ function checkKeyWord(){
 }
 function trim(str){ return str.replace(/(^\s*)|(\s*$)/g, ""); }
 function subscribe(){
-	alert(11);
 	var email = document.getElementById("soone_subscribe");
 	if(trim(email.value)==null || trim(email.value)==""){
 		layer.msg("订阅失败，邮箱为空.");
 		email.focus();
 	}else{
 		email = trim(email.value);
-		  var reg=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-		  if(!reg.test(email) ){
+		var reg=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+	    if(!reg.test(email) ){
 			layer.msg('邮箱格式错误喔');
-		  }else{
-			return false;	
-		  }
-		
+	    }else{
+			layer.msg('该功能暂不开放，敬请期待！');
+		}
 	}
-	return false;
 }
