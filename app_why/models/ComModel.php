@@ -149,6 +149,26 @@ class ComModel extends CI_Model {
 		$result = $query->result_array();
 		return $result;
 	}
+	//得到下载排行
+	public function getDwTop() {
+		$query = $this->db->select("id,title,pv")->from('download')->order_by("pv desc")->limit(5,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+
+	//得到最新留言
+	public function getLeaveNew() {
+		$query = $this->db->select("id,aid,nickname,avatar,content,createtime")->where(array('type'=>1))->from('leaving_comment')->order_by("id desc")->limit(3,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+
+	//得博主相册
+	public function getAlbumNew() {
+		$query = $this->db->select("id,name,icon,photo_num")->where(array('status'=>1))->from('album_class')->order_by("id desc")->limit(12,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
 
 
 }

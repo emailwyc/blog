@@ -40,11 +40,15 @@ class HomeBase extends Blog_Controller {
 		$this->_cdata['_tags']  = $this->ComModel->getTags();
 		//友情链接
 		//相册
+		$this->_cdata['_albumnew']  = $this->ComModel->getAlbumNew();
 		//留言频道
+		$this->_cdata['_leavenew']  = $this->ComModel->getLeaveNew();
 		//素材排行
+		$this->_cdata['_dwtop']  = $this->ComModel->getDwTop();
 
 		$this->_cdata['_title']  = $this->_cdata['_var']['baseRes']['author']."博客-个人原创博客网站";
 		$this->_cdata['_titleb']  = $this->_cdata['_var']['baseRes']['author'];
+		$this->_cdata['_skeyword']  = "";
 		$this->author = $this->_cdata['_var']['baseRes']['author'];
 		$this->author_link = $this->_cdata['_var']['baseRes']['avatar'];
 		/*后期加缓存*/

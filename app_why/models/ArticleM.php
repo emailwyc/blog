@@ -91,5 +91,21 @@ class ArticleM extends CI_Model {
 		return $res;
 	}
 
+	//得到滚动消息
+	public function getArtListByKw($keyword,$page,$offset=15) {
+		$page = $page<=0?1:$page;
+		$start = ($page-1)*$offset;
+		$field = "article.id,article.title,article.short,article.author,article.author_link,article.is_hot,article.pv,article.comnum,article_class.name,article.img,article.createtime,article.cid";
+		$where=array('article.status'=>1);
+		$like = array('article.title'=>$keyword);
+		$or_like = array('article.short'=>$keyword);
+		$query = $this->db->select($field)->where($where)->like($like)->or_like($or_like)->order_by('article.id desc')->from($this->table)->join('article_class', "article.cid=article_class.id",'left')->limit($offset,$start)->get();
+		$result = $query->result_array();
+		$count  = $this->db->where($where)->like($like)->or_like($or_like)->count_all_results($this->table);
+		$allpage = ceil($count/$offset);
+		$res = array("page"=>array('per'=>$offset,'curpage'=>$page,'count'=>$count),'data'=>$result);
+		return $res;
+	}
+
 
 }

@@ -73,7 +73,11 @@ class Comment extends TempBase{
 			if($this->ctype['tbsu']){
 				$this->CommentM->updateaddone($this->ctype['tbs'],'comnum',array('id'=>$inArr['aid']));
 			}
-			$this->CommentM->updateaddone('system_variable','value',array('mark'=>'comnum'));
+			if($this->get['com_type']=='leaving'){
+				$this->CommentM->updateaddone('system_variable','value',array('mark'=>'leavenum'));
+			}else{
+				$this->CommentM->updateaddone('system_variable','value',array('mark'=>'comnum'));
+			}
 		}
 		if(!$check){echo $_REQUEST['callback']."(".json_encode(0).")";exit;}
 		$inArr['createtime'] = date('Y-m-d H:i:s',time()); $inArr['id'] = $check;

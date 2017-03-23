@@ -1,7 +1,7 @@
 	<!--=========右侧开始==========-->
-<aside class="myaside" style="animation: 0.8s ease 0s normal none 1 running fuxiasuo;">
+<aside class="myaside">
 <!--关注我-->
-<div class="focus-me bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1s;">
+<div class="focus-me bg-color animation-div">
 	<h4 class="index-title"><i class="el-heart"></i>关注我<small>Focus Me</small></h4>
 		<div class="xiangguan">
 				<div><a class="benbo" href="http://weibo.com/u/5107691374" target="_blank"><i class="el el-home"></i></a><span>新浪微博</span></div>
@@ -11,13 +11,11 @@
 				<div><a class="mail-btn" href="javascript:;"><i class="el-envelope"></i></a><span>订阅我</span></div>
 		</div>
 		<div class="mail-dy">
-			<form action="http://list.qq.com/cgi-bin/qf_compose_send" method="post" target="_blank">
-				<input name="t" value="qf_booked_feedback" type="hidden">
-				<input name="id" value="b2b151b4bc010575c083e18e227ae907aac82bc47e84d3e0" type="hidden">
+			<div>
 				<span>订阅</span>
-				<input name="to" placeholder="输入邮箱点击订阅吧" onfocus="this.placeholder=''" onblur="this.placeholder='输入邮箱点击订阅吧'" type="text">
-				<i class="el-envelope"><input value=" " type="submit"></i>
-			</form>
+				<input name="subscribe" id="soone_subscribe" placeholder="输入邮箱点击订阅吧" onfocus="this.placeholder=''" onblur="this.placeholder='输入邮箱点击订阅吧'" type="text">
+				<i class="el-envelope"><input onclick="subscribe();" type="button"></i>
+			</div>
 			<i class="el-remove fx-close"></i>
 		</div>
 		<div class="bd-fx side-bdfx ">
@@ -31,7 +29,7 @@
 		</div>
 </div>
 <!--右侧个人统计-->
-<div class="web-author bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.14286s;">
+<div class="web-author bg-color animation-div">
 		<div class="author-tx">
 			<a class="img-circle" href="http://www.100txy.com/Home/Index/about.html" title="点击查看详细信息">
 				<img class="img-circle" src="<?=$_var['baseRes']['avatar'];?>">
@@ -48,16 +46,16 @@
 </div>
 <!--END 右侧个人统计-->
 <!--搜索-->
-<div class="search animation-div" style="animation-name: fuxiasuo; animation-duration: 1.28571s;">
-	<form action="/Home/Index/search.html" method="get">
+<div class="search animation-div">
+	<form action="/search" method="get" onsubmit="return checkKeyWord();">
 		<div class="search-index">
-			<input name="search_word" placeholder="请输入关键字" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键字'" type="text">
-			<i class="el-search"><input value=" " type="submit"></i>
+		<input name="keyword" id="soone_keyword" value="<?=@$_skeyword?>" placeholder="请输入关键字" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键字'" type="text">
+			<i class="el-search"><input value="" type="submit"></i>
 		</div>
 	</form>
 </div>
 <!--最新更新-->
-<div class="clos-new bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.42857s;">
+<div class="clos-new bg-color animation-div">
 	<h4 class="index-title"><i class="el-bulb"></i>最新更新<small>Close New</small></h4>
 	<ul>
 	<!-- <li><i class="el-cloud"></i><iframe id="tianqi"  scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=34&icon=1&num=3"></iframe></li> -->
@@ -66,7 +64,7 @@
 </ul>
 </div>
 <!--说说-->
-<div class="bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.57143s;">
+<div class="bg-color animation-div">
 	<h4 class="index-title"><i class="el-headphones"></i>说说<small>Shuo Shuo</small></h4>
 	<div class="shuo-side">
 		<ul>
@@ -80,7 +78,7 @@
 	</div>
 </div>
 <!--推荐图文-->
-<div class="article-push  bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.71429s;">
+<div class="article-push  bg-color animation-div">
 	<h4 class="index-title"><i class="el-asl"></i>推荐图文<small>Push Article</small></h4>
 	<ul>
 
@@ -104,7 +102,7 @@
 </ul>
 </div>
 <!--文章排行tab-->
-<div class="mytab bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 1.85714s;">
+<div class="mytab bg-color animation-div">
 	<div class="tab-btn"><a class="hd-btn tab-active" href="javascript:;"><i class="el-comment-alt"></i>文章互动</a><a class="ph-btn" href="javascript:;"><i class="el-signal"></i>文章排行</a></div>
 	<ul class="hudong-ul">
 <!--=======查询相册=============-->
@@ -124,7 +122,7 @@
 	</ul>
 	</div>
 <!--标签-->
-<div class="cloud bg-color animation-div" style="animation-name: fuxiasuo; animation-duration: 2s;">
+<div class="cloud bg-color animation-div">
     <h4 class="index-title"><i class="el-tags"></i>标签云<small>Tags Clouds</small></h4>
 	<ul id="3dcloud">
 	<?php foreach($_tags as $k=>$v):?>
@@ -134,9 +132,10 @@
 </div>
 <!--友情链接-->
 <div class="side-link ">
-	<h4 class="index-title"><i class="el-paper-clip"></i>友情链接<small>Friend Links</small><a href="http://www.100txy.com/Home/Index/link.html"><i class="el el-plus"></i>申请</a></h4>
+	<h4 class="index-title"><i class="el-paper-clip"></i>友情链接<small>Friend Links</small><a href="javascript:void(layer.alert('暂未开放'));"><i class="el el-plus"></i>申请</a></h4>
 	<ul>
-		<li><a href="http://100txy.com/" target="_blank" title="雷小天博客">雷小天博客</a></li><li><a href="http:///#" target="_blank" title="杨青个人博客">杨青个人博客</a></li><li><a href="http:///#" target="_blank" title="月光博客">月光博客</a></li><li><a href="http:///#" target="_blank" title="卢松松博客">卢松松博客</a></li><li><a href="http://www.luoyechenfei.com/" target="_blank" title="落叶尘飞">落叶尘飞</a></li>	</ul>
+		<li><a href="http://weibo.com/p/1005055107691374" target="_blank" title="soonebaby微博">SooneBaby微博</a></li>
+	</ul>
 </div>
 </aside>
 <!--=========END右侧==========-->

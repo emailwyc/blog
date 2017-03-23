@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="/ui/system/images/favicon.ico">
 <!--CSS-->
 <link rel="stylesheet" href="/ui/system/css/default.css">
-<link rel="stylesheet" href="/ui/system/css/public.css?v=2">
+<link rel="stylesheet" href="/ui/system/css/public.css">
 <link rel="stylesheet" href="/ui/system/css/animation.css">
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_1.css" title="qingxin">
 <link rel="stylesheet" type="text/css" href="/ui/system/css/skin_2.css?v=1" title="jianyue">
@@ -30,12 +30,13 @@
 <!--JS-->
 <link rel="stylesheet" href="/ui/system/css/swiper.css">
 <body class="nobg" style="display: block;">
+
 <!--导航开始-->
 
-<header class="myheader" style="animation: 0.5s ease 0s normal none 1 running fushang;">
+<header class="myheader">
 	<div class="top">
 		<!--头像左边部分-->
-		<div class="top-left" style="animation: 1s ease 0s normal none 1 running fuzuo;">
+		<div class="top-left">
 		  <div class="logo"><a href="/"><img src="/ui/system/images/logo3.gif"></a></div>
 				<!--滚动消息-->
 			<div class="web-xiaoxi">
@@ -54,7 +55,7 @@
 	<!--电脑导航开始-->
 		<nav class="mynav">
 			<ul class="orange-text">
-				<li><a href="/index" title="">首页</a></li>
+				<li class="nav-default"><a href="/index" title="">首页</a></li>
 
 				<li><a href="/saying">说说</a></li>
 
@@ -83,9 +84,9 @@
 		<div class="mob-menu">
 		<!--手机顶部搜索-->
 			<div class="search ">
-				<form action="/Search/" method="get">
+				<form action="/search" method="get">
 					<div class="search-index">
-						<input name="s" placeholder="请输入关键字" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键字'" type="text">
+					<input name="keyword" value="<?=@$_skeyword?>" placeholder="请输入关键字" onfocus="this.placeholder=''" onblur="this.placeholder='请输入关键字'" type="text">
 						<i class="el-search"><input value=" " type="submit"></i>
 					</div>
 				</form>

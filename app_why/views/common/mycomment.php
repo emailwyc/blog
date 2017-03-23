@@ -10,7 +10,7 @@
 .authorc-tx a img{width:100%;height:100%;}
 </style>
 <div class="Comment" id="mycomment">
-	<h3 class="form-btn blue-text"><a href="javascript:;"><i class="el-edit"></i>我要留言</a></h3>
+	<h3 class="form-btn blue-text"><a href="javascript:void(document.getElementById('comment_message').focus())"><i class="el-edit"></i>我要留言</a></h3>
 	<div class="pinglun_big_div">
 		<div class="authorc-tx">
 			<a class="img-circle" href="javascript:void(0);" title="我的头像,点击随机切换" style="height: 60px;">

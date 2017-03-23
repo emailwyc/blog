@@ -1,5 +1,3 @@
-//百度统计
-//访问统计
 $(document).ready(function(){
     $.ajax({  
         type : "POST",  
@@ -13,23 +11,15 @@ $(document).ready(function(){
         },
     });  
 })
-// 登陆
 function login(){
     $('#b-modal-login').modal('show');
     setCookie('this_url',window.location.href);
 }
 
-// 退出
 function logout(){
     $.post(logoutUrl);
     setTimeout(function(){location.replace(location)},500);
 }
-/**
- * 设置cookie
- * @param {string} name  键名
- * @param {string} value 键值
- * @param {integer} days cookie周期
- */
 function setCookie(name,value,days) {
     if (days) {
         var date = new Date();
@@ -41,7 +31,6 @@ function setCookie(name,value,days) {
     document.cookie = name+"="+value+expires+"; path=/";
 }
 
-// 获取cookie
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -52,31 +41,14 @@ function getCookie(name) {
     }
     return null;
 }
-
-// 删除cookie
 function deleteCookie(name) {
     setCookie(name,"",-1);
 }
-
-/**
- * 记录当前选中的分类或者标签
- * @param  {string} category index：首页 cid：分类  tid：标签
- * @param  {integer} id      id
- * @return {boolean}         true 接着跳转
- */
 function recordId(category,id){
-    // 设置默认值为0
-    setCookie('cid',0);
-    setCookie('tid',0);
-    setCookie('search_word',0);
-    // 如果不是首页 则记录当前选中的分类或者标签
-    if (category!='index' && category!='/') {
-        setCookie(category,id);
-    }
+    setCookie('cid',0); setCookie('tid',0); setCookie('search_word',0);
+    if (category!='index' && category!='/') { setCookie(category,id); }
     return true;
 }
-
-
 function getRandom(min, max){
 	var r = Math.random() * (max - min);
 	var re = Math.round(r + min);
@@ -85,7 +57,6 @@ function getRandom(min, max){
 }
 
 function reloadMyAvatar(obj,auto){
-	//生成头像cookie
 	var avatarKey = "client_random_avatar";
 	var avaUrl = getCookie(avatarKey);
 	if(avaUrl==null || avaUrl=="" || auto){
@@ -95,4 +66,32 @@ function reloadMyAvatar(obj,auto){
 	setCookie(avatarKey,avaUrl,100);
 	$('#'+obj).attr('src',avaUrl);
 	return true;	
+}
+function checkKeyWord(){
+	var keyword = document.getElementById("soone_keyword");
+	if(trim(keyword.value)==null || trim(keyword.value)==""){
+		layer.msg("请输入关键词.");
+		keyword.focus();
+		return false;
+	}
+	return true;
+}
+function trim(str){ return str.replace(/(^\s*)|(\s*$)/g, ""); }
+function subscribe(){
+	alert(11);
+	var email = document.getElementById("soone_subscribe");
+	if(trim(email.value)==null || trim(email.value)==""){
+		layer.msg("订阅失败，邮箱为空.");
+		email.focus();
+	}else{
+		email = trim(email.value);
+		  var reg=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+		  if(!reg.test(email) ){
+			layer.msg('邮箱格式错误喔');
+		  }else{
+			return false;	
+		  }
+		
+	}
+	return false;
 }
