@@ -78,6 +78,8 @@ function checkKeyWord(){
 }
 function trim(str){ return str.replace(/(^\s*)|(\s*$)/g, ""); }
 function subscribe(){
+	layer.msg('该功能暂不开放，敬请期待！');
+	return false;	
 	var email = document.getElementById("soone_subscribe");
 	if(trim(email.value)==null || trim(email.value)==""){
 		layer.msg("订阅失败，邮箱为空.");

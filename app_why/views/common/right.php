@@ -132,9 +132,12 @@
 </div>
 <!--友情链接-->
 <div class="side-link ">
-	<h4 class="index-title"><i class="el-paper-clip"></i>友情链接<small>Friend Links</small><a href="javascript:void(layer.alert('暂未开放'));"><i class="el el-plus"></i>申请</a></h4>
+	<h4 class="index-title"><i class="el-paper-clip"></i>友情链接<small>Friend Links</small><a href="/index/friendlink"><i class="el el-plus"></i>申请</a></h4>
 	<ul>
 		<li><a href="http://weibo.com/p/1005055107691374" target="_blank" title="soonebaby微博">SooneBaby微博</a></li>
+		<?php foreach($_linkyes as $k=>$v):?>
+		<li><a href="<?=$v['website'];?>" target="_blank" title="<?=$v['title']?>"><?=$v['title']?></a></li>
+		<?php endforeach;?>
 	</ul>
 </div>
 </aside>

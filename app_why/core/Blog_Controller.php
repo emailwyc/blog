@@ -39,6 +39,7 @@ class HomeBase extends Blog_Controller {
 		//标签云
 		$this->_cdata['_tags']  = $this->ComModel->getTags();
 		//友情链接
+		$this->_cdata['_linkyes']  = $this->ComModel->getLinks();
 		//相册
 		$this->_cdata['_albumnew']  = $this->ComModel->getAlbumNew();
 		//留言频道

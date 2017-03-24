@@ -170,5 +170,16 @@ class ComModel extends CI_Model {
 		return $result;
 	}
 
+	public function getLinks()
+	{
+		$query = $this->db->select("title,website")->where(array('status'=>1))->order_by("order asc,id desc")->from('friend_links')->limit(12,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+	public function insertTable($table,$data) {
+		$check = $this->db->insert($table,$data);
+		return $check;
+	}
+
 
 }

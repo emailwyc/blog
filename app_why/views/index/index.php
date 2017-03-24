@@ -55,106 +55,29 @@ jQuery('#paginate').pagination(<?=$artList['page']['count']?>,{
 
 			<!--列表结束-->
 		<div class="sucailist mob-hidden">
-			<h4 class="index-title"><a href=""><i class="el-certificate"></i>最新素材<small>New sucai</small></a></h4>
+			<h4 class="index-title"><a href=""><i class="el-certificate"></i>最新资源<small>New sucai</small></a></h4>
 			<!--列表开始-->
-			<ul class="su"><div class="wall-column"><div class="su-li" id="">				<!-- <li class="su-li"id="Hot"> -->
-				  <a href="http://www.100txy.com/Home/Index/downdetail/id/6.html" title="个人博客模板下载（emlog系统）">
+			<ul class="su"><div class="wall-column">
+			<?php foreach($dwList as $v):?>
+				<div class="su-li" id="">				<!-- <li class="su-li"id="Hot"> -->
+				<a href="/download/detail/<?=$v['id']?>" title="<?=$v['title']?>">
 					<div class="sucaiimg">
-					<img src="/ui/system/images/20170116587ca2c599c9f.jpg" alt="个人博客模板下载（emlog系统）">
+						<img src="<?=$v['icon']?>" alt="<?=$v['title']?>">
 					</div>
 				  </a>
 					<div class="sucai-right">
-						<h4 class="blue-text"><a href="http://www.100txy.com/Home/Index/downdetail/id/6.html" title="个人博客模板下载（emlog系统）">个人博客模板下载（emlog系统）</a></h4>
+					<h4 class="blue-text"><a href="/download/detail/<?=$v['id']?>" title="<?=$v['title']?>"><?=$v['title']?></a></h4>
 						<ul>
-							<li><a title="个人博客模板下载（emlog系统）2017-01-16发表 "><i class="el-time"></i>2017-01-16</a></li>
+						<li><a title="<?=$v['title']?><?=date('Y-m-d',strtotime($v['ctime']))?>发表 "><i class="el-time"></i><?=date('Y-m-d',strtotime($v['ctime']))?></a></li>
 							<li class="mob-hidden">
 							  <i class="el-download-alt"></i>
-								<a href="javascript::void(0);">99</a>&nbsp;
+							  <a href="javascript::void(0);"><?=$v['dnum']?></a>&nbsp;
 							</li>
 						</ul>
 					</div>
-					</div><div class="su-li" id="">				<!-- <li class="su-li"id="Hot"> -->
-				  <a href="http://www.100txy.com/Home/Index/downdetail/id/3.html" title="杨青个人博客模板分享">
-					<div class="sucaiimg">
-					<img src="/ui/system/images/585cb28666b3c.png" alt="杨青个人博客模板分享">
-					</div>
-				  </a>
-					<div class="sucai-right">
-						<h4 class="blue-text"><a href="http://www.100txy.com/Home/Index/downdetail/id/3.html" title="杨青个人博客模板分享">杨青个人博客模板分享</a></h4>
-						<ul>
-							<li><a title="杨青个人博客模板分享2016-11-01发表 "><i class="el-time"></i>2016-11-01</a></li>
-							<li class="mob-hidden">
-							  <i class="el-download-alt"></i>
-								<a href="javascript::void(0);">132</a>&nbsp;
-							</li>
-						</ul>
-					</div>
-					</div></div><div class="wall-column"><div class="su-li" id="Hot">
-									<!-- <li class="su-li"id="Hot"> -->
-				  <a href="http://www.100txy.com/Home/Index/downdetail/id/5.html" title="jQuery俄罗斯方块小游戏下载">
-					<div class="sucaiimg">
-					<img src="/ui/system/images/585d44a1248c7.png" alt="jQuery俄罗斯方块小游戏下载">
-					</div>
-				  </a>
-					<div class="sucai-right">
-						<h4 class="blue-text"><a href="http://www.100txy.com/Home/Index/downdetail/id/5.html" title="jQuery俄罗斯方块小游戏下载">jQuery俄罗斯方块小游戏下载</a></h4>
-						<ul>
-							<li><a title="jQuery俄罗斯方块小游戏下载2016-11-03发表 "><i class="el-time"></i>2016-11-03</a></li>
-							<li class="mob-hidden">
-							  <i class="el-download-alt"></i>
-								<a href="javascript::void(0);">29</a>&nbsp;
-							</li>
-						</ul>
-					</div>
-					</div><div class="su-li" id="">				<!-- <li class="su-li"id="Hot"> -->
-				  <a href="http://www.100txy.com/Home/Index/downdetail/id/2.html" title="柠檬绿兔小白个人博客模板下载">
-					<div class="sucaiimg">
-					<img src="/ui/system/images/343.jpg" alt="柠檬绿兔小白个人博客模板下载">
-					</div>
-				  </a>
-					<div class="sucai-right">
-						<h4 class="blue-text"><a href="http://www.100txy.com/Home/Index/downdetail/id/2.html" title="柠檬绿兔小白个人博客模板下载">柠檬绿兔小白个人博客模板下载</a></h4>
-						<ul>
-							<li><a title="柠檬绿兔小白个人博客模板下载2016-10-28发表 "><i class="el-time"></i>2016-10-28</a></li>
-							<li class="mob-hidden">
-							  <i class="el-download-alt"></i>
-								<a href="javascript::void(0);">99</a>&nbsp;
-							</li>
-						</ul>
-					</div>
-					</div></div><div class="wall-column"><div class="su-li" id="">				<!-- <li class="su-li"id="Hot"> -->
-				  <a href="http://www.100txy.com/Home/Index/downdetail/id/4.html" title="juqery图片特效轮播图插件（转动）">
-					<div class="sucaiimg">
-					<img src="/ui/system/images/585d3fedf32bd.png" alt="juqery图片特效轮播图插件（转动）">
-					</div>
-				  </a>
-					<div class="sucai-right">
-						<h4 class="blue-text"><a href="http://www.100txy.com/Home/Index/downdetail/id/4.html" title="juqery图片特效轮播图插件（转动）">juqery图片特效轮播图插件（转动）</a></h4>
-						<ul>
-							<li><a title="juqery图片特效轮播图插件（转动）2016-11-03发表 "><i class="el-time"></i>2016-11-03</a></li>
-							<li class="mob-hidden">
-							  <i class="el-download-alt"></i>
-								<a href="javascript::void(0);">23</a>&nbsp;
-							</li>
-						</ul>
-					</div>
-					</div><div class="su-li" id="">				<!-- <li class="su-li"id="Hot"> -->
-				  <a href="http://www.100txy.com/Home/Index/downdetail/id/1.html" title="photoshop cc绿色精简破解版下载">
-					<div class="sucaiimg">
-					<img src="/ui/system/images/2016518234519407.jpg" alt="photoshop cc绿色精简破解版下载">
-					</div>
-				  </a>
-					<div class="sucai-right">
-						<h4 class="blue-text"><a href="http://www.100txy.com/Home/Index/downdetail/id/1.html" title="photoshop cc绿色精简破解版下载">photoshop cc绿色精简破解版下载</a></h4>
-						<ul>
-							<li><a title="photoshop cc绿色精简破解版下载2016-10-25发表 "><i class="el-time"></i>2016-10-25</a></li>
-							<li class="mob-hidden">
-							  <i class="el-download-alt"></i>
-								<a href="javascript::void(0);">31</a>&nbsp;
-							</li>
-						</ul>
-					</div>
-					</div></div></ul>
+				</div>
+				<?php endforeach;?>
+			</div></ul>
 			<!--列表结束-->
 		</div>
 	</div></section>

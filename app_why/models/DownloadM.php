@@ -35,7 +35,7 @@ class DownloadM extends CI_Model {
 		$next= $query->row_array();
 		return array('prev'=>$prev,'next'=>$next);
 	}
-	//得到文章可能喜欢
+	//得到可能喜欢
 	public function getLikes($table,$field,$id=0) {
 		$rand = $this->db->select("FLOOR(RAND()*COUNT(*)) as offset")->from($table)->get();
 		$randInfo = @$rand->row_array();$randInfo = @(int)$randInfo['offset']-1;
@@ -49,4 +49,12 @@ class DownloadM extends CI_Model {
 		$check = $this->db->set($field,"$field+1",false)->where($where)->update($table);
 		return $check;
 	}
+
+	public function getIndexList() {
+		$field = "id,title,icon,dnum,ctime";
+		$query = $this->db->select($field)->order_by('id desc')->from('download')->limit(6,0)->get();
+		$result = $query->result_array();
+		return $result;
+	}
+
 }
