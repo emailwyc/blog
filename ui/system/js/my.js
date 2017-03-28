@@ -37,7 +37,7 @@ $(document).ready(function(){
 	var pclien=pcli.length
 	var pcliinde=pcli.index()
 	var ulwidth=$(".mynav >ul").width();
-	$(".mynav >ul >li").css("width",ulwidth/pclien)
+	$(".mynav >ul >li").css("width",ulwidth/pclien-1)
 	for (var j=0;j<=pclien;j++){
 		
 		pcli.eq(j).css({
