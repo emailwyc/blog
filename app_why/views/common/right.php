@@ -59,7 +59,7 @@
 	<h4 class="index-title"><i class="el-bulb"></i>最新更新<small>Close New</small></h4>
 	<ul>
 	<!-- <li><i class="el-cloud"></i><iframe id="tianqi"  scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=34&icon=1&num=3"></iframe></li> -->
-	<li><span><i class="el-arrow-up"></i>最近：<font class="blue-text"><?=$_var['baseRes']['author'];?></font> <?=@$_publog['strdate']?>&nbsp;&nbsp;<?=@date('H:i',@$_publog['createtime'])?></span><a title="<?=@$_publog['content']?>">更新了<b class="<?=@$_publog['class']?>"><?=@$_publog['class_name']?></b></a></li>
+	<li><span><i class="el-arrow-up"></i>最近：<font class="blue-text"><?=$_var['baseRes']['author'];?></font> <?=@$_publog['strdate']?>&nbsp;&nbsp;&nbsp;</span><a title="<?=@$_publog['content']?>">更新了<b class="<?=@$_publog['class']?>"><?=@$_publog['class_name']?></b></a></li>
 	<li><i class="el-calendar"></i>历史上的今天：<a title="<?=@$_historyToday['year']?>年<?=@$_historyToday['month']?>月<?=@$_historyToday['day']?>日 <?=@$_historyToday['title']?>" class="orange-text"><?=@$_historyToday['title']?></a></li>
 </ul>
 </div>

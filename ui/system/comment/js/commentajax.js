@@ -33,7 +33,7 @@ function refreshComment(arcid, type, page, countall)
 					}
 					html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-'+item.id+'" rel="nofollow" title="' +item.nickname+ '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +item.nickname+ '" src="'+item.avatar+'" alt="' +item.nickname+ '"></a></div>';
 					//start comment
-					html +='<div class="comment-info" style="width:90%">';
+					html +='<div class="comment-info" style="width:85%">';
 					html +='<div class="comment-line ">';
 					//start
 					html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +item.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +item.createtime+ '"><i class="el-time"></i>' +item.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+item.nickname+' 位于："><i class="el-map-marker"></i>'+item.address+'</a></li>';

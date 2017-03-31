@@ -489,6 +489,12 @@ class CI_Loader {
 		return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
 	}
 
+	public function aview($view, $vars = array(),$return = FALSE)
+	{
+		$view ="admin/".$view;
+		return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
+	}
+
 	// --------------------------------------------------------------------
 
 	/**

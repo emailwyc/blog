@@ -57,15 +57,15 @@ class HomeBase extends Blog_Controller {
 }
 
 class TempBase extends Blog_Controller {
-
 	public function __construct(){
 		parent::__construct();
 	}   
 }
 
 class AdminBase extends Blog_Controller {
-
 	public function __construct(){
 		parent::__construct();
+		checkLogin();
+		//检测是否登录
 	}   
 }

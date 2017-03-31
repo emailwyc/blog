@@ -296,7 +296,7 @@ function sendcom(comid){
 				html +='<span class="louceng">(我)</span>';
 				html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-'+data.id+'" rel="nofollow" title="' +data.nickname+ '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +data.nickname+ '" src="'+data.avatar+'" alt="' +data.nickname+ '"></a></div>';
 				//start comment
-				html +='<div class="comment-info" style="width:90%">';
+				html +='<div class="comment-info" style="width:85%">';
 				html +='<div class="comment-line ">';
 				//start
 				html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +data.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +data.createtime+ '"><i class="el-time"></i>' +data.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+data.nickname+' 位于："><i class="el-map-marker">'+data.address+'</i></a></li>';

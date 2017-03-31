@@ -14,6 +14,15 @@ function checkIsSelfHost() {
 	}else{
 		return false;
 	}
+}
+
+function checkLogin($isDump=1) {
+	if(!empty($_SEESION["adminuser"])){
+		return true;
+	}else{
+		if($isDump){ header('Location:admin/login');exit; }
+		return false;
+	}
 }   
 
 /** 
