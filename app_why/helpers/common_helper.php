@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //ini_set('session.gc_maxlifetime', 9999999999999);
 session_start();
-isset($PHPSESSID)?session_id($PHPSESSID):$PHPSESSID = session_id();
-setcookie('PHPSESSID', $PHPSESSID, time()+999999999,"/");
-date_default_timezone_set("PRC");
+//isset($PHPSESSID)?session_id($PHPSESSID):$PHPSESSID = session_id();
+//setcookie('PHPSESSID', $PHPSESSID, time()+999999999,"/");
+//date_default_timezone_set("PRC");
 if(!empty($_SERVER['QUERY_STRING'])){
 	parse_str($_SERVER['QUERY_STRING'], $_GET);
 }
