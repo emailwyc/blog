@@ -17,10 +17,10 @@ function checkIsSelfHost() {
 }
 
 function checkLogin($isDump=1) {
-	if(!empty($_SEESION["adminuser"])){
+	if(!empty($_SEESION["admin_user"])){
 		return true;
 	}else{
-		if($isDump){ header('Location:admin/login');exit; }
+        if($isDump){ header('Location:admin/login');exit; }
 		return false;
 	}
 }   

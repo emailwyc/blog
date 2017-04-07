@@ -4,13 +4,14 @@ class Login extends TempBase{
 
 	public function __construct(){
 		parent::__construct();
-		$isLogin = checkLogin(0);
-		if($isLogin){
-			header('Location:admin');exit;
-		}
+        $this->load->model('admin/ComModel');
 	}   
 
 	public function index() {
+        $isLogin = checkLogin(0);
+        if($isLogin){
+            header('Location:admin');exit;
+        }
 		$this->load->aview('login/index',$this->_cdata);
 	}
 	//异步登录
@@ -18,12 +19,27 @@ class Login extends TempBase{
 		if(!$this->input->is_ajax_request()){ echo 0;exit;}
 		$post = $this->input->post();
 		if(empty($post['name']) || empty($post['pwd'])){ echo 0;exit;}
-		$cap = strtolower($_SESSION["verification"]);
-		if($cap!=strtolower($post['captcha'])){
-			echo 2;	exit;
-		}
-		$data = array('title'=>$post['name'],'email'=>$post['email'],'website'=>$post['website'],'desc'=>$post['desc'],'status'=>0);
-		$this->ComModel->insertTable('friend_links',$data);
+		//查询用户信息验证
+        $userInfo = $this->ComModel->getUserByName($post['name']);
+        if(empty($userInfo)){ echo 0;exit;}
+        if($userInfo['errornum']<=0){ echo 2;exit;}
+        $postPwd = md5(($post['pwd'].$this->config->item("encryption_key")));
+        if($postPwd!=$userInfo['password']){
+            //减少剩余次数
+            $this->ComModel->reduceErrorNum($userInfo['id']);
+            echo 0;exit;
+        }
+
+
+        //验证通过（生成token,设置session\cookie);
+        $_SESSION['admin_user'] = $userInfo;
+        $token = md5(uniqid(rand(), TRUE));
+        //更新数据库token()
+        $this->ComModel->updateOne('admin_user',array('token'=>$token),array('id'=>$userInfo['id']));
+        $auth = $userInfo['username'].":".$token;
+        if(!empty($post['remember'])){
+            setcookie("admin_auth", $auth, time()+3600*24*7);
+        }
 		echo 1;exit;
 		
 	}

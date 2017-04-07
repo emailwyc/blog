@@ -81,10 +81,10 @@
 															<span class="lbl"> 记住</span>
 														</label>
 
-														<button type="button" id="login_submit" class="width-35 pull-right btn btn-sm btn-primary">
-															<i class="icon-key"></i>
-															登录
-														</button>
+                                                        <button type="button" id="login_submit" class="width-35 pull-right btn btn-sm btn-primary">
+                                                            <i class="icon-key"></i>
+                                                            登录
+                                                        </button>
 													</div>
 
 													<div class="space-4"></div>
@@ -99,7 +99,7 @@
 										<div class="toolbar clearfix">
 										</div>
 									</div><!-- /widget-body -->
-								</div><!-- /login-box -->
+                                </div><!-- /login-box -->
 
 
 							</div><!-- /position-relative -->

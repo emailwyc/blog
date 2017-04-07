@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-03-24 15:33:13
+Date: 2017-04-07 18:32:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,14 +24,18 @@ CREATE TABLE `admin_user` (
   `username` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名称',
   `password` varchar(64) NOT NULL DEFAULT '' COMMENT '用户密码',
   `errornum` int(11) NOT NULL DEFAULT '10' COMMENT '错误次数',
+  `token` varchar(255) NOT NULL DEFAULT '',
+  `logins` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否允许多点登录',
   `ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'ip地址',
   `ct` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
+INSERT INTO `admin_user` VALUES ('1', 'soonebaby', 'aefcbd7108630bf5e89a52c69fe30fab', '9', '', '1', '', '2017-04-05 19:03:54');
 
 -- ----------------------------
 -- Table structure for `album`
@@ -76,7 +80,7 @@ CREATE TABLE `album_class` (
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '当前时间',
   PRIMARY KEY (`id`),
   KEY `status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of album_class
@@ -271,7 +275,7 @@ INSERT INTO `download` VALUES ('2', '随手拍的美照2', '美照2', '<p style=
 INSERT INTO `download` VALUES ('4', '随手拍的美照3', '美照3', '<p style=\"text-align: center;\">随手美照</p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby14.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby15.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby16.jpg\" title=\"随手美照\" alt=\"随手美照\"></p> ', '/ui/system/images/soonebaby12.jpg', '0', 'ui/system/images/soonebaby14.jpg', '', '0', '0', '2017-03-22 12:51:22', '2017-03-21 21:46:44');
 INSERT INTO `download` VALUES ('5', '随手拍的美照4', '美照4', '<p style=\"text-align: center;\">随手美照</p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby14.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby15.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby16.jpg\" title=\"随手美照\" alt=\"随手美照\"></p> ', '/ui/system/images/soonebaby12.jpg', '0', 'ui/system/images/soonebaby15.jpg', '', '5', '0', '2017-03-23 11:57:54', '2017-03-21 21:46:44');
 INSERT INTO `download` VALUES ('6', '随手拍的美照5', '美照5', '<p style=\"text-align: center;\">随手美照</p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby14.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby15.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby16.jpg\" title=\"随手美照\" alt=\"随手美照\"></p> ', '/ui/system/images/soonebaby12.jpg', '0', 'ui/system/images/soonebaby19.jpg', '', '0', '0', '2017-03-22 12:51:24', '2017-03-21 21:46:44');
-INSERT INTO `download` VALUES ('7', '随手拍的美照6', '美照6', '<p style=\"text-align: center;\">随手美照</p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby14.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby15.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby16.jpg\" title=\"随手美照\" alt=\"随手美照\"></p> ', '/ui/system/images/soonebaby12.jpg', '2', 'ui/system/images/soonebaby20.jpg', '', '29', '0', '2017-03-24 10:50:54', '2017-03-21 21:46:44');
+INSERT INTO `download` VALUES ('7', '随手拍的美照6', '美照6', '<p style=\"text-align: center;\">随手美照</p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby14.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby15.jpg\" title=\"随手美照\" alt=\"随手美照\"></p><p style=\"text-align: center;\"><img src=\"/ui/system/images/soonebaby16.jpg\" title=\"随手美照\" alt=\"随手美照\"></p> ', '/ui/system/images/soonebaby12.jpg', '3', 'ui/system/images/soonebaby20.jpg', '', '33', '0', '2017-03-28 19:56:40', '2017-03-21 21:46:44');
 
 -- ----------------------------
 -- Table structure for `download_comment`
@@ -4139,7 +4143,7 @@ INSERT INTO `system_variable` VALUES ('leavenum', '14', '1');
 INSERT INTO `system_variable` VALUES ('photonum', '11', '1');
 INSERT INTO `system_variable` VALUES ('resnum', '6', '1');
 INSERT INTO `system_variable` VALUES ('saynum', '1', '1');
-INSERT INTO `system_variable` VALUES ('visitnum', '1869', '1');
+INSERT INTO `system_variable` VALUES ('visitnum', '1914', '1');
 
 -- ----------------------------
 -- Table structure for `tags_cloud`
@@ -4199,4 +4203,4 @@ CREATE TABLE `visit_logs` (
 -- ----------------------------
 -- Records of visit_logs
 -- ----------------------------
-INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '1869', '2017-03-24 15:31:06', '2017-03-12 20:33:11');
+INSERT INTO `visit_logs` VALUES ('1', '127.0.0.1', '未分配或者内网IP', '1914', '2017-04-05 14:59:32', '2017-03-12 20:33:11');
