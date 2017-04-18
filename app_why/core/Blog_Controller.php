@@ -65,7 +65,9 @@ class TempBase extends Blog_Controller {
 class AdminBase extends Blog_Controller {
 	public function __construct(){
 		parent::__construct();
-		checkLogin();
-		//检测是否登录
+        $this->load->model('admin/ComModel');
+        $this->_cdata['_title']  = "SooneBaby"."个人博客后台";
+        //检测是否登录
+		$w=$this->ComModel->checkLogin(1);
 	}   
 }

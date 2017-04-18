@@ -16,15 +16,6 @@ function checkIsSelfHost() {
 	}
 }
 
-function checkLogin($isDump=1) {
-	if(!empty($_SEESION["admin_user"])){
-		return true;
-	}else{
-        if($isDump){ header('Location:admin/login');exit; }
-		return false;
-	}
-}   
-
 /** 
 * http 请求 支持get、post
 * @param string $url 要请求的地址
@@ -213,20 +204,6 @@ if (! function_exists ( 'noPower' )) {
 		}
 	}
 }
-if (! function_exists ( 'checkLogin' )) {
-	/**
-	 * 判断管理员是否登录
-	 */
-	function checkLogin() {
-		if (! isAdminUserExist ()) { // 登录
-			$msg = '请先登录';
-			$site_url=site_url () ;
-			$redirect = 'admin/admin/dealLogin';
-			redirect ( $redirect );
-		}
-	}
-}
-
 
 if (! function_exists ( 'session' )) {
 	/**

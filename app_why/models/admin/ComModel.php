@@ -31,5 +31,54 @@ class ComModel extends CI_Model {
         return $check;
     }
 
+    public function updateToken($userinfo) {
+        if($userinfo['logins']){
+            $token = md5(uniqid(rand(), TRUE));
+            $check = $this->ComModel->updateOne('admin_user',array('token'=>$token),array('id'=>$userinfo['id']));
+            $auth = $userinfo['username'].":".$token;
+            if($check) {
+                setcookie("admin_auth", $auth, time() + 3600 * 24 * 7, "/");
+            }
+        }
+        return true;
+
+    }
+
+    public function checkLogin($isDump=1) {
+        $_SESSION["admin_user"] = "";
+        if(!empty($_SESSION["admin_user"])){
+            //更新tooken
+            $this->updateToken($_SESSION["admin_user"]);
+            return $_SESSION["admin_user"];
+        }else{
+            if(empty($_COOKIE['admin_auth'])) {
+                if ($isDump) {
+                    header('Location:/admin/login');exit;
+                }
+                return false;
+            }else{
+                $arr = explode(":",$_COOKIE['admin_auth']);
+               // print_r($arr);exit;
+                if(count($arr)!=2){
+                    if ($isDump) { header('Location:/admin/login');exit;}
+                    return false;
+                }else{
+                    $where = array("username"=>$arr[0],"token"=>$arr[1]);
+                    $query = $this->db->select("*")->from('admin_user')->where($where)->limit(1,0)->get();
+                    $result = $query->row_array();
+                    if(!empty($result)){
+                        //更新tooken
+                        $this->updateToken($result);
+                        $_SESSION["admin_user"] = $result;
+                        return $result;
+                    }else{
+                        if ($isDump) { header('Location:/admin/login');exit;}
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
 
 }

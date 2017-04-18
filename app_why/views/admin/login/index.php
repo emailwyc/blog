@@ -151,7 +151,7 @@ $(document).ready(function(){
 			success : function(data) {
 				if(data=="1"){
 					layer.msg("登录成功");
-					window.location.href="/admin"
+					window.location.href="/admin/index"
 				}else if(data=="2"){
 					layer.msg("尝试次数过多，账户已暂时冻结");
 				}else{

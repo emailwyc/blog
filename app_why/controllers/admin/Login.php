@@ -8,9 +8,9 @@ class Login extends TempBase{
 	}   
 
 	public function index() {
-        $isLogin = checkLogin(0);
+        $isLogin = $this->ComModel->checkLogin(0);
         if($isLogin){
-            header('Location:admin');exit;
+            header('Location:/admin/index');exit;
         }
 		$this->load->aview('login/index',$this->_cdata);
 	}
@@ -38,7 +38,7 @@ class Login extends TempBase{
         $this->ComModel->updateOne('admin_user',array('token'=>$token),array('id'=>$userInfo['id']));
         $auth = $userInfo['username'].":".$token;
         if(!empty($post['remember'])){
-            setcookie("admin_auth", $auth, time()+3600*24*7);
+            setcookie("admin_auth", $auth, time()+3600*24*7,"/");
         }
 		echo 1;exit;
 		
