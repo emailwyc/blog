@@ -49,6 +49,8 @@ class Comment extends TempBase{
 	}
 	//content,nickname,avatar,aid,pid,com_type,email
 	public function send() {
+        $this->load->model('admin/ComModel');
+	    $adminname = array("管理员","博主","SooneBaby","soonebaby","Soonebaby","管 理 员","系统管理员");
 		$params = $this->get;
 		$this->emptyCheck($params,array('content','nickname','avatar','aid','pid','email'));
 		$ip = getClientIp();
@@ -57,6 +59,14 @@ class Comment extends TempBase{
 
 		$inArr = array('nickname'=>$params['nickname'],'content'=>$params['content'],'avatar'=>$params['avatar'],'aid'=>$params['aid'],'pid'=>$params['pid'],'email'=>$params['email'],'ip'=>$ip,'address'=>$ipaddr);
 		$inArr['type'] = empty($params['pid'])?1:2;
+        $inArr['nickname'] = trim($inArr['nickname']);
+        $varw  = $this->ComModel->getVariable();
+        $inArr['avatar']=$varw['avatar']==$inArr['avatar']?"":$inArr['avatar'];
+        $inArr['nickname'] = in_array($inArr['nickname'],$adminname)?"假".$inArr['nickname']:$inArr['nickname'];
+		if(!empty($_SESSION['admin_user'])){
+            $inArr['nickname']="管理员";
+            $inArr['avatar'] = $varw['avatar'];
+        }
 		$this->config->load('contentkeyword',TRUE);
 		$this->load->library('KeyWord',array('keyWord'=>$this->config->item('keyWord','contentkeyword')),'keyword');
 		if($rMessage = $this->keyword->replace($inArr['content'])){ $inArr['content']=$rMessage;}

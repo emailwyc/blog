@@ -211,16 +211,27 @@ function getcomrepinfo(tid,page){
        jQuery.getJSON('/comment/getRepCom?callback=?', {tid: tid, com_type:com_type, page:page, r: Math.random()}, function(data) {
 		if (data != 0) {
 			var html='';
+            var isadmin=false;
 			jQuery.each(data.replist, function(i, item) {
+                isadmin=false;
 				if(item.nickname==""){
 					item.nickname = "匿名"+item.id;
 				}
+                if(item.nickname=="管理员"){
+                    isadmin=true;
+                }
 
                 html +='<li class="rep-com-row" id="r_row_' + item.id + '">';
                     html +='<div class="admin-ava"><img onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" src="'+item.avatar+'" alt="'+item.nickname+'" title="'+item.nickname+'" class="img-circle"></div>';
                     html +='<div class="re-info">';
                         html +='<span>';
-                            html +='<dd style="float:left;"><a href="javascript:void(0);" id="t_reply_name_'+item.id+'" title="'+item.nickname+'"><i class="el-user"></i>'+item.nickname+'</a> &nbsp;&nbsp;<time><i class="el-time"></i>'+item.createtime+'</time></dd>';
+                            html +='<dd style="float:left;"><a href="javascript:void(0);" id="t_reply_name_'+item.id+'" title="'+item.nickname+'">';
+                            if(isadmin) {
+                                html += '<i class="el-twitter"></i>管理员';
+                            }else{
+                                html += '<i class="el-user"></i>' + item.nickname + '';
+							}
+							html +=	'</a> &nbsp;&nbsp;<time><i class="el-time"></i>'+item.createtime+'</time></dd>';
                             html +='<dd style="float:right;"><a href="javascript:void(0);" username="'+item.nickname+'" onclick="comment.rep_msg_change(' + tid + ', ' + item.id + ')">回复</a></dd>';
                         html +='</span>';
                         html +='<div class=" re-content">'+item.content+'</div>';
@@ -288,18 +299,24 @@ function sendcom(comid){
 			setNicknameByCookie('set',nickname);
 			var html = '';
 			var climit = parseInt(jQuery("#snsinfo_get_offset").val());
-			if(comid === 0){
-				if(data.nickname==""){
-					data.nickname = "匿名"+data.id;
+			if(comid === 0) {
+                if (data.nickname == "") {
+                    data.nickname = "匿名" + data.id;
+                }
+                html += '<li class="bg-color" style="display:none;border-bottom:none;" id="com_list_li_' + data.id + '">';
+                html += '<span class="louceng">(我)</span>';
+                html += '<div class="comment-ava"><a href="javascript:void(0)" id="Comment-' + data.id + '" rel="nofollow" title="' + data.nickname + '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' + data.nickname + '" src="' + data.avatar + '" alt="' + data.nickname + '"></a></div>';
+                //start comment
+                html += '<div class="comment-info" style="width:85%">';
+                html += '<div class="comment-line ">';
+                //start
+                html += '<ul><li style="float:left;border-bottom:none;"><a>';
+                if (data.nickname == "管理员") {
+                    html += '<i class="el-twitter"></i>';
+                } else {
+                	html += '<i class="el-user"></i>';
 				}
-				html +='<li class="bg-color" style="display:none;border-bottom:none;" id="com_list_li_'+data.id+'">';
-				html +='<span class="louceng">(我)</span>';
-				html +='<div class="comment-ava"><a href="javascript:void(0)" id="Comment-'+data.id+'" rel="nofollow" title="' +data.nickname+ '"><img class="img-circle" onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" title="' +data.nickname+ '" src="'+data.avatar+'" alt="' +data.nickname+ '"></a></div>';
-				//start comment
-				html +='<div class="comment-info" style="width:85%">';
-				html +='<div class="comment-line ">';
-				//start
-				html +='<ul><li style="float:left;border-bottom:none;"><a><i class="el-user"></i>' +data.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +data.createtime+ '"><i class="el-time"></i>' +data.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+data.nickname+' 位于："><i class="el-map-marker">'+data.address+'</i></a></li>';
+				html+= ''+data.nickname+ '</a></li><li style="float:left;border-bottom:none;"><span title="发表于' +data.createtime+ '"><i class="el-time"></i>' +data.createtime+ '</a></span></li><li style="float:left;border-bottom:none;"><a title="'+data.nickname+' 位于："><i class="el-map-marker">'+data.address+'</i></a></li>';
 				html+='<li style="float:right;border-bottom:none;">';
 				html+='<a href="javascript:void(0);" aid="'+data.aid+'" pid="'+data.id+'" username="' +data.nickname+ '" onclick="replay(\''+data.id+'\')"><span id="repcomcountfont_'+data.id+'">回复</span>';
 				html +='(<em id="repcomcount_'+data.id+'">0</em>)';
@@ -332,12 +349,17 @@ function sendcom(comid){
 				if(replycount == 1 ) jQuery(repcomcount).attr({style:"color:red;"});
 				jQuery(repcomcount).html(replycount);
 				var newli = jQuery('#reply_list_'+comid);
-
                 html +='<li class="rep-com-row" style="display:none;" id="r_row_' + data.id + '">';
                     html +='<div class="admin-ava"><img onerror="this.onerror=null;this.src=\'/ui/system/images/default_avatar/118.jpg\'" src="'+data.avatar+'" alt="'+data.nickname+'" title="'+data.nickname+'" class="img-circle"></div>';
                     html +='<div class="re-info">';
                         html +='<span>';
-                            html +='<dd style="float:left;"><a href="javascript:void(0);" id="t_reply_name_'+data.id+'" title="'+data.nickname+'"><i class="el-user"></i>'+data.nickname+'</a> &nbsp;&nbsp;<time><i class="el-time"></i>'+data.createtime+'</time></dd>';
+                            html +='<dd style="float:left;"><a href="javascript:void(0);" id="t_reply_name_'+data.id+'" title="'+data.nickname+'">';
+							if(data.nickname=="管理员"){
+                                html+='<i class="el-twitter"></i>'+data.nickname+'';
+							}else {
+                                html += '<i class="el-user"></i>' + data.nickname + '';
+                            }
+				 			html += '</a> &nbsp;&nbsp;<time><i class="el-time"></i>'+data.createtime+'</time></dd>';
                             html +='<dd style="float:right;"><a href="javascript:void(0);" username="'+data.nickname+'" onclick="comment.rep_msg_change(' + comid + ', ' + data.id + ')">回复</a></dd>';
                         html +='</span>';
                         html +='<div class=" re-content">'+data.content+'</div>';

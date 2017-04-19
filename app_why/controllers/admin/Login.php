@@ -35,7 +35,8 @@ class Login extends TempBase{
         $_SESSION['admin_user'] = $userInfo;
         $token = md5(uniqid(rand(), TRUE));
         //更新数据库token()
-        $this->ComModel->updateOne('admin_user',array('token'=>$token),array('id'=>$userInfo['id']));
+        $ip = $ip = getClientIp();
+        $this->ComModel->updateOne('admin_user',array('token'=>$token,'ip'=>$ip),array('id'=>$userInfo['id']));
         $auth = $userInfo['username'].":".$token;
         if(!empty($post['remember'])){
             setcookie("admin_auth", $auth, time()+3600*24*7,"/");
@@ -43,6 +44,14 @@ class Login extends TempBase{
 		echo 1;exit;
 		
 	}
+
+    //异步登录
+    public function logout() {
+        session_destroy();
+        setcookie("admin_auth", "", time()-3600,"/");
+        header('Location:/admin/login');
+
+    }
 
 
 }

@@ -33,8 +33,8 @@
 					<p><?=$val['short']?></p>
 						<ul>
 						<li><a title="<?=$val['author']?><?=$val['createtime']?>发表"><i class="el-time"></i><?=date('Y-m-d',strtotime($val['createtime']));?></a></li>
-						<li><a href="<?=$val['author_link']?>" title="作者： <?=$val['author']?>"><i class="el-user"></i><?=$val['author']?></a></li>
-						<li><a href="/article/detail/<?=$val['id']?>#Comment" title="已有 0 条评论"><i class="el-comment"></i>0</a></li>
+						<li><a href="<?=$val['author_link']?>" title="作者： <?=$val['author']?>"><i class="el-user"></i><?=$val['comnum']?></a></li>
+						<li><a href="/article/detail/<?=$val['id']?>#Comment" title="已有 <?=$val['comnum']?> 条评论"><i class="el-comment"></i><?=$val['createtime']?></a></li>
 						<li><a title="已有 <?=$val['pv']?> 次浏览"><i class="el-eye-open"></i><?=$val['pv']?></a></li>
 						<li><a href="/article/category/<?=$val['cid']?>" title="查看分类"><i class="el-th-list"></i><?=$val['name']?></a></li>
 						</ul>

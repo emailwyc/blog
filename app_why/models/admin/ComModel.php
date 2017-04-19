@@ -45,7 +45,6 @@ class ComModel extends CI_Model {
     }
 
     public function checkLogin($isDump=1) {
-        $_SESSION["admin_user"] = "";
         if(!empty($_SESSION["admin_user"])){
             //更新tooken
             $this->updateToken($_SESSION["admin_user"]);
@@ -78,6 +77,13 @@ class ComModel extends CI_Model {
                 }
             }
         }
+    }
+    //得到系统变量
+    public function getVariable()
+    {
+        $query = $this->db->select("*")->where(array('init'=>1))->get('system_base');
+        $baseRes = ArrKeyFromId($query->result_array(),'mark','value');
+        return $baseRes;
     }
 
 

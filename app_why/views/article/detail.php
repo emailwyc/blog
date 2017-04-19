@@ -10,7 +10,7 @@
 			<ul>
 				<li><a title="<?=$article['author'];?>发表于<?=date('Y-m-d',strtotime($article['createtime']))?>"><i class="el-time"></i><time><?=date('Y-m-d',strtotime($article['createtime']))?></time></a></li>
 				<li><a href="<?=$article['author_link']?>" title="本文作者：<?=$article['author'];?>"><i class="el-user"></i><?=$article['author'];?></a></li>
-				<li><a href="#Comment" title="转到评论"><i class="el-comment"></i>0条</a></li>
+				<li><a href="#Comment" title="转到评论"><i class="el-comment"></i><?=$article['comnum']?>条</a></li>
 				<li><a title="已有 <?=($article['pv']+1);?> 次浏览"><i class="el-eye-open"></i>(<?=($article['pv']+1);?>)</a></li>
 			</ul>
 		</div>
