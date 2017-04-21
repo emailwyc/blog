@@ -30,7 +30,7 @@
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-ie.min.css" />
     <![endif]-->
-
+    <script type="text/javascript" src="/ui/admin/assets/js/jquery.js"></script>
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->

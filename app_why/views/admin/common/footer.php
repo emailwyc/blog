@@ -91,16 +91,32 @@
 
 <script src="/ui/admin/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.ui.touch-punch.min.js"></script>
+<!--new start-->
+<script src="/ui/admin/assets/js/fuelux/fuelux.spinner.min.js"></script>
+<script src="/ui/admin/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="/ui/admin/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="/ui/admin/assets/js/date-time/moment.min.js"></script>
+<script src="/ui/admin/assets/js/date-time/daterangepicker.min.js"></script>
+<script src="/ui/admin/assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="/ui/admin/assets/js/jquery.knob.min.js"></script>
+<script src="/ui/admin/assets/js/jquery.autosize.min.js"></script>
+<script src="/ui/admin/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="/ui/admin/assets/js/jquery.maskedinput.min.js"></script>
+<script src="/ui/admin/assets/js/bootstrap-tag.min.js"></script>
+<!--new end-->
+<script src="/ui/admin/assets/js/chosen.jquery.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.slimscroll.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.easy-pie-chart.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.sparkline.min.js"></script>
 <script src="/ui/admin/assets/js/flot/jquery.flot.min.js"></script>
 <script src="/ui/admin/assets/js/flot/jquery.flot.pie.min.js"></script>
 <script src="/ui/admin/assets/js/flot/jquery.flot.resize.min.js"></script>
+
 <!-- ace scripts -->
 <script src="/ui/admin/assets/js/ace-elements.min.js"></script>
 <script src="/ui/admin/assets/js/ace.min.js"></script>
 <!-- inline scripts related to this page -->
+
 
 <script type="text/javascript">
     jQuery(function($) {

@@ -10,7 +10,15 @@ class Blog_Controller extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->curtime = time();
-	}   
+	}
+    protected function emptyCheck($params,$key_arr) {
+        foreach($key_arr as $v){
+            if(!isset($params[$v])){
+                $msg['code']=100;
+                returnjson(array("code"=>100,"msg"=>"参数错误"));
+            }
+        }
+    }
 }
 
 class HomeBase extends Blog_Controller {

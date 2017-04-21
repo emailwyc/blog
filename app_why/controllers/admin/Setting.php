@@ -19,7 +19,6 @@ class Setting extends AdminBase{
 
     public function author()
     {
-        //获取作者信息
         $this->load->aview('setting/author',$this->_cdata);
     }
 

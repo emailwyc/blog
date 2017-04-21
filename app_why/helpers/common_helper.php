@@ -812,4 +812,8 @@ function format_date($time){
         }
     }
 }
+function returnjson($data){
+    echo json_encode($data,true);exit;
+
+}
 
