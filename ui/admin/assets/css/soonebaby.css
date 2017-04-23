@@ -1,0 +1,17 @@
+.loading{ position:fixed; z-index:1000; background:rgba(255,255,255,0.1); left:0; width:100%; top:0; height:100%;}
+.loading div{ background:url(/ui/admin/assets/images/loading.png); background-size:cover; display:block; width:5rem; height:5rem; margin:0 auto;position: relative;top: 50%; margin-top:-2.5rem; -webkit-animation: loading 1s infinite linear;animation: loading 1s infinite linear;}
+@-webkit-keyframes loading {
+    0% {-webkit-transform: rotate(0deg); }
+    100% {-webkit-transform: rotate(360deg); }
+}
+@keyframes loading {
+    0% {transform: rotate(0deg); }
+    100% {transform: rotate(360deg); }
+}
+.zhuan11{ -webkit-animation: loading 1s infinite linear; animation: loading 1s infinite linear;}
+.jzr-form .image{ padding-bottom:1rem;}
+.jzr-form .image .left{ padding-left:1rem;}
+.jzr-form .image .img-add{ margin-top:1rem; position:relative; float:left; background:url(/ui/admin/assets/images/file-img.png) no-repeat #fff; background-size:100% 100%; width:3.5rem; height:3.5rem; margin-right:1rem;}
+.jzr-form .image .img-add img{ width:100%; height:100%; position:absolute; left:0; top:0; background:#fff;}
+.jzr-form .image .img-add input{  width:3.5rem; height:3.5rem; overflow:hidden; opacity:0; font-size:10rem;}
+.jzr-form .image .right{ width:25rem; }

@@ -26,7 +26,7 @@
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
 
-                <form class="form-horizontal" role="form" onsubmit="return settingpwd_check(this)">
+                <form class="form-horizontal jzr-form" role="form" onsubmit="return settingpwd_check(this)">
                     <div class="space-4"></div>
                     <div class="space-4"></div>
                     <!--用户名称-->
@@ -46,8 +46,8 @@
 
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 一句话描述 </label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="margin-top: 10px;"> 头像 </label>
+                        <div class="col-sm-9 image">
                             <div class="img-add">
                                 <input type="file" capture="camera" accept="image/*" name="file0">
                             </div>
@@ -79,7 +79,7 @@
 </div><!-- /.main-content -->
 <script type="text/javascript">
     $(document).ready(function(){
-
+        updateimg();
     });
     function settingpwd_check(forms){
         $.ajax({

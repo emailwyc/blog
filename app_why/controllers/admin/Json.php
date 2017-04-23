@@ -52,6 +52,10 @@ class Json extends TempBase{
         setcookie("admin_auth", $auth, time()+3600*24*7,"/");
         returnjson(array('code'=>1,'msg'=>"成功！"));
     }
+    //上传图片
+    public function uploadImg() {
+        sleep(10);exit;
+    }
 
 
 

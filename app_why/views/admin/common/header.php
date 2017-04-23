@@ -30,6 +30,8 @@
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-ie.min.css" />
     <![endif]-->
+    <link rel="stylesheet" href="/ui/admin/assets/css/soonebaby.css" />
+    <script type="text/javascript" src="/ui/admin/assets/js/soonebaby.js"></script>
     <script type="text/javascript" src="/ui/admin/assets/js/jquery.js"></script>
     <!-- inline styles related to this page -->
 
