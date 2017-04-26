@@ -25,47 +25,50 @@
 
 								<!-- PAGE CONTENT BEGINS -->
                                         <h3 class="header smaller lighter blue">数据控制台</h3>
-                                        <div class="table-header">作者：<?=$_var['author']?>---<?=$_var['desc']?></div>
+                                        <div class="table-header"><img width="32px;" height="32px;" src="<?=$_var['avatar']?>"/>&nbsp;&nbsp;&nbsp;作者：<?=$_var['author']?>---<?=$_var['desc']?></div>
 
                                         <div class="table-responsive">
                                             <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                                 <tbody>
                                                 <tr>
-                                                    <td>
-                                                        <span class="label-sm label-warning">
-                                                            图片数量
-                                                        </span>
-                                                    </td>
-                                                    <td>$45</td>
-                                                    <td class="hidden-480" rowspan=4></td>
-                                                    <td>文章数量</td>
-                                                    <td class="hidden-480">
-                                                        <span class="label label-sm label-warning">Expiring</span>
-                                                    </td>
+                                                    <td class="label-lg label-warning">今日访问IP</td>
+                                                    <td class="label-lg label-warning"><?=$sysvar['curipnum']?>个</td>
+                                                    <td class="hidden-480" rowspan=7></td>
+                                                    <td class="label-lg label-warning">总访问量</td>
+                                                    <td class="hidden-480 label-lg label-warning"><?=$sysvar['visitnum']?>个</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <a href="#">图片数量</a>
-                                                    </td>
-                                                    <td>$45</td>
-                                                    <td>Feb 12</td>
-                                                    <td class="hidden-480">
-                                                        <span class="label label-sm label-warning">Expiring</span>
-                                                    </td>
+                                                    <td class="label-lg label-pink">图片数量</td>
+                                                    <td class="label-lg label-pink"><?=$sysvar['photonum']?>个</td>
+                                                    <td class="label-lg label-pink">说说数量</td>
+                                                    <td class="hidden-480 label-lg label-pink"><?=$sysvar['saynum']?>个</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <a href="#">图片数量</a>
-                                                    </td>
-                                                    <td>$45</td>
-                                                    <td>Feb 12</td>
-                                                    <td class="hidden-480">
-                                                        <span class="label label-sm label-warning">Expiring</span>
-                                                    </td>
+                                                    <td class="label-lg label-info">文章数量</td>
+                                                    <td class="label-lg label-info"><?=$sysvar['artnum']?>个</td>
+                                                    <td class="label-lg label-info">留言数量</td>
+                                                    <td class="hidden-480 label-lg label-info"><?=$sysvar['leavenum']?>个</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-lg label-danger">评论数量</td>
+                                                    <td class="label-lg label-danger"><?=$sysvar['comnum']?>个</td>
+                                                    <td class="label-lg label-danger">资源数量</td>
+                                                    <td class="hidden-480 label-lg label-danger"><?=$sysvar['resnum']?>个</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-lg label-success">运行天数</td>
+                                                    <td class="label-lg label-success"><?=$sysvar['runing']?>天</td>
+                                                    <td class="label-lg label-success"></td>
+                                                    <td class="hidden-480 label-lg label-success"></td>
                                                 </tr>
 
 
-
+                                                <tr>
+                                                    <td class="label-lg label-warning">未完待续……</td>
+                                                    <td class="label-lg label-warning"></td>
+                                                    <td class="label-lg label-warning"></td>
+                                                    <td class="hidden-480 label-lg label-warning"></td>
+                                                </tr>
 
 
                                                 </tbody>

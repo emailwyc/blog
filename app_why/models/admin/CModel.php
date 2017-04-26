@@ -45,5 +45,12 @@ class CModel extends CI_Model {
         $result = $query->row_array();
         return $result;
     }
+    //得到所有
+    public function getAll($table,$where) {
+        $query = $this->db->select("*")->where($where)->get($table);
+        $result = $query->result_array();
+        return $result;
+    }
+
 
 }

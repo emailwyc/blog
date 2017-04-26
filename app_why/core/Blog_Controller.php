@@ -73,6 +73,7 @@ class TempBase extends Blog_Controller {
 class AdminBase extends Blog_Controller {
 	public function __construct(){
 		parent::__construct();
+        $this->load->model('admin/CModel');
         $this->load->model('admin/ComModel');
         $this->_cdata['_var'] = $this->ComModel->getVariable();
         $this->_cdata['_title']  = $this->_cdata['_var']['author']."个人博客后台";
