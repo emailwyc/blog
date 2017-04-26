@@ -33,6 +33,12 @@ class CModel extends CI_Model {
         $check = $this->db->where($where)->update($table,$data);
         return $check;
     }
+    //updateaddone
+    public function updateBatch($table,$data,$key) {
+        //获取ip地址
+        $check = $this->db->update_batch($table,$data,$key);
+        return $check;
+    }
     //得到详情
     public function getDetailById($table,$where) {
         $query = $this->db->select("*")->where($where)->from($table)->limit(1,0)->get();

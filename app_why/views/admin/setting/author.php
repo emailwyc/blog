@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 一句话描述 </label>
                         <div class="col-sm-9">
-                            <input type="text" name="username" value="<?=$_var['desc']?>"  class="col-xs-10 col-sm-5" />
+                            <input type="text" name="desc" value="<?=$_var['desc']?>"  class="col-xs-10 col-sm-5" />
                         </div>
                     </div>
 
@@ -48,8 +48,12 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="margin-top: 10px;"> 头像 </label>
                         <div class="col-sm-9 image">
-                            <div class="img-add">
+                            <div class="img-add-photo">
                                 <input type="file" capture="camera" accept="image/*" name="file0">
+                            </div>
+                            <div class="img-show ace-thumbnails">
+                                <img width="64px;" height="64px" data-action="zoom" src="<?=$_var['avatar']?>" alt="" style="cursor:zoom-in;">
+                                <input name="author_avatar" value="<?=$_var['avatar']?>" type="hidden">
                             </div>
                         </div>
                     </div>
@@ -71,7 +75,6 @@
                     </div>
                     <div class="space-4"></div>
                 </form>
-
                 <!-- PAGE CONTENT ENDS -->
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -79,18 +82,18 @@
 </div><!-- /.main-content -->
 <script type="text/javascript">
     $(document).ready(function(){
-        updateimg();
+        updateimgone(80,80,"author_avatar");
     });
     function settingpwd_check(forms){
         $.ajax({
             type : "POST",
-            url : "/admin/json/user_editinfo",
+            url : "/admin/json/user_author",
             dataType : "json",
             async : true,
             data:{
                 'username':forms['username'].value,
-                'errornum':forms['errornum'].value,
-                'logins':forms['tokencheck'].checked
+                'desc':forms['desc'].value,
+                'avatar':forms['author_avatar'].value
             },
             success : function(data) {
                 if(data.code==1){

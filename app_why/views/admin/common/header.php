@@ -27,12 +27,15 @@
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-skins.min.css" />
     <link rel="stylesheet" href="/ui/system/css/layer.css" id="layui_layer_skinlayercss" style="">
 
+
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-ie.min.css" />
     <![endif]-->
+
     <link rel="stylesheet" href="/ui/admin/assets/css/soonebaby.css" />
-    <script type="text/javascript" src="/ui/admin/assets/js/soonebaby.js"></script>
+
     <script type="text/javascript" src="/ui/admin/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/ui/admin/assets/js/zoom/zooming.js"></script>
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
@@ -45,6 +48,7 @@
     <script src="/ui/admin/assets/js/html5shiv.js"></script>
     <script src="/ui/admin/assets/js/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="/ui/admin/assets/js/soonebaby.js"></script>
 </head>
 
 <body>

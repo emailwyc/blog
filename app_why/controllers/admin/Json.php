@@ -54,7 +54,24 @@ class Json extends TempBase{
     }
     //上传图片
     public function uploadImg() {
-        sleep(10);exit;
+        $this->load->model('ImgM');
+        $params = $this->params;
+        $this->emptyCheck($params,array('img_info','img_type','tp'));
+        $result = $this->ImgM->imgUploadOne($params);
+        echo json_encode($result);
+    }
+    //编辑作者资料
+    public function user_author() {
+        $params = $this->params;
+        $this->emptyCheck($params,array('username','desc','avatar'));
+        if(empty($params['avatar'])){ returnjson(array('code'=>2,'msg'=>"头像不能为空！"));}
+        $data = array(
+            array('mark'=>'author','value'=>$params['username']),
+            array('mark'=>'avatar','value'=>$params['avatar']),
+            array('mark'=>'desc','value'=>$params['desc']),
+        );
+        $this->CModel->updateBatch('system_base',$data,'mark');
+        returnjson(array('code'=>1,'msg'=>"成功！"));
     }
 
 

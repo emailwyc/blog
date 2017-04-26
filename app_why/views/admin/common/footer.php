@@ -103,6 +103,8 @@
 <script src="/ui/admin/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.maskedinput.min.js"></script>
 <script src="/ui/admin/assets/js/bootstrap-tag.min.js"></script>
+<script src="/ui/admin/assets/js/jquery.dataTables.min.js"></script>
+<script src="/ui/admin/assets/js/jquery.dataTables.bootstrap.js"></script>
 <!--new end-->
 <script src="/ui/admin/assets/js/chosen.jquery.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.slimscroll.min.js"></script>
