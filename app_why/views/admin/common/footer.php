@@ -105,6 +105,11 @@
 <script src="/ui/admin/assets/js/bootstrap-tag.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.dataTables.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.dataTables.bootstrap.js"></script>
+
+<script src="/ui/admin/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+<script src="/ui/admin/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+
+
 <!--new end-->
 <script src="/ui/admin/assets/js/chosen.jquery.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.slimscroll.min.js"></script>

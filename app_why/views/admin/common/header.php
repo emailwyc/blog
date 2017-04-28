@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/ui/admin/assets/css/googleapis.css?family=Open+Sans:400,300" />
 
     <!-- ace styles -->
-
+    <link rel="stylesheet" href="/ui/admin/assets/css/ui.jqgrid.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/ace.min.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-rtl.min.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-skins.min.css" />
@@ -32,7 +32,9 @@
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-ie.min.css" />
     <![endif]-->
 
+
     <link rel="stylesheet" href="/ui/admin/assets/css/soonebaby.css" />
+
 
     <script type="text/javascript" src="/ui/admin/assets/js/jquery.js"></script>
     <script type="text/javascript" src="/ui/admin/assets/js/zoom/zooming.js"></script>

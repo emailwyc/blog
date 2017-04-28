@@ -8,15 +8,18 @@ class Article extends AdminBase{
 
     public function classes()
     {
-        $this->load->aview('index/index',$this->_cdata);
+        //获取所有文章分类
+        $this->_cdata['classes'] = $this->CModel->getAll('article_class',array());
+        $this->_cdata['count'] = count($this->_cdata['classes']);
+        $this->load->aview('article/classes',$this->_cdata);
     }
     public function tags()
     {
-        $this->load->aview('index/index',$this->_cdata);
+        $this->load->aview('article/tags',$this->_cdata);
     }
     public function lists()
     {
-        $this->load->aview('index/index',$this->_cdata);
+        $this->load->aview('article/lists',$this->_cdata);
     }
 
 }
