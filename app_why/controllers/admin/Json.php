@@ -74,10 +74,6 @@ class Json extends TempBase{
         returnjson(array('code'=>1,'msg'=>"成功！"));
     }
 
-    public function article_classes() {
-        $params = $this->params;
-        returnjson(array('state'=>"error",'err'=>"成功！"));
-    }
 
 
 

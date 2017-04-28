@@ -56,7 +56,13 @@
                     formatoptions:{
                         keys:true,
                         delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
+                        editformbutton:true,
+                        editOptions:{recreateForm: true, afterEditCell:beforeEditCallback,afterComplete : function(response, postdata)
+                        {
+                            var r=eval('('+response.responseText+')');
+                            layer.msg(r.msg);
+                            return true;
+                        }}
                     }
                 },
                 {name:'id',index:'id', width:60, sorttype:"int", editable: false},
@@ -66,7 +72,7 @@
             viewrecords : true,
             pgbuttons: false,
             pginput:false,
-            rowNum:"10",
+            rowNum:"100",
             rowList:[],
             pager : pager_selector,
             altRows: true,
@@ -84,7 +90,7 @@
                     enableTooltips(table);
                 }, 0);
             },
-            editurl: "/admin/json/article_classes",//nothing is saved
+            editurl: "/admin/article/classes_handle",//nothing is saved
             caption: "文章分类",
             height: 'auto',
             width: 'auto'
@@ -134,6 +140,12 @@
                     var form = $(e[0]);
                     form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
                     style_edit_form(form);
+                },
+                afterComplete : function(response, postdata)
+                {
+                    var r=eval('('+response.responseText+')');
+                    layer.msg(r.msg);
+                    return true;
                 }
             },
             {
@@ -152,13 +164,14 @@
                     //window.location.reload();
                     //var r=eval('('+response.responseText+')');
                     //$(grid_selector).addRowData("9",{"name":"asd","number":"3"});
-
                     //window.location.reload();
                     var r=eval('('+response.responseText+')');
-                    layer.msg(r.err);
-                    $(grid_selector).addRowData("9",{"name":"asd","number":"3"});
+                    layer.msg(r.msg);
+                    if(r.code=="1") {
+                        $(grid_selector).addRowData(r.data.id, {"name": r.data.name, "number": "0"});
+                    }
                     return true;
-                },
+                }
             },
             {
                 //delete record form
@@ -170,8 +183,11 @@
                     style_delete_form(form);
                     form.data('styled', true);
                 },
-                onClick : function(e) {
-                    alert(1);
+                afterSubmit : function(response, postdata)
+                {
+                    var r=eval('('+response.responseText+')');
+                    layer.msg(r.msg);
+                    return true;
                 }
             },
             {

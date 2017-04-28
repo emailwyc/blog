@@ -27,6 +27,18 @@ class CModel extends CI_Model {
         $check = $this->db->insert($table,$data);
         return $check;
     }
+    public function insertTableRid($table,$data) {
+        $check = $this->db->insert($table,$data);
+        if($check) {
+            return $this->db->insert_id();
+        }else{
+            return false;
+        }
+    }
+    public function delTable($table,$where) {
+        $check = $this->db->delete($table, $where);
+        return $check;
+    }
     //updateaddone
     public function updateOne($table,$data,$where) {
         //获取ip地址

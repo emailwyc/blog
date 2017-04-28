@@ -71,13 +71,22 @@ class TempBase extends Blog_Controller {
 }
 
 class AdminBase extends Blog_Controller {
+    public $params;
 	public function __construct(){
 		parent::__construct();
+        $this->params = $this->input->post();
         $this->load->model('admin/CModel');
         $this->load->model('admin/ComModel');
-        $this->_cdata['_var'] = $this->ComModel->getVariable();
-        $this->_cdata['_title']  = $this->_cdata['_var']['author']."个人博客后台";
+        if(!$this->input->is_ajax_request())
+        {
+            $this->_cdata['_var'] = $this->ComModel->getVariable();
+            $this->_cdata['_title'] = $this->_cdata['_var']['author']."个人博客后台";
+            $this->ComModel->checkLogin(1);
+        }else{
+            $w = $this->ComModel->checkLogin(0);
+            if(!$w){ returnjson(array('code'=>11,'msg'=>"失败，登录失效！"));}
+        }
         //检测是否登录
-		$w=$this->ComModel->checkLogin(1);
+
 	}   
 }
