@@ -13,7 +13,7 @@ class ArticleM extends CI_Model {
     public function getArtList($page,$where=array(),$offset=10) {
         $page = $page<=0?1:$page;
         $start = ($page-1)*$offset;
-        $field = "article.id,article.title,article.short,article.author,article.author_link,article.is_hot,article.pv,article.comnum,article_class.name,article.img,article.createtime,article.cid";
+        $field = "article.id,article.title,article.pv,article.comnum,article.status,article_class.name,article.img,article.createtime,article.cid";
         $query = $this->db->select($field)->where($where)->order_by('article.id desc')->from($this->table)->join('article_class', "article.cid=article_class.id",'left')->limit($offset,$start)->get();
         $result = $query->result_array();
         $count  = $this->db->where($where)->count_all_results($this->table);

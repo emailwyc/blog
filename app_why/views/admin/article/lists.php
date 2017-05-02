@@ -1,7 +1,14 @@
 <!--主题框架开始-->
 <?php $this->_cdata['_title']="文章列表－".$this->_cdata['_title'];?>
+
 <?php $this->load->aview('common/header',$this->_cdata);?>
 <!--主题框架开始-->
+<style type="text/css">
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle!important;
+    }
+</style>
 <?php $this->load->aview('common/left',$this->_cdata);?>
 
 <div class="main-content">
@@ -59,236 +66,47 @@
                                 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="center">
-                                        <label>
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </th>
-                                    <th>Domain</th>
-                                    <th>Price</th>
-                                    <th class="hidden-480">Clicks</th>
-
-                                    <th>
-                                        <i class="icon-time bigger-110 hidden-480"></i>
-                                        Update
-                                    </th>
-                                    <th class="hidden-480">Status</th>
-
-                                    <th></th>
+                                    <th class="center">ID</th>
+                                    <th>分类</th>
+                                    <th>标题</th>
+                                    <th>ICON</th>
+                                    <th>PV</th>
+                                    <th>评论数</th>
+                                    <th><i class="icon-time bigger-110 hidden-480"></i>创建时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
-
                                 <tbody>
+                                <?php foreach ($artList['data'] as $k=>$v):?>
                                 <tr>
-                                    <td class="center">
-                                        <label>
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
+                                    <td class="center"><?=$v['id']?></td>
+                                    <td><?=$v['name']?></td>
+                                    <td title="<?=$v['title']?>"><?=mb_substr($v['title'],0,9,"utf-8");?></td>
+                                    <td><img width="60px;" height="40px;" src="<?=$v['img']?>"/></td>
+                                    <td><?=$v['pv']?></td>
+                                    <td><?=$v['comnum']?></td>
+                                    <td><?=$v['createtime']?></td>
                                     <td>
-                                        <a href="#">app.com</a>
+                                        <?php if($v['status']==1){?>
+                                        <span class="label label-sm label-success">显示</span>
+                                        <?php }else{?>
+                                            <span class="label label-sm label-danger">隐藏</span>
+                                        <?php }?>
                                     </td>
-                                    <td>$45</td>
-                                    <td class="hidden-480">3,330</td>
-                                    <td>Feb 12</td>
-
-                                    <td class="hidden-480">
-                                        <span class="label label-sm label-warning">Expiring</span>
-                                    </td>
-
                                     <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#">
+                                            <a class="blue" target="_blank" href="/article/detail/<?=$v['id']?>">
                                                 <i class="icon-zoom-in bigger-130"></i>
                                             </a>
-
                                             <a class="green" href="#">
                                                 <i class="icon-pencil bigger-130"></i>
                                             </a>
-
-                                            <a class="red" href="#">
-                                                <i class="icon-trash bigger-130"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                            <div class="inline position-relative">
-                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="icon-caret-down icon-only bigger-120"></i>
-                                                </button>
-
-                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                    <li>
-                                                        <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="icon-zoom-in bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="icon-edit bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="icon-trash bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <a class="red" href="#"><i class="icon-trash bigger-130"></i></a>
                                         </div>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td class="center">
-                                        <label>
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>
-                                        <a href="#">base.com</a>
-                                    </td>
-                                    <td>$35</td>
-                                    <td class="hidden-480">2,595</td>
-                                    <td>Feb 18</td>
-
-                                    <td class="hidden-480">
-                                        <span class="label label-sm label-success">Registered</span>
-                                    </td>
-
-                                    <td>
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#">
-                                                <i class="icon-zoom-in bigger-130"></i>
-                                            </a>
-
-                                            <a class="green" href="#">
-                                                <i class="icon-pencil bigger-130"></i>
-                                            </a>
-
-                                            <a class="red" href="#">
-                                                <i class="icon-trash bigger-130"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                            <div class="inline position-relative">
-                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="icon-caret-down icon-only bigger-120"></i>
-                                                </button>
-
-                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                    <li>
-                                                        <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="icon-zoom-in bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="icon-edit bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="icon-trash bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="center">
-                                        <label>
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td>
-                                        <a href="#">once.com</a>
-                                    </td>
-                                    <td>$20</td>
-                                    <td class="hidden-480">1,400</td>
-                                    <td>Apr 04</td>
-
-                                    <td class="hidden-480">
-                                        <span class="label label-sm label-info arrowed arrowed-righ">Sold</span>
-                                    </td>
-
-                                    <td>
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-                                            <a class="blue" href="#">
-                                                <i class="icon-zoom-in bigger-130"></i>
-                                            </a>
-
-                                            <a class="green" href="#">
-                                                <i class="icon-pencil bigger-130"></i>
-                                            </a>
-
-                                            <a class="red" href="#">
-                                                <i class="icon-trash bigger-130"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                            <div class="inline position-relative">
-                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="icon-caret-down icon-only bigger-120"></i>
-                                                </button>
-
-                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                    <li>
-                                                        <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="icon-zoom-in bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="icon-edit bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="icon-trash bigger-120"></i>
-																				</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <?php endforeach;?>
                                 </tbody>
                             </table>
                                 <!--table-->
@@ -298,25 +116,21 @@
                 </div>
                 <!--page-->
                 <div style="margin:0 auto;text-align:center;">
-                    <ul class="pagination no-margin">
+                    <ul class="pagination no-margin" id="paginate">
                     <li class="prev disabled">
                         <a href="#">
                             <i class="icon-double-angle-left"></i>
                         </a>
                     </li>
-
                     <li class="active">
-                        <a href="#">1</a>
+                        <a href="/">1</a>
                     </li>
-
                     <li>
-                        <a href="#">2</a>
+                        <a href="/">2</a>
                     </li>
-
                     <li>
                         <a href="#">3</a>
                     </li>
-
                     <li class="next">
                         <a href="#">
                             <i class="icon-double-angle-right"></i>
@@ -324,6 +138,14 @@
                     </li>
                 </ul>
                 </div>
+                <script type="text/javascript" src="/ui/admin/assets/js/jquery.pagination.js?v=1"></script>
+                <script type="text/javascript">
+                    jQuery('#paginate').pagination(<?=$artList['page']['count']?>,{
+                        current_page:<?=$artList['page']['curpage']?>,
+                        items_per_page:<?=$artList['page']['per']?>,
+                        link_to:"/admin/article/lists/__id__"
+                    });
+                </script>
                 <!--page-->
 
                 <!-- PAGE CONTENT ENDS -->
