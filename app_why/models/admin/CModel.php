@@ -58,8 +58,8 @@ class CModel extends CI_Model {
         return $result;
     }
     //得到所有
-    public function getAll($table,$where) {
-        $query = $this->db->select("*")->where($where)->get($table);
+    public function getAll($table,$where,$order="") {
+        $query = $this->db->select("*")->where($where)->order_by($order)->get($table);
         $result = $query->result_array();
         return $result;
     }

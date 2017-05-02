@@ -85,6 +85,29 @@ class ComModel extends CI_Model {
         $baseRes = ArrKeyFromId($query->result_array(),'mark','value');
         return $baseRes;
     }
+    //得到文章分类
+    public function getArtClass()
+    {
+        $query = $this->db->select("a.id,a.name,count(b.id) as number")
+            ->join('article as b', 'b.cid = a.id','left')
+            ->group_by("a.id")
+            ->order_by("a.id asc")
+            ->get('article_class as a', 100,0);
+        $result = $query->result_array();
+        return $result;
+    }
 
+    //得到标签
+    public function getTags() {
+        $query = $this->db->select("a.id,a.name,count(b.id) as number,a.order")
+            ->join('article_tags as b', 'b.tid = a.id','left')
+            ->group_by("a.id")
+            ->from('tags_cloud as a')
+            ->order_by("a.order asc,a.id asc")
+            ->limit(100,0)
+            ->get();
+        $result = $query->result_array();
+        return $result;
+    }
 
 }

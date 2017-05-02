@@ -55,14 +55,26 @@
                     formatter:'actions',
                     formatoptions:{
                         keys:true,
-                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        editformbutton:true,
-                        editOptions:{recreateForm: true, afterEditCell:beforeEditCallback,afterComplete : function(response, postdata)
-                        {
+                        delOptions:{recreateForm: true,closeAfterAdd : true, beforeShowForm:beforeDeleteCallback,
+                        afterSubmit:function(response, postdata){
                             var r=eval('('+response.responseText+')');
-                            layer.msg(r.msg);
-                            return true;
-                        }}
+                            if(r.code=="1") {
+                                return [true,r.msg];
+                            }else{
+                                return [false,r.msg];
+                            }
+                        },closeAfterEdit: true},
+                        editformbutton:true,
+                        editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback,
+                        afterSubmit : function(response, postdata) {
+                            var r=eval('('+response.responseText+')');
+                            if(r.code=="1") {
+                                jQuery(grid_selector).setRowData(postdata.id, {"name":postdata.name});
+                                return [true,r.msg];
+                            }else{
+                                return [false,r.msg];
+                            }
+                        },closeAfterEdit: true}
                     }
                 },
                 {name:'id',index:'id', width:60, sorttype:"int", editable: false},
@@ -95,7 +107,7 @@
             height: 'auto',
             width: 'auto'
 
-        });
+        }).trigger("reloadGrid");
         //enable search/filter toolbar
         //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
         //switch element when editing inline
@@ -160,17 +172,13 @@
                 },
                 afterSubmit : function(response, postdata)
                 {
-                    //layer.msg(response.msg);
-                    //window.location.reload();
-                    //var r=eval('('+response.responseText+')');
-                    //$(grid_selector).addRowData("9",{"name":"asd","number":"3"});
-                    //window.location.reload();
                     var r=eval('('+response.responseText+')');
-                    layer.msg(r.msg);
                     if(r.code=="1") {
                         $(grid_selector).addRowData(r.data.id, {"name": r.data.name, "number": "0"});
+                        return [true,r.msg];
+                    }else{
+                        return [false,r.msg];
                     }
-                    return true;
                 }
             },
             {
@@ -265,8 +273,8 @@
 
             form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
             style_delete_form(form);
-
             form.data('styled', true);
+
         }
 
         function beforeEditCallback(e) {
