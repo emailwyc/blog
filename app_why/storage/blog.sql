@@ -3986,12 +3986,12 @@ INSERT INTO `message_rolling` VALUES ('3', '本站内容仅供学习和参阅，
 -- ----------------------------
 DROP TABLE IF EXISTS `publish_logs`;
 CREATE TABLE `publish_logs` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `class` tinyint(4) NOT NULL COMMENT '类别：1文章2说说3图片',
   `content` varchar(50) NOT NULL DEFAULT '' COMMENT '内容',
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of publish_logs
@@ -4003,7 +4003,7 @@ INSERT INTO `publish_logs` VALUES ('1', '2', 'hello world!', '2017-03-20 13:32:4
 -- ----------------------------
 DROP TABLE IF EXISTS `saying`;
 CREATE TABLE `saying` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '标题',
   `content` text NOT NULL COMMENT '说说内容',
   `comnum` int(11) NOT NULL DEFAULT '0' COMMENT '评论数量',
@@ -4013,7 +4013,7 @@ CREATE TABLE `saying` (
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of saying

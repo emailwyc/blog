@@ -10,7 +10,7 @@ class ArticleM extends CI_Model {
         $this->table = 'article';
     }
     //得到滚动消息
-    public function getArtList($page,$where=array(),$offset=10) {
+    public function getArtList($page,$where=array(),$offset=8) {
         $page = $page<=0?1:$page;
         $start = ($page-1)*$offset;
         $field = "article.id,article.title,article.pv,article.comnum,article.status,article_class.name,article.img,article.createtime,article.cid";

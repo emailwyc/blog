@@ -33,29 +33,28 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="table-header">
-                            共<span style="color:yellow;"><?=$artList['page']['count']?></span>条数据
+                            共<span style="color:yellow;" class="allcount"><?=$artList['page']['count']?></span>条数据
                         </div>
                         <div class="table-responsive">
                             <div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
                                 <!--search-->
-                                <div class="row">
+                                <div class="row" style="padding:5px;">
                                     <div class="col-sm-6">
                                         <div id="sample-table-2_length" class="dataTables_length">
-                                            <label>Display
-                                                <select size="1" name="sample-table-2_length" aria-controls="sample-table-2">
-                                                    <option value="10" selected="selected">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
+                                            <label>文章分类：
+                                                <select class="sooneSearch sooneSearch_calsses" name="sample-table-2_length" aria-controls="sample-table-2">
+                                                    <option value="">所有</option>
+                                                    <?php foreach ($artClass as $v):?>
+                                                    <option value="<?=$v['id']?>" <?php if($classes==$v['id']){ echo "selected='selected'";}?> ><?=$v['name']?></option>
+                                                    <?php endforeach;?>
                                                 </select>
-                                                records
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="dataTables_filter" id="sample-table-2_filter">
-                                            <label>Search:
-                                                <input aria-controls="sample-table-2" type="text">
+                                            <label>
+                                                <a href="/admin/article/lists_add"><button class="btn btn-sm btn-warning">发表文章</button></a>
                                             </label>
                                         </div>
                                     </div>
@@ -79,7 +78,7 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($artList['data'] as $k=>$v):?>
-                                <tr>
+                                <tr class="delMark<?=$v['id'];?>">
                                     <td class="center"><?=$v['id']?></td>
                                     <td><?=$v['name']?></td>
                                     <td title="<?=$v['title']?>"><?=mb_substr($v['title'],0,9,"utf-8");?></td>
@@ -99,10 +98,10 @@
                                             <a class="blue" target="_blank" href="/article/detail/<?=$v['id']?>">
                                                 <i class="icon-zoom-in bigger-130"></i>
                                             </a>
-                                            <a class="green" href="#">
+                                            <a class="green" href="/admin/article/lists_edit?id=<?=$v['id']?>">
                                                 <i class="icon-pencil bigger-130"></i>
                                             </a>
-                                            <a class="red" href="#"><i class="icon-trash bigger-130"></i></a>
+                                            <a class="red" onclick="del_func(<?=$v['id'];?>)" href="javascript:void(0);"><i class="icon-trash bigger-130"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -116,34 +115,40 @@
                 </div>
                 <!--page-->
                 <div style="margin:0 auto;text-align:center;">
-                    <ul class="pagination no-margin" id="paginate">
-                    <li class="prev disabled">
-                        <a href="#">
-                            <i class="icon-double-angle-left"></i>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="/">1</a>
-                    </li>
-                    <li>
-                        <a href="/">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">
-                            <i class="icon-double-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
+                    <ul class="pagination no-margin" id="paginate"></ul>
                 </div>
                 <script type="text/javascript" src="/ui/admin/assets/js/jquery.pagination.js?v=1"></script>
                 <script type="text/javascript">
+                    function del_func(id){
+                        $.ajax({
+                            type : "POST",
+                            url : "/admin/article/lists_del",
+                            dataType : "json",
+                            async : true,
+                            data:{'id':id},
+                            success : function(data) {
+                                if(data.code==1){
+                                    layer.msg("删除成功！");
+                                    $(".delMark"+id).hide();
+                                    var count = parseInt($(".allcount").html())-1;
+                                    $(".allcount").html(count);
+                                }else{
+                                    layer.msg(data.msg);
+                                }
+                            },
+                            error: function(res) { layer.msg("请求错误！");}
+                        });
+                    }
                     jQuery('#paginate').pagination(<?=$artList['page']['count']?>,{
                         current_page:<?=$artList['page']['curpage']?>,
                         items_per_page:<?=$artList['page']['per']?>,
-                        link_to:"/admin/article/lists/__id__"
+                        link_to:"/admin/article/lists/__id__?classes=<?=$classes?>"
+                    });
+                    $(document).ready(function() {
+                        $(".sooneSearch").change(function () {
+                            var classes = $(".sooneSearch_calsses").val();
+                            window.location.href="/admin/article/lists?classes="+classes;
+                        });
                     });
                 </script>
                 <!--page-->

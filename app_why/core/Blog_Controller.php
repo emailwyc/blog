@@ -14,8 +14,14 @@ class Blog_Controller extends CI_Controller {
     protected function emptyCheck($params,$key_arr) {
         foreach($key_arr as $v){
             if(!isset($params[$v])){
-                $msg['code']=100;
                 returnjson(array("code"=>100,"msg"=>"参数错误"));
+            }
+        }
+    }
+    protected function emptyCheck1($params,$key_arr) {
+        foreach($key_arr as $v){
+            if(empty($params[$v])){
+                returnjson(array("code"=>101,"msg"=>"参数错误,有空值请检查"));
             }
         }
     }

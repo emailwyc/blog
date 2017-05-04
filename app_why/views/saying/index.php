@@ -17,7 +17,7 @@
 						<div class="shuo-info arrow_box ">
 						<!-- <div class="shuo-info arrow_box "id="Hot"> -->
 						<div class="shuo-content ">
-							<a title="点击查看详情:<?=$v['content']?>" href="/saying/detail/<?=$v['id']?>"><?=$v['title']?></a>
+							<a title="点击查看详情:<?=toHtmlSpecialChars($v['content'])?>" href="/saying/detail/<?=$v['id']?>"><?=$v['title']?></a>
 						</div>
 							<div class="shuo-line pc-hidden">
 								<ul>

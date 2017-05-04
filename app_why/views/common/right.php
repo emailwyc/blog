@@ -71,7 +71,7 @@
 		<?php foreach($_saying as $k=>$v):?>
 			<li id="Hots">
 			<span class="shuobg<?=($k+1)?>"><strong><?=@date('m-d',strtotime($v['createtime']));?> </strong></span>
-			<div><a href="/saying/detail/<?=$v['id']?>" title="<?=$v['content']?>"><?=$v['title']?></a><b title="点击<?=$v['pv']?>">(<?=$v['pv']?>)</b></div>
+			<div><a href="/saying/detail/<?=$v['id']?>" title="<?=shtmlspecialchars($v['content'])?>"><?=$v['title']?></a><b title="点击<?=$v['pv']?>">(<?=$v['pv']?>)</b></div>
 			</li>
 		<?php endforeach;?>
 		</ul>

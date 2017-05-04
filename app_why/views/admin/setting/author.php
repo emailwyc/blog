@@ -82,7 +82,7 @@
 </div><!-- /.main-content -->
 <script type="text/javascript">
     $(document).ready(function(){
-        updateimgone(80,80,"author_avatar");
+        updateimgone(80,80,"author_avatar","");
     });
     function settingpwd_check(forms){
         $.ajax({

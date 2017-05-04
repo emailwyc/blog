@@ -46,7 +46,6 @@
           <ul>
 				<!--		<li><a title="soonebaby 当前位于：北京市区">北京市区</a></li>-->
 				<!-- <li><a href="/article/category" title="归类："></a></li> -->
-				<li><a href="/article/category/<?=$artClass['id']?>" title="归类：<?=$artClass['name']?>">修炼之道</a></li>
 				<?php foreach($tags as $k=>$v):?>
 				<li> <a class="b-tag-name" title="标签：<?=$v['name']?>" href="article/tags/<?=$v['id']?>"><?=$v['name']?></a> </li>          
 				<?php endforeach;?>

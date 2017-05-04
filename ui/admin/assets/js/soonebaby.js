@@ -137,8 +137,18 @@ function updateimg(){
     })
 }
 
-
-function updateimgone(w,h,tp) {
+function getCheckBoxVal(name){
+    var box = document.getElementsByName(name);
+    var objArray = box.length;
+    var chestr  = new Array();
+    for(var i=0;i<objArray;i++){
+        if(box[i].checked == true){
+            chestr.push(box[i].value);
+        }
+    }
+    return chestr;
+}
+function updateimgone(w,h,tp,thumb) {
     $(document).on("change", ".jzr-form .img-add-photo input[type=file]", function () {
         $(this).parent(".img-add-photo").addClass("zhuan11");
         var f = $(this);
@@ -158,31 +168,21 @@ function updateimgone(w,h,tp) {
         img.onload = function () {
             var width = w;
             var height = h;
-            var bor = img.width > img.height ? 1 : 0;
-            if (bor) {
-                if (img.width > width) {
-                    var target_w = width;
-                    var target_h = parseInt(width / img.width * img.height);
-                } else {
-                    var target_w = img.width;
-                    var target_h = img.height;
-                }
-            } else {
-                if (img.height > height) {
-                    var target_w = parseInt(height / img.height * img.width);
-                    var target_h = height;
-                } else {
-                    var target_w = img.width;
-                    var target_h = img.height;
-                }
-            }
+
+            var target_w = width;
+            var target_h = height;
+
             canvas.width = target_w;
             canvas.height = target_h;
             canvas.getContext("2d").drawImage(img, 0, 0, target_w, target_h);
             var imgData = canvas.toDataURL();
             imgData = imgData.replace('data:image/png;base64,', '')
             var imagedata = encodeURIComponent(imgData);
-            var img_data = {"img_info": imagedata, "img_type": "png","tp":tp,"thumb":{"w":64,"h":64}}
+            if(thumb!="") {
+                var img_data = {"img_info": imagedata, "img_type": "png", "tp": tp, "thumb": thumb}
+            }else{
+                var img_data = {"img_info": imagedata, "img_type": "png","tp":tp,"thumb":""}
+            }
             $.ajax({
                 type: "post",
                 url: "/admin/json/uploadImg",

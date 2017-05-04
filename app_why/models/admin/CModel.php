@@ -27,6 +27,11 @@ class CModel extends CI_Model {
         $check = $this->db->insert($table,$data);
         return $check;
     }
+    public function insertBatch($table,$data) {
+        $check = $this->db->insert_batch($table,$data);
+        return $check;
+    }
+
     public function insertTableRid($table,$data) {
         $check = $this->db->insert($table,$data);
         if($check) {
@@ -60,6 +65,35 @@ class CModel extends CI_Model {
     //得到所有
     public function getAll($table,$where,$order="") {
         $query = $this->db->select("*")->where($where)->order_by($order)->get($table);
+        $result = $query->result_array();
+        return $result;
+    }
+    //updateaddone
+    public function updateaddone($table,$field,$where) {
+        //获取ip地址
+        $check = $this->db->set($field,"$field+1",false)->where($where)->update($table);
+        return $check;
+    }
+    public function updatejianone($table,$field,$where) {
+        //获取ip地址
+        $check = $this->db->set($field,"$field-1",false)->where($where)->update($table);
+        return $check;
+    }
+    //得到滚动消息
+    public function getArtList($table,$page,$where=array(),$offset=8) {
+        $page = $page<=0?1:$page;
+        $start = ($page-1)*$offset;
+        $field = "*";
+        $query = $this->db->select($field)->where($where)->order_by('id desc')->from($table)->limit($offset,$start)->get();
+        $result = $query->result_array();
+        $count  = $this->db->where($where)->count_all_results($table);
+        $allpage = ceil($count/$offset);
+        $res = array("page"=>array('per'=>$offset,'curpage'=>$page,'count'=>$count),'data'=>$result);
+        return $res;
+    }
+    //得到所有
+    public function getAllByIn($table,$where,$wherein,$order="") {
+        $query = $this->db->select("*")->where($where)->where_in($wherein['field'],$wherein['arr'])->order_by($order)->get($table);
         $result = $query->result_array();
         return $result;
     }

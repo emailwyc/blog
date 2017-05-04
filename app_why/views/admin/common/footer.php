@@ -126,6 +126,7 @@
 
 
 <script type="text/javascript">
+
     jQuery(function($) {
         $('.easy-pie-chart.percentage').each(function(){
             var $box = $(this).closest('.infobox');
