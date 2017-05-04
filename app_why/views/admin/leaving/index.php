@@ -121,7 +121,7 @@
                     jQuery('#paginate').pagination(<?=$lists['page']['count']?>,{
                         current_page:<?=$lists['page']['curpage']?>,
                         items_per_page:<?=$lists['page']['per']?>,
-                        link_to:"/admin/saying/index/__id__"
+                        link_to:"/admin/leaving/index/__id__"
                     });
                 </script>
                 <!--page-->

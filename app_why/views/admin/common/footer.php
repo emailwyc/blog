@@ -54,14 +54,12 @@
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-
-<script src="/ui/admin/assets/js/jquery203.min.js"></script>
-
+<!--<script src="/ui/admin/assets/js/jquery203.min.js"></script>-->
 <!-- <![endif]-->
 
-<!--[if IE]>
-<script src="/ui/admin/assets/js/jquery112.min.js"></script>
-<![endif]-->
+<!--[if IE]-->
+<!--<script src="/ui/admin/assets/js/jquery112.min.js"></script>-->
+<!--[endif]-->
 
 <!--[if !IE]> -->
 
@@ -109,7 +107,7 @@
 <script src="/ui/admin/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 <script src="/ui/admin/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 
-
+<script type="text/javascript" src="/ui/system/js/tooltip.js"></script>
 <!--new end-->
 <script src="/ui/admin/assets/js/chosen.jquery.min.js"></script>
 <script src="/ui/admin/assets/js/jquery.slimscroll.min.js"></script>
