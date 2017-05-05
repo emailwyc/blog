@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-rtl.min.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/ace-skins.min.css" />
     <link rel="stylesheet" href="/ui/system/css/layer.css" id="layui_layer_skinlayercss" style="">
-    <link rel="stylesheet" href="/ui/admin/assets/css/jquery-ui-1.10.3.full.min.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/datepicker.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/bootstrap-timepicker.css" />
     <link rel="stylesheet" href="/ui/admin/assets/css/daterangepicker.css" />
@@ -75,6 +74,7 @@
 
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
+                <!--
                 <li class="grey">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="icon-bell-alt icon-animated-bell"></i>
@@ -100,6 +100,7 @@
                         </li>
                     </ul>
                 </li>
+                -->
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" src="<?=$_var['avatar']?>" alt="<?=$_var['author']?>" />

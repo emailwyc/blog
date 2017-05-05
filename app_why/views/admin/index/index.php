@@ -25,6 +25,33 @@
 
 								<!-- PAGE CONTENT BEGINS -->
                                         <h3 class="header smaller lighter blue">数据控制台</h3>
+                                    <div>
+                                        <label>
+                                            <a href="/admin/saying/index_add" title="">
+                                                <button class="btn btn-sm btn-success">发表说说</button>
+                                            </a>
+                                        </label>
+                                        <label>
+                                            <a href="/admin/article/lists_add" title="">
+                                                <button class="btn btn-sm btn-warning">发表文章</button>
+                                            </a>
+                                        </label>
+                                        <label>
+                                            <a href="/admin/album/index_add" title="">
+                                                <button class="btn btn-sm btn-danger">添加相册</button>
+                                            </a>
+                                        </label>
+                                        <label>
+                                            <a href="/admin/download/index_add" title="">
+                                                <button class="btn btn-sm btn-info">添加资源</button>
+                                            </a>
+                                        </label>
+                                        <label>
+                                            <a href="/admin/download/index_add" title="">
+                                                <button class="btn btn-sm btn-inverse">查看留言</button>
+                                            </a>
+                                        </label>
+                                    </div>
                                         <div class="table-header"><img width="32px;" height="32px;" src="<?=$_var['avatar']?>"/>&nbsp;&nbsp;&nbsp;作者：<?=$_var['author']?>---<?=$_var['desc']?></div>
 
                                         <div class="table-responsive">

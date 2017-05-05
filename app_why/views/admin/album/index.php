@@ -72,7 +72,11 @@
                                             <td class="center"><?=$v['id']?></td>
                                             <td title="<?=$v['name']?>"><?=mb_substr($v['name'],0,9,"utf-8");?></td>
                                             <td><img width="60px;" height="40px;" src="<?=$v['icon']?>"/></td>
-                                            <td><?=$v['photo_num']?></td>
+                                            <td>
+                                                <a class="blue" target="_blank" href="/admin/album/photo/<?=$v['id']?>">
+                                                    <?=$v['photo_num']?>
+                                                </a>
+                                            </td>
                                             <td><?=$v['createtime']?></td>
                                             <td>
                                                 <?php if($v['status']==1){?>

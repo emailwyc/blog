@@ -44,13 +44,13 @@ DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL COMMENT '相册id',
-  `img` varchar(50) NOT NULL DEFAULT '' COMMENT '图片地址',
-  `img_icon` varchar(50) NOT NULL COMMENT 'icon地址',
+  `img` varchar(255) NOT NULL DEFAULT '' COMMENT '图片地址',
+  `img_icon` varchar(255) NOT NULL COMMENT 'icon地址',
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '图片名称',
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of album

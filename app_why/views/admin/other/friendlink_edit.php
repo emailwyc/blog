@@ -1,5 +1,5 @@
 <!--主题框架开始-->
-<?php $this->_cdata['_title']="添加相册－".$this->_cdata['_title'];?>
+<?php $this->_cdata['_title']="友情链接－".$this->_cdata['_title'];?>
 <?php $this->load->aview('common/header',$this->_cdata);?>
 <!--主题框架开始-->
 <?php $this->load->aview('common/left',$this->_cdata);?>
@@ -15,8 +15,8 @@
                 <i class="icon-user"></i>
                 <a href="javascript:void(0)"></a>
             </li>
-            <li class="active">相册</li>
-            <li class="active">添加</li>
+            <li class="active">其他</li>
+            <li class="active">友情链接</li>
         </ul><!-- .breadcrumb -->
     </div>
 
@@ -30,33 +30,37 @@
                     <div class="space-4"></div>
                     <!--用户名称-->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 标题* </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 标题 </label>
                         <div class="col-sm-9">
-                            <input type="text" name="title" value=""  class="col-xs-10 col-sm-5" />
+                            <?=$flink['title']?>
                         </div>
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="margin-top: 10px;"> ICON* </label>
-                        <div class="col-sm-9 image">
-                            <div class="img-add-photo">
-                                <input type="file" capture="camera" accept="image/*" name="file0">
-                            </div>
-                            <div class="img-show ace-thumbnails">
-                                <img width="64px;" height="64px" data-action="zoom" src="" alt="" style="cursor:zoom-in;">
-                                <input name="album_icon" value="" type="hidden">
-                            </div>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 网站 </label>
+                        <div class="col-sm-9">
+                            <a target="_blank" href="<?=$flink['website']?>"><?=$flink['website']?></a>
                         </div>
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 前端显示 </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 排序数字（1-99999）* </label>
                         <div class="col-sm-9">
-                            <input name="status" class="ace ace-switch ace-switch-4" type="checkbox" checked="checked"/>
-                            <span class="lbl"></span>
+                            <input type="text" name="order" value="<?=$flink['order']?>"  class="col-xs-10 col-sm-5" />
                         </div>
                     </div>
 
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 审核状态* </label>
+                        <div class="col-sm-9">
+                            <select name="status" aria-controls="sample-table-2">
+                                <option value="0" <?php if($flink['status']==0){ echo "selected='selected'";}?>>未审核</option>
+                                <option value="1" <?php if($flink['status']==1){ echo "selected='selected'";}?>>通过</option>
+                                <option value="2" <?php if($flink['status']==2){ echo "selected='selected'";}?>>不通过</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="space-4"></div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
@@ -83,25 +87,21 @@
 <!-- 编辑器源码文件 -->
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    $(document).ready(function(){
-        updateimgone(150,100,"album_icon","");
-    });
     function settingpwd_check(forms){
         $.ajax({
             type : "POST",
-            url : "/admin/album/index_add",
+            url : "/admin/other/friendlink_edit?id=<?=$flink['id']?>",
             dataType : "json",
             async : true,
             data:{
-                'title':forms['title'].value,
-                'icon':forms['album_icon'].value,
-                'status':forms['status'].checked,
+                'status':forms['status'].value,
+                'order':forms['order'].value,
                 'oper':true
             },
             success : function(data) {
                 if(data.code==1){
                     layer.msg("成功！");
-                    window.location.href="/admin/album/photo/"+data.aid;
+                    window.history.go(-1);
                 }else{
                     layer.msg(data.msg);
                 }

@@ -31,21 +31,26 @@
 
     _handleClick: function(event) {
       var target = event.target
-
       if (!target) return
 
-      if (target.tagName !== 'IMG') this._close()
+      if (target.tagName !== 'IMG'){
+          $(".ace-thumbnails > li ").css("overflow","hidden");
+          this._close();
+      }
 
       if (!target.hasAttribute('data-action')) return
 
       switch (target.getAttribute('data-action')) {
         case 'zoom':
-          this._zoom(target)
+          this._zoom(target);
+          $(".ace-thumbnails > li ").css("overflow","visible");
           break
         case 'close':
-          this._close()
+          this._close();
+          $(".ace-thumbnails > li ").css("overflow","hidden");
           break
         default:
+          $(".ace-thumbnails > li ").css("overflow","hidden");
           break
       }
     },

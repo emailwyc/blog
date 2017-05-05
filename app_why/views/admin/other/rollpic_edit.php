@@ -1,5 +1,5 @@
 <!--主题框架开始-->
-<?php $this->_cdata['_title']="添加相册－".$this->_cdata['_title'];?>
+<?php $this->_cdata['_title']="编辑轮播图－".$this->_cdata['_title'];?>
 <?php $this->load->aview('common/header',$this->_cdata);?>
 <!--主题框架开始-->
 <?php $this->load->aview('common/left',$this->_cdata);?>
@@ -15,8 +15,8 @@
                 <i class="icon-user"></i>
                 <a href="javascript:void(0)"></a>
             </li>
-            <li class="active">相册</li>
-            <li class="active">添加</li>
+            <li class="active">其他</li>
+            <li class="active">轮播图</li>
         </ul><!-- .breadcrumb -->
     </div>
 
@@ -32,31 +32,45 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 标题* </label>
                         <div class="col-sm-9">
-                            <input type="text" name="title" value=""  class="col-xs-10 col-sm-5" />
+                            <input type="text" name="title" value="<?=$pic['title']?>"  class="col-xs-10 col-sm-5" />
                         </div>
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="margin-top: 10px;"> ICON* </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1" style="margin-top: 10px;"> 图片* </label>
                         <div class="col-sm-9 image">
                             <div class="img-add-photo">
                                 <input type="file" capture="camera" accept="image/*" name="file0">
                             </div>
                             <div class="img-show ace-thumbnails">
-                                <img width="64px;" height="64px" data-action="zoom" src="" alt="" style="cursor:zoom-in;">
-                                <input name="album_icon" value="" type="hidden">
+                                <img width="64px;" height="64px" data-action="zoom" src="<?=$pic['img']?>" alt="" style="cursor:zoom-in;">
+                                <input name="rollpic_icon" value="<?=$pic['img']?>" type="hidden">
                             </div>
                         </div>
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 前端显示 </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 跳转链接 </label>
                         <div class="col-sm-9">
-                            <input name="status" class="ace ace-switch ace-switch-4" type="checkbox" checked="checked"/>
-                            <span class="lbl"></span>
+                            <input type="text" name="link" value="<?=$pic['link']?>"  class="col-xs-10 col-sm-5" />
                         </div>
                     </div>
-
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 排序数字（1-99999）* </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="order" value="<?=$pic['order']?>"  class="col-xs-10 col-sm-5" />
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 位置* </label>
+                        <div class="col-sm-9">
+                            <select name="position" aria-controls="sample-table-2">
+                                <option value="index" <?php if($pic['position']=="index"){ echo "selected='selected'";}?>>首页</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="space-4"></div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
@@ -84,24 +98,26 @@
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     $(document).ready(function(){
-        updateimgone(150,100,"album_icon","");
+        updateimgone(700,300,"rollpic_icon","");
     });
     function settingpwd_check(forms){
         $.ajax({
             type : "POST",
-            url : "/admin/album/index_add",
+            url : "/admin/other/rollpic_edit?id=<?=$pic['id']?>",
             dataType : "json",
             async : true,
             data:{
                 'title':forms['title'].value,
-                'icon':forms['album_icon'].value,
-                'status':forms['status'].checked,
+                'img':forms['rollpic_icon'].value,
+                'position':forms['position'].value,
+                'link':forms['link'].value,
+                'order':forms['order'].value,
                 'oper':true
             },
             success : function(data) {
                 if(data.code==1){
                     layer.msg("成功！");
-                    window.location.href="/admin/album/photo/"+data.aid;
+                    window.history.go(-1);
                 }else{
                     layer.msg(data.msg);
                 }

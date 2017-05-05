@@ -98,5 +98,18 @@ class CModel extends CI_Model {
         return $result;
     }
 
+    //得到列表
+    public function getListPage($table,$page,$where=array(),$offset=8,$order="id desc") {
+        $page = $page<=0?1:$page;
+        $start = ($page-1)*$offset;
+        $field = "*";
+        $query = $this->db->select($field)->where($where)->order_by($order)->from($table)->limit($offset,$start)->get();
+        $result = $query->result_array();
+        $count  = $this->db->where($where)->count_all_results($table);
+        $allpage = ceil($count/$offset);
+        $res = array("page"=>array('per'=>$offset,'curpage'=>$page,'count'=>$count),'data'=>$result);
+        return $res;
+    }
+
 
 }
