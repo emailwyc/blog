@@ -29,7 +29,7 @@ class Saying extends AdminBase{
             );
             $aid = $this->CModel->insertTableRid("saying",$newdata);
             if($aid){
-                $this->CModel->updateaddone("system_variable","value",array("mark"=>"saying"));
+                $this->CModel->updateaddone("system_variable","value",array("mark"=>"saynum"));
                 $this->CModel->insertTable("publish_logs",array("class"=>2,"content"=>$params['title']));
                 returnjson(array('code'=>1,'msg'=>"成功！"));
             }else{

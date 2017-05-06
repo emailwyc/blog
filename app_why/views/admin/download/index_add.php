@@ -65,16 +65,17 @@
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上传资源 </label>
-                        <div class="col-sm-9">
-                            <input type="hidden" name="durl" value=""  class="col-xs-10 col-sm-5" />
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上传资源（选择后立即上传）[如有下载地址可略过] </label>
+                        <div class="col-sm-4">
+                            <input type="file" name="durl" id="id-input-file-2"/><span style='color:red'>(不可重复上传哦！)</span>
+                            <input type="hidden" name="download_res" id="download_res"/>
                         </div>
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 下载地址（非必须） </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 下载地址（非必须（优先）） </label>
                         <div class="col-sm-9">
-                            <input type="text" name="lurl" value=""  class="col-xs-10 col-sm-5" />
+                            <input type="text" name="lurl" class="col-xs-10 col-sm-5" />
                         </div>
                     </div>
                     <div class="space-4"></div>
@@ -111,11 +112,54 @@
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="/ui/system/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="/ui/system/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="/ui/admin/assets/js/jquery1.7.2.js"></script>
+<script type="text/javascript" src="/ui/admin/assets/js/ajaxfileupload.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     var ue = UE.getEditor('container');
     $(document).ready(function(){
         updateimgone(150,100,"download_icon","");
+        $('#id-input-file-2').ace_file_input({
+            no_file:'未选择文件',
+            btn_choose:'选择',
+            btn_change:'更改',
+            droppable:false,
+            onchange:null,
+            icon_remove:null,
+            thumbnail:false, //| true | large
+            //whitelist:'gif|png|jpg|jpeg'
+            //blacklist:'exe|php'
+            //onchange:''
+            //
+            before_change: function(files, dropped){
+                var sloading = layer.load(2, { shade: [0.6,'#ccc'] });
+                $.ajaxFileUpload
+                (
+                    {
+                        url: '/admin/download/index_edit_upload', //用于文件上传的服务器端请求地址
+                        secureuri: false, //是否需要安全协议，一般设置为false
+                        fileElementId: 'id-input-file-2', //文件上传域的ID
+                        dataType: 'json', //返回值类型 一般设置为json
+                        success: function (data, status)  //服务器成功响应处理函数
+                        {
+                            layer.close(sloading);
+                            if(data.code==1){
+                                $('#download_res').val(data.msg);
+                            }else{
+                                layer.msg(data.msg);
+                            }
+                        },
+                        error: function (data, status, e)//服务器响应失败处理函数
+                        {
+                            layer.close(sloading);
+                            layer.msg("上传文件错误！");
+
+                        }
+                    }
+                );
+                return true;
+            }
+        });
     });
     function settingpwd_check(forms){
         $.ajax({
@@ -128,7 +172,7 @@
                 'kwd':forms['kwd'].value,
                 'download_icon':forms['download_icon'].value,
                 'is_hot':forms['is_hot'].checked,
-                'durl':forms['durl'].value,
+                'durl':forms['download_res'].value,
                 'lurl':forms['lurl'].value,
                 'content':ue.getContent(),
                 'oper':true

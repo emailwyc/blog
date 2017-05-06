@@ -9,6 +9,7 @@ class Blog_Controller extends CI_Controller {
 	public $_cdata = array();
 	public function __construct(){
 		parent::__construct();
+		date_default_timezone_set('PRC'); 
 		$this->curtime = time();
 	}
     protected function emptyCheck($params,$key_arr) {

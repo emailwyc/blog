@@ -89,4 +89,27 @@ class Download extends AdminBase{
         }
     }
 
+    public function index_edit_upload()
+    {
+        $cur_time = time();
+        $month = date('Ym',$cur_time);
+        $this->load->helper(array('form', 'url'));
+        $config['upload_path']      = './ui/attachment/download/'.$month."/";
+        $config['allowed_types']    = 'gif|jpg|png|zip|rar|gz|tar|php|html|js';
+        $config['file_name']      = $cur_time.getRandomPass(4);
+        $this->load->library('upload', $config);
+        mk_dir($config['upload_path']);
+        //print_r($_FILES);exit;
+        if ( ! $this->upload->do_upload('durl'))
+        {
+            returnjson(array('code'=>2,'msg'=>$this->upload->display_errors()));
+        }
+        else
+        {
+            $data = $this->upload->data();
+            $file_url =  $config['upload_path'].$data['file_name'];
+            returnjson(array('code'=>1,'msg'=>$file_url));
+        }
+    }
+
 }

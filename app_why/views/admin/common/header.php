@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="/ui/admin/assets/css/soonebaby.css" />
 
 
-    <script type="text/javascript" src="/ui/admin/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/ui/admin/assets/js/jquery1.7.2.js"></script>
     <script type="text/javascript" src="/ui/admin/assets/js/zoom/zooming.js"></script>
     <!-- inline styles related to this page -->
 
