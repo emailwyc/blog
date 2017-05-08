@@ -9,6 +9,19 @@ class ImgM extends CI_Model {
         $this->load->library('image_lib');
     }
 
+    private function setWm($source_image){
+        $config = array();
+        $config['source_image'] = $source_image;
+        $config['wm_overlay_path'] = "./ui/system/images/logo3.gif";
+        $config['wm_type'] = 'overlay';
+        $config['wm_vrt_alignment'] = 'bottom';
+        $config['wm_hor_alignment'] = 'right';
+        $config['wm_hor_offset'] = 5;
+        $config['wm_vrt_offset'] = 5;
+        $this->image_lib->initialize($config);
+        $this->image_lib->watermark();
+    }
+
     private function getParams($thumb){
         $configLarge = array();
         $configLarge['image_library'] = 'gd2';
@@ -48,9 +61,13 @@ class ImgM extends CI_Model {
         header("Content-type: text/html; charset=utf-8");
         //判断是否是真正图片
         $im = @getimagesize($temp_file);
-        $img_size=@ceil(filesize($temp_file)/1048576);
-        if($im == false || $img_size>=5){
+        //$img_size=@ceil(filesize($temp_file)/1048576);
+        if($im == false){
             $error['code'] = 1002; $error['msg'] = "上传图片不符合规则或已损坏！！"; return $error;
+        }else{
+            $this->setWm($temp_file);
+            $scan = number_format($im['0']/$im['1'],2,'.','');
+            $error['data']['scale'] = $scan;
         }
         //处理图片
         if($Info['thumb']) {

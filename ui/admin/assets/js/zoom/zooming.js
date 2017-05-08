@@ -157,7 +157,9 @@
           this._styles.image.width = this._image.style.width
           this._styles.image.height = this._image.style.height
 
-          var rect = this._image.getBoundingClientRect()
+          var rect = this._image.getBoundingClientRect();
+
+
 
           setStyles(this._image, {
             'width': rect.width + 'px',
@@ -207,12 +209,18 @@
       // scaling horizontally and scaling vertically
       var scaleHorizontally = distFromImageEdgeToWindowEdge.x / imgHalfWidth
       var scaleVertically = distFromImageEdgeToWindowEdge.y / imgHalfHeight
-      var scale = this._scaleBase + Math.min(scaleHorizontally, scaleVertically)
+      var scale = this._scaleBase + Math.min(scaleHorizontally, scaleVertically);
 
+      var my_scale= this._image.getAttribute('data-scale');
+      var my_scale_w = scale*Number(my_scale);
+      if(isNaN(my_scale_w)){
+          my_scale_w = scale;
+          alert(my_scale_w);
+      }
       // Translate the image to window center, then scale the image
       this._styles.image.transform =
         'translate(' + translate.x + 'px,' + translate.y + 'px) ' +
-        'scale(' + scale + ',' + scale + ')'
+        'scale(' + my_scale_w + ',' + scale + ')';
     },
 
     _zoomImage: function() {

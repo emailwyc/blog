@@ -174,7 +174,7 @@ function albumaddimg(w,h,tp,cid,thumb) {
                             f.parent(".img-add").removeClass("zhuan11");
                             var html = "";
                             html += '<li class="delMark'+data.aid+'">';
-                            html += '<img src="'+img+'" data-action="zoom" />';
+                            html += '<img src="'+img+'" data-action="zoom" data-scale="'+data.data.scale+'" />';
                             html += ' <div class="tools tools-bottom">';
                              html+=  '<a href="javascript:void(0)" onclick="del_func('+data.aid+')"><i class="icon-remove red"></i></a>';
                             html+='</div>';

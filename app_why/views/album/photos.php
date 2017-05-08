@@ -6,23 +6,22 @@
 <div class="container">
 <!--左侧开始-->
 <div class="gallery2  w95">
-
 	<h4 class="index-title w95"><a href="#paginate" class="all"><i class="el-th-large"></i>所有相片</a><span><i class="el-picture"></i>当前：<?=$album_class['name']?><font><?=$album['page']['count']?></font>张</span></h4>
 	<ul class="wall baguetteBoxOne gallery">
 		<?php foreach($album['data'] as $k=>$v):?>
 			<div class="wall-column"><div class="wall-li">
-				<a class="show-pic lightbox" href="<?=$v['img']?>" title="<?=$v['title']?>">
-				<img src="<?=$v['img_icon']?>" alt="<?=$v['title']?>" title="<?=$v['title']?>">
+				<a class="show-pic lightbox" href="<?=$v['img']?>" title="发表于<?=date('Y-m-d',strtotime($v['createtime']));?>">
+				<img src="<?=$v['img_icon']?>" alt=""　 >
 				</a>
-				<p><?=$v['title']?><small><?=date('Y-m-d',strtotime($v['createtime']));?></small></p>
+				<p><small><?=date('Y-m-d',strtotime($v['createtime']));?></small></p>
 			</div></div>
 		<?php endforeach;?>
 	</ul>
 
-	<div class="page" id="paginate"> </div>
+	<div class="page" id="paginate1"> </div>
 	<script type="text/javascript" src="/ui/system/js/jquery.pagination.js"></script>
 	<script type="text/javascript">	
-	jQuery('#paginate').pagination(<?=$album['page']['count']?>,{
+	jQuery('#paginate1').pagination(<?=$album['page']['count']?>,{
 			current_page:<?=$album['page']['curpage']?>,
 			items_per_page:<?=$album['page']['per']?>,
 			link_to:"/album/photos/<?=$album_class['id']?>/__id__"

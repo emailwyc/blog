@@ -60,7 +60,7 @@
                                             <ul class="ace-thumbnails img-show">
                                                 <?php foreach ($photo['data'] as $k=>$v):?>
                                                 <li class="delMark<?=$v['id']?>">
-                                                    <img src="<?=$v['img']?>" data-action="zoom" />
+                                                    <img src="<?=$v['img']?>" data-action="zoom" data-scale="<?=$v['scale']?>"/>
                                                     <div class="tools tools-bottom">
                                                         <a href="javascript:void(0)" onclick="del_func(<?=$v['id'];?>)"><i class="icon-remove red"></i></a>
                                                     </div>

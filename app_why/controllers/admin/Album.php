@@ -113,7 +113,8 @@ class Album extends AdminBase{
         $result = $this->ImgM->imgUploadOne($params);
         if($result['code']==1){
             $img_cion = str_replace(".png","_thumb.png",$result['msg']);
-            $newdata = array("cid"=>(int)$params['cid'],"img"=>$result['msg'],"img_icon"=>$img_cion,"title"=>"");
+            $newdata = array("cid"=>(int)$params['cid'],"img"=>$result['msg'],"img_icon"=>$img_cion);
+            $newdata['scale'] = !empty($result['data']['scale'])?$result['data']['scale']:0;
             $aid = $this->CModel->insertTableRid("album",$newdata);
             if($aid){
                 $this->CModel->updateaddone("album_class","photo_num",array("id"=>(int)$params['cid']));

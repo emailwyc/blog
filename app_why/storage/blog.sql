@@ -46,26 +46,25 @@ CREATE TABLE `album` (
   `cid` int(11) NOT NULL COMMENT '相册id',
   `img` varchar(255) NOT NULL DEFAULT '' COMMENT '图片地址',
   `img_icon` varchar(255) NOT NULL COMMENT 'icon地址',
-  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '图片名称',
+  `scale` float NOT NULL DEFAULT '0' COMMENT '图片名称',
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of album
 -- ----------------------------
-INSERT INTO `album` VALUES ('1', '1', '/ui/system/images/soonebaby10.jpg', '/ui/system/images/soonebaby10.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
-INSERT INTO `album` VALUES ('2', '1', '/ui/system/images/soonebaby11.jpg', '/ui/system/images/soonebaby11.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
-INSERT INTO `album` VALUES ('3', '1', '/ui/system/images/soonebaby12.jpg', '/ui/system/images/soonebaby12.jpg', '爱笑的女孩运气不会太差！', '2017-03-21 11:45:18');
-INSERT INTO `album` VALUES ('4', '2', '/ui/system/images/soonebaby13.jpg', '/ui/system/images/soonebaby13.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('5', '2', '/ui/system/images/soonebaby14.jpg', '/ui/system/images/soonebaby14.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('6', '2', '/ui/system/images/soonebaby15.jpg', '/ui/system/images/soonebaby15.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('7', '2', '/ui/system/images/soonebaby16.jpg', '/ui/system/images/soonebaby16.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('8', '2', '/ui/system/images/soonebaby17.jpg', '/ui/system/images/soonebaby17.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('9', '2', '/ui/system/images/soonebaby18.jpg', '/ui/system/images/soonebaby18.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('10', '2', '/ui/system/images/soonebaby19.jpg', '/ui/system/images/soonebaby19.jpg', '大自然的美', '2017-03-21 12:06:32');
-INSERT INTO `album` VALUES ('11', '2', '/ui/system/images/soonebaby20.jpg', '/ui/system/images/soonebaby20.jpg', '大自然的美', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('1', '1', '/ui/system/images/soonebaby10.jpg', '/ui/system/images/soonebaby10.jpg', '0', '2017-03-21 11:45:18');
+INSERT INTO `album` VALUES ('2', '1', '/ui/system/images/soonebaby11.jpg', '/ui/system/images/soonebaby11.jpg', '0', '2017-03-21 11:45:18');
+INSERT INTO `album` VALUES ('3', '1', '/ui/system/images/soonebaby12.jpg', '/ui/system/images/soonebaby12.jpg', '0', '2017-03-21 11:45:18');
+INSERT INTO `album` VALUES ('4', '2', '/ui/system/images/soonebaby13.jpg', '/ui/system/images/soonebaby13.jpg', '0', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('5', '2', '/ui/system/images/soonebaby14.jpg', '/ui/system/images/soonebaby14.jpg', '0', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('6', '2', '/ui/system/images/soonebaby15.jpg', '/ui/system/images/soonebaby15.jpg', '0', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('7', '2', '/ui/system/images/soonebaby16.jpg', '/ui/system/images/soonebaby16.jpg', '0', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('8', '2', '/ui/system/images/soonebaby17.jpg', '/ui/system/images/soonebaby17.jpg', '0', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('9', '2', '/ui/system/images/soonebaby18.jpg', '/ui/system/images/soonebaby18.jpg', '0', '2017-03-21 12:06:32');
+INSERT INTO `album` VALUES ('10', '2', '/ui/system/images/soonebaby19.jpg', '/ui/system/images/soonebaby19.jpg', '0', '2017-03-21 12:06:32');
 
 -- ----------------------------
 -- Table structure for `album_class`
