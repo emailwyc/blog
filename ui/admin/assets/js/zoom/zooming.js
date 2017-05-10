@@ -217,6 +217,9 @@
           my_scale_w = scale;
           alert(my_scale_w);
       }
+	  if(my_scale_w<=0){
+		my_scale_w = scale;
+	  }
       // Translate the image to window center, then scale the image
       this._styles.image.transform =
         'translate(' + translate.x + 'px,' + translate.y + 'px) ' +
