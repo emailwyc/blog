@@ -126,7 +126,7 @@
     <h4 class="index-title"><i class="el-tags"></i>标签云<small>Tags Clouds</small></h4>
 	<ul id="3dcloud">
 	<?php foreach($_tags as $k=>$v):?>
-	<li><a href="article/tag/<?=$v['id']?>" title="标签：<?=$v['name']?> "><?=$v['name']?> (<?=$v['number']?>)</a></li>
+	<li><a href="/article/tag/<?=$v['id']?>" title="标签：<?=$v['name']?> "><?=$v['name']?> (<?=$v['number']?>)</a></li>
 		<?php endforeach;?>
 	</ul>
 </div>
