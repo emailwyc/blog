@@ -31,7 +31,7 @@
 <!--右侧个人统计-->
 <div class="web-author bg-color animation-div">
 		<div class="author-tx">
-			<a class="img-circle" href="http://www.100txy.com/Home/Index/about.html" title="点击查看详细信息">
+			<a class="img-circle" href="/about" title="点击查看详细信息">
 				<img class="img-circle" src="<?=$_var['baseRes']['avatar'];?>">
 			</a>
 		</div>
