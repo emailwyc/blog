@@ -18,8 +18,8 @@ class ImgM extends CI_Model {
         $config['wm_hor_alignment'] = 'right';
         $config['wm_hor_offset'] = 5;
         $config['wm_vrt_offset'] = 5;
-        $this->image_lib->initialize($config);
-        $this->image_lib->watermark();
+        //$this->image_lib->initialize($config);
+        //$this->image_lib->watermark();
     }
 
     private function getParams($thumb){
